@@ -8,6 +8,7 @@ library(here)
 
 # bbox Europe/EUROCONTROL area
 # -25.488281,26.638253,45.407181,71.864780
+
 bb <- c(
   xmin = -25.488281,
   ymin = 26.638253,
@@ -17,7 +18,7 @@ bb <- c(
   st_as_sfc(crs = 4326) |>
   # add points to the bbox polygon
   densify(n = 300L) |>
-  st_as_sf(name = "NM")
+  st_as_sf(res = 2)
 
 
 library(ggplot2)
@@ -34,24 +35,16 @@ eur_hex <- cells |>
   unlist() |>
   cell_to_polygon(simple = FALSE)
 
-eur_hex_union <- eur_hex |> st_union() |> st_exterior_ring() |> st_as_sf() |>
-  mutate(area = "NM")
+eur_hex_union <- eur_hex |>
+  st_union() |>
+  st_exterior_ring() |>
+  st_as_sf() |>
+  mutate(resolution = res)
 
-# eur_hex_union |>
-#   st_write(con, "AREA")
-
-eur_cent <- cells |>
+eur_centreoid <- cells |>
   pull(h3_addresses) |>
   unlist() |>
   cell_to_point(simple = FALSE)
-
-gisco_BN <- gisco_get_countries(
-  resolution = "20",
-  epsg = "4326",
-  spatialtype = "BN",
-  # spatialtype = "RG",
-  region = c("Europe", "Africa", "Asia")) |>
-  mutate(res = "20M")
 
 gisco_RG <- gisco_get_countries(
   resolution = "20",
@@ -74,11 +67,9 @@ eu = st_geometry(st_normalize(st_as_sf(EUR_res20)))
 g <- ggplot() +
   geom_sf(data = EUR_res20, fill = 'lightgrey', linewidth = 0.4) +
   geom_sf(data = eur_hex, fill = NA, colour = 'red', linewidth = 0.3) +
-  geom_sf(data = eur_cent, fill = NA, colour = 'blue', size = 0.3) +
+  geom_sf(data = eur_centreoid, fill = NA, colour = 'blue', size = 0.3) +
   theme_minimal() +
   coord_sf(crs = "ESRI:102013", datum = NA)
 g
 
-ggsave(filename = here("figures", "cells.png"), plot = g)
-
-
+ggsave(filename = here("figures", str_glue("cells-{res}.png")), plot = g)
