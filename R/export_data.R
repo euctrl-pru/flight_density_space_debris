@@ -17,15 +17,11 @@ library(magrittr)
 withr::local_envvar(c(TZ = "UTC", ORA_SDTZ = "UTC", NLS_LANG = ".AL32UTF8"))
 conn <- withr::local_db_connection(db_connection("PRU_DEV"))
 
-
+source(here("R", "cells.R"))
 
 # bbox Europe/EUROCONTROL area
 # -25.488281,26.638253,45.407181,71.864780
-bb_nm <- c(
-  xmin = -25.488281,
-  ymin =  26.638253,
-  xmax =  45.407181,
-  ymax =  71.864780) |>
+bb_nm <- bbox_nm() |>
   st_bbox(crs = 4326) |>
   st_as_sfc(crs = 4326) |>
   # add points to the bbox polygon
