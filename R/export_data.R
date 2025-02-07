@@ -31,24 +31,11 @@ bb_nm <- bbox_nm() |>
 
 
 res <- 2
-cells <- bb_nm |>
-  st_transform(crs = 4326) |>
-  polygon_to_cells(res = res, simple = FALSE)
-
-eur_hex <- cells |>
-  pull(h3_addresses) |>
-  unlist() |>
-  cell_to_polygon(simple = FALSE)
+eur_hex <- bbox_nm() |> bbox_cells_at_res(resolution = res)
 
 # take the bbox of the union of hexes at resolution 2 as the bbox for the query
-eur_hex_union <- eur_hex |>
-  st_union() |>
-  st_exterior_ring() |>
-  st_as_sf() |>
-  mutate(resolution = res)
-
-bb <- eur_hex |>
-  st_bbox()
+eur_hex_union <- bbox_nm() |> cells_boundary_at_res(resolution = res)
+bb <- eur_hex |> st_bbox()
 
 
 # Aug 2024
