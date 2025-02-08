@@ -9,7 +9,7 @@ bbox_cells_at_res <- function(bbox, resolution) {
     h3jsr::polygon_to_cells(res = res, simple = FALSE) |>
     pull(h3_addresses) |>
     unlist() |>
-    cell_to_polygon(simple = FALSE)
+    h3jsr::cell_to_polygon(simple = FALSE)
 }
 
 cells_boundary_at_res <- function(bbox, resolution) {
