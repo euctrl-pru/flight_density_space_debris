@@ -14,7 +14,9 @@ library(ggplot2)
 library(h3jsr)
 library(magrittr)
 
-withr::local_envvar(c(TZ = "UTC", ORA_SDTZ = "UTC", NLS_LANG = ".AL32UTF8"))
+withr::local_envvar(c(TZ = "UTC",
+                      ORA_SDTZ = "UTC",
+                      NLS_LANG = ".AL32UTF8"))
 conn <- withr::local_db_connection(db_connection("PRU_DEV"))
 
 source(here("R", "cells.R"))
@@ -33,7 +35,8 @@ bb_nm <- bbox_nm() |>
 res <- 2
 eur_hex <- bbox_nm() |> bbox_cells_at_res(resolution = res)
 
-# take the bbox of the union of hexes at resolution 2 as the bbox for the query
+# take the bbox of the union of hexes at resolution 2
+# as the bbox for the query
 eur_hex_union <- bbox_nm() |> cells_boundary_at_res(resolution = res)
 bb <- eur_hex |> st_bbox()
 
@@ -49,8 +52,19 @@ trjs <- point_profiles_tidy(conn = conn,
                     profile = "CTFM")
 
 trjs |>
+  mutate(altitude = 100 * FLIGHT_LEVEL) |>
+  select(flight_id     = FLIGHT_ID,
+         callsign      = CALLSIGN,
+         icao24        = ICAO24,
+         aircraft_type = AIRCRAFT_TYPE,
+         timestamp     = TIME_OVER,
+         longitude     = LONGITUDE,
+         latitude      = LATITUDE,
+         altitude,
+         sequence_id   = SEQ_ID) |>
   collect() |>
-  write_parquet(str_glue("data-raw/trjs_{dddd}.parquet", dddd = format(wef, "%Y-%m-%d")))
+  write_parquet(str_glue("data-raw/trjs_{dddd}.parquet",
+                         dddd = format(wef, "%Y-%m-%d")))
 
 
 # Dec 2024
@@ -64,5 +78,16 @@ trjs <- point_profiles_tidy(conn = conn,
                             profile = "CTFM")
 
 trjs |>
+  mutate(altitude = 100 * FLIGHT_LEVEL) |>
+  select(flight_id     = FLIGHT_ID,
+         callsign      = CALLSIGN,
+         icao24        = ICAO24,
+         aircraft_type = AIRCRAFT_TYPE,
+         timestamp     = TIME_OVER,
+         longitude     = LONGITUDE,
+         latitude      = LATITUDE,
+         altitude,
+         sequence_id   = SEQ_ID) |>
   collect() |>
-  write_parquet(str_glue("data-raw/trjs_{dddd}.parquet", dddd = format(wef, "%Y-%m-%d")))
+  write_parquet(str_glue("data-raw/trjs_{dddd}.parquet",
+                         dddd = format(wef, "%Y-%m-%d")))
