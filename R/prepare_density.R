@@ -3,6 +3,7 @@ library(tidyverse)
 library(sf)
 library(arrow)
 library(here)
+library(h3jsr)
 
 conflict_prefer("filter", "dplyr", quiet = TRUE)
 
@@ -11,20 +12,15 @@ source(here("R", "cells.R"))
 res <- 2
 eur_hex_union <- bbox_nm() |> cells_boundary_at_res(resolution = res)
 
-
+# circa 30 min
+# BOGUS? Just assuming that 1 position in cell is equal to (max) 30s flown
 dd <- c(
-  "data/trajectories_2024-08-01_resampled.parquet",
-  # "data/trajectories_2024-12-05_resampled.parquet",
-  NULL
-  ) |>
-  read_parquet() |>
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) |>
-  st_intersection(eur_hex_union)
-
-dd |>
-  point_to_cell(res = 2, simple = FALSE) |>
-  as_tibble() |>
-  rename(cell = h3_resolution_2) |>
-  summarise(.by = c(cell, hour), occupancy = n() * 30 / 3600) |>
+  "data/trajectories_2024-08-01_resampled_30s_bbox.parquet",
+  "data/trajectories_2024-12-05_resampled_30s_bbox.parquet",
+  NULL) |>
+  map(.f = read_parquet) |>
+  bind_rows() |>
+  summarise(.by = c(cell, year, month, day, hour),
+            occupancy = n() * 30 / 3600) |>
   arrange(desc(occupancy)) |>
   write_parquet(here("data", "flight_density.parquet"), compression = "gzip")
