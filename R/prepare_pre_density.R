@@ -21,12 +21,9 @@ dbExecute(con, "
     date_part('year',  timestamp) AS year,
     date_part('hour',  timestamp) AS hour,
     h3_h3_to_string(h3_latlng_to_cell(latitude, longitude, 2)) AS cell
-  -- EXCLUDE sequence_id
   FROM
       'data/trajectories_2024-08-01_resampled_30s.parquet';
-
   ALTER TABLE TRAJECTORY DROP COLUMN sequence_id;
-
   ALTER TABLE TRAJECTORY RENAME seq_id TO sequence_id;
   COPY(
     SELECT
@@ -48,8 +45,6 @@ dbExecute(con, "
   (FORMAT 'parquet')
   ;")
 
-
-
 dbExecute(con, "
   CREATE OR REPLACE TABLE TRAJECTORY AS
   SELECT
@@ -60,7 +55,6 @@ dbExecute(con, "
     date_part('year',  timestamp) AS year,
     date_part('hour',  timestamp) AS hour,
     h3_h3_to_string(h3_latlng_to_cell(latitude, longitude, 2)) AS cell
-  -- EXCLUDE sequence_id
   FROM
       'data/trajectories_2024-12-05_resampled_30s.parquet'
   ;
