@@ -20,7 +20,8 @@ dbExecute(con, "
     date_part('month', timestamp) AS month,
     date_part('year',  timestamp) AS year,
     date_part('hour',  timestamp) AS hour,
-    h3_h3_to_string(h3_latlng_to_cell(latitude, longitude, 2)) AS cell
+    h3_h3_to_string(h3_latlng_to_cell(latitude, longitude, 2)) AS cell,
+    2 AS h3_resolution
   FROM
       'data/trajectories_2024-08-01_resampled_30s.parquet';
   ALTER TABLE TRAJECTORY DROP COLUMN sequence_id;
@@ -54,7 +55,8 @@ dbExecute(con, "
     date_part('month', timestamp) AS month,
     date_part('year',  timestamp) AS year,
     date_part('hour',  timestamp) AS hour,
-    h3_h3_to_string(h3_latlng_to_cell(latitude, longitude, 2)) AS cell
+    h3_h3_to_string(h3_latlng_to_cell(latitude, longitude, 2)) AS cell,
+    2 AS h3_resolution
   FROM
       'data/trajectories_2024-12-05_resampled_30s.parquet'
   ;
