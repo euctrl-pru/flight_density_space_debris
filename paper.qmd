@@ -1,0 +1,132 @@
+---
+title: "Preparing for Potential Closure of European Airspaces due to Re-entering Space Objects"
+
+filters:
+  - acronyms
+  - highlight-text
+  - abstract-section
+
+format:
+  html: default
+  ieee-pdf:
+    keep-tex: true
+    journaltype: conference
+    papersize: a4
+  ieee-html: default
+
+author:
+  - id: es
+    name: Enrico Spinielli
+    affiliations:
+      - ref: aiu
+    orcid: 0000-0001-8584-9131
+    email: enrico.spinielli@eurocontrol.int
+    attributes:
+      corresponding: true
+  - name: Rainer Koelle
+    affiliations: 
+      - ref: aiu
+  - name: Quinten Goens
+    affiliations: 
+      - ref: aiu
+affiliations:
+  - id: aiu
+    name: EUROCONTROL
+    department: Aviation Intelligence Unit
+    city: Brussels
+    country: Belgium
+
+bibliography: references.bib
+
+acronyms:
+  insert_loa: false
+  fromfile:
+    - ./media/acronyms.yml
+
+---
+
+# Abstract
+The risk of collision of re-entering space debris with aircraft is 
+increasing due to both increasing number of airborne flights and
+re-entries. National and international authorities need to balance
+safety and economic impact of adopted measures.  
+We asses airspaces density as flown by commercial airlines
+distinguishing seasonal and hourly patterns.
+We base our hourly density estimation on (enhanced) flown trajectories as
+recorded by EUROCONTROL's \acr{NM} binned over Uber's H3
+gridding system. Impact risk probabilities will then calculated based on work
+from [@patera2008].
+This combined with a buffered area along the the path of re-entry,
+can provide risk impact probabilities for deciding on safety measure such as
+airspace closures and/or re-routings.
+
+# Introduction
+
+We base our hourly flight density estimation on (enhanced) trajectories flown
+by \acr{IFR} commercial aircraft as
+recorded by EUROCONTROL's \acr{NM}[^1] and overlapped on Uber's H3
+gridding system at different resolutions [@h3resolutions], see @fig-cells 
+for resolution 2 which corresponds to hexagons of average area $86801.78\ km^2$
+and average edge length of $182.51 km$.
+
+
+::: {#fig-cells}
+
+```{r cells-map}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("figures/cells_2.png")
+```
+
+H3 cells (red) at resolution 2 and their centers (blue) covering EUROCONTROL Area.
+:::
+
+
+ 
+
+We characterise densities on an hourly basis for representative days
+in summer and winter.[^2]
+
+
+We expand on the works of [@wrightAirspaceClosuresDue2025; @patera2008; @ailorLargeConstellationDisposal2020] and
+provide a reproducible example for States, Agencies or relevant authorities
+to build upon.
+
+[^1]: NM coordinates \acr{ATFCM} operations on behalf of EUROCONTROL's 42 Member States
+and 2 Comprehensive Member States covering
+almost all \acr{ECAC} States.
+
+[^2]: We will consider representative days in \acr{IATA} summer 2024 
+and winter 2025 season.
+
+
+@fig-density-winter-res-2 provides a promising result in the hourly flight
+density calculation which at least shows
+expected outcomes such as cells at zero density for war or no-fly zones such as
+Ukraine, Libia or Syria.
+
+::: {#fig-density-winter-res-2}
+
+```{r density-winter-res-2}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("figures/flight_density_2024-08-01T12_2.png")
+```
+
+Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTROL Area.
+:::
+
+
+
+# Conclusion / Outcome
+
+We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled reentry of space objects that could pose a safety concern on civilian aviation.
+The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
+
+
+
+
+# References
+
+::: {#refs}
+:::
