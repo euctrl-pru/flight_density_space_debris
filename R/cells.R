@@ -1,3 +1,51 @@
+
+
+plot_hexes_map <- function(res) {
+  eur_hex <- bbox_nm() |>
+    hexes_for_bbox_at_res(resolution = res)
+
+  eur_hex_union <- bbox_nm() |>
+    # hex union at res 2
+    hexes_for_bbox_at_res(resolution = 2) |>
+    sf::st_union() |>
+    st_exterior_ring() |>
+    st_as_sf() |>
+    mutate(resolution = 2)
+
+  eur_centreoid <- eur_hex |>
+    pull(h3_address) |>
+    unlist() |>
+    cell_to_point(simple = FALSE)
+
+  gisco_RG <- giscoR::gisco_get_countries(
+    resolution = "20",
+    epsg = "4326",
+    spatialtype = "RG",
+    region = c("Europe", "Africa", "Asia")) |>
+    mutate(res = "20M")
+
+  gisco <- gisco_RG
+
+  EUR_res20 <- gisco |>
+    st_intersection(eur_hex_union) |>
+    select(res)
+
+  g <- ggplot() +
+    geom_sf(data = EUR_res20, fill = 'lightgrey', linewidth = 0.4) +
+    geom_sf(data = eur_hex, fill = NA, colour = 'red', linewidth = 0.3) +
+    geom_sf(data = eur_centreoid, fill = NA, colour = 'blue', size = 0.05) +
+    theme_minimal() +
+    coord_sf(crs = "ESRI:102013", datum = NA)
+  g
+
+}
+
+
+
+
+
+
+
 #' H3 hexagons covering a bounding box.
 #'
 #' @param bbox bounding box to be covered by H3 hexagons
@@ -5,7 +53,7 @@
 #'
 #' @returns simple features of H3 hexagons polygons and relevant addresses
 #'
-bbox_cells_at_res <- function(bbox, resolution) {
+hexes_for_bbox_at_res <- function(bbox, resolution) {
   bbox |>
     sf::st_bbox(crs = 4326) |>
     sf::st_as_sfc(crs = 4326) |>
@@ -27,8 +75,8 @@ bbox_cells_at_res <- function(bbox, resolution) {
 #'
 #' @returns the bounding box containing the H3 hexagons covering `bbox`
 #'
-cells_boundary_at_res <- function(bbox, resolution) {
-  bbox_cells_at_res(bbox, resolution) |>
+bbox_of_hexes_for_bbox_at_res <- function(bbox, resolution) {
+  hexes_for_bbox_at_res(bbox, resolution) |>
     st_union() |>
     st_exterior_ring() |>
     st_as_sf() |>
