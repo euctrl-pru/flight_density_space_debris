@@ -33,11 +33,11 @@ bb_nm <- bbox_nm() |>
 
 
 res <- 2
-eur_hex <- bbox_nm() |> bbox_cells_at_res(resolution = res)
+eur_hex <- bbox_nm() |> hexes_for_bbox_at_res(resolution = res)
 
 # take the bbox of the union of hexes at resolution 2
 # as the bbox for the query
-eur_hex_union <- bbox_nm() |> cells_boundary_at_res(resolution = res)
+eur_hex_union <- bbox_nm() |> bbox_of_hexes_for_bbox_at_res(resolution = res)
 bb <- eur_hex |> st_bbox()
 
 
