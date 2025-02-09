@@ -6,26 +6,27 @@ library(smoothr)
 library(tidyverse)
 library(here)
 
-# bbox Europe/EUROCONTROL area
-# -25.488281,26.638253,45.407181,71.864780
+source("R/cells.R")
 
-bb <- c(
-  xmin = -25.488281,
-  ymin = 26.638253,
-  xmax = 45.407181,
-  ymax = 71.864780) |>
-  st_bbox(crs = 4326) |>
-  st_as_sfc(crs = 4326) |>
-  # add points to the bbox polygon
-  densify(n = 300L) |>
-  st_as_sf(res = 2)
 
 
 library(ggplot2)
 library(h3jsr)
 library(magrittr)
 
-res <- 2
+res <- 3
+
+# bbox Europe/EUROCONTROL area
+# -25.488281,26.638253,45.407181,71.864780
+
+bb <- bbox_nm() |>
+  st_bbox(crs = 4326) |>
+  st_as_sfc(crs = 4326) |>
+  # add points to the bbox polygon
+  densify(n = 300L) |>
+  st_as_sf(res = res)
+
+
 cells <- bb |>
   st_transform(crs = 4326) |>
   polygon_to_cells(res = res, simple = FALSE)
@@ -67,7 +68,7 @@ eu = st_geometry(st_normalize(st_as_sf(EUR_res20)))
 g <- ggplot() +
   geom_sf(data = EUR_res20, fill = 'lightgrey', linewidth = 0.4) +
   geom_sf(data = eur_hex, fill = NA, colour = 'red', linewidth = 0.3) +
-  geom_sf(data = eur_centreoid, fill = NA, colour = 'blue', size = 0.3) +
+  geom_sf(data = eur_centreoid, fill = NA, colour = 'blue', size = 0.1) +
   theme_minimal() +
   coord_sf(crs = "ESRI:102013", datum = NA)
 g
