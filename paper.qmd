@@ -7,7 +7,6 @@ filters:
   - abstract-section
 
 format:
-  html: default
   ieee-pdf:
     keep-tex: true
     journaltype: conference
@@ -36,7 +35,7 @@ affiliations:
     city: Brussels
     country: Belgium
 
-bibliography: references.bib
+bibliography: media/references.bib
 
 acronyms:
   insert_loa: false
@@ -67,7 +66,34 @@ by \acr{IFR} commercial aircraft as
 recorded by EUROCONTROL's \acr{NM}[^1] and overlapped on Uber's H3
 gridding system at different resolutions [@h3resolutions], see @fig-cells 
 for resolution 2 which corresponds to hexagons of average area $86801.78\ km^2$
-and average edge length of $182.51 km$.
+and average edge length of $182.51 km$, see also table
+
+```{r}
+library(tidyverse)
+library(gt)
+library(gtExtras)
+
+tribble(
+  ~resolution, ~hex_area, ~hex_edge,
+  2L , 86801.780398997, 182.5129565,
+  3L,  12393.434655088,  68.97922179,
+  4L,   1770.347654491,  26.07175968
+
+) |> 
+  gt() |> 
+   cols_label(
+    resolution ~ "Resolution",
+    tidyselect::ends_with("area") ~ "Density, {{*persons* km^-2}}",
+    # hex_area ~ md("Cell Area ({km^2}})"),
+    hex_edge ~ "Edge length ({km}})"
+  ) |> 
+    gt::tab_header(
+    title = md("H3 Cell Statistics"),
+    subtitle = md("average hexagons")
+  ) |> 
+  opt_align_table_header(align = "left")
+```
+
 
 
 ::: {#fig-cells}
@@ -75,7 +101,7 @@ and average edge length of $182.51 km$.
 ```{r cells-map}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics("figures/cells_2.png")
+knitr::include_graphics("media/figures/cells_2.png")
 ```
 
 H3 cells (red) at resolution 2 and their centers (blue) covering EUROCONTROL Area.
@@ -110,7 +136,7 @@ Ukraine, Libia or Syria.
 ```{r density-winter-res-2}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics("figures/flight_density_2024-08-01T12_2.png")
+knitr::include_graphics("media/figures/flight_density_2024-08-01T12_2.png")
 ```
 
 Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTROL Area.
