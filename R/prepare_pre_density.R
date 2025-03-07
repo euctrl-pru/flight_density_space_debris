@@ -3,7 +3,8 @@ library(duckdb)
 library(dplyr, warn.conflicts = FALSE)
 
 withr::local_envvar(c(TZ = "UTC", ORA_SDTZ = "UTC"))
-con <- withr::local_db_connection(DBI::dbConnect(duckdb(), path = ":memory:"))
+# con <- withr::local_db_connection(DBI::dbConnect(duckdb(), path = ":memory:"))
+con <- DBI::dbConnect(duckdb(), path = ":memory:")
 
 dbExecute(con, "SET extension_directory = '/Users/spi/.duckdb/extensions';")
 # dbExecute(con, "INSTALL H3;")

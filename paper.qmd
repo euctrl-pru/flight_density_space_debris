@@ -83,7 +83,7 @@ tribble(
   gt() |> 
    cols_label(
     resolution ~ "Resolution",
-    tidyselect::ends_with("area") ~ "Density, {{*persons* km^-2}}",
+    tidyselect::ends_with("area") ~ "Cell Area {{*persons* km^-2}}",
     # hex_area ~ md("Cell Area ({km^2}})"),
     hex_edge ~ "Edge length ({km}})"
   ) |> 
@@ -142,6 +142,19 @@ knitr::include_graphics("media/figures/flight_density_2024-08-01T12_2.png")
 Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTROL Area.
 :::
 
+
+# Data
+
+::: {#fig-data-densities}
+
+```{r densities}
+#| out-width: "120%"
+#| echo: false
+knitr::include_graphics("media/figures/cubes.pdf")
+```
+
+Flight and population densities data (hex on Germany as an example).
+:::
 
 
 # Conclusion / Outcome

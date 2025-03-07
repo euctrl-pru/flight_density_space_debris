@@ -1,0 +1,89 @@
+---
+title: "Setup"
+filters:
+  - highlight-text
+format: 
+  html: default
+  pdf: default
+---
+
+This works takes NM CTFM profiles, resamples them and calculates number of
+flight present per hour, `H`, of date, `D` in H3 hexagonal cells
+(at resolution `R`) covering the EUROCONTROL Member's airspace.
+
+R and Python scripts are in the `R/` and `python/` directories respectively.
+
+We use the following values:
+
+* H3 hexagons at resolution `R = 2`: 
+  - Average Area (km2): `86801.78`
+  - Average edge length (Km): `182.51`
+* H3 hexagons at resolution `R = 3`: 
+  - Average Area (km2): `12393.43`
+  - Average edge length (Km): `68.98`
+* bounding box approximating EUROCONTROL Area (decimal degrees):
+  - xmin = -25.488281
+  - ymin = 26.638253
+  - xmax = 45.407181
+  - ymax = 71.864780
+* bounding box containing the HEX at resolution 2 that match
+  the bounding box approximating EUROCONTROL Area:
+  - xmin = -27.78166
+  - xmax =  48.56037
+  - ymin =  24.90098
+  - ymax =  72.85065
+
+
+::: {#fig-cells}
+
+```{r cells-map}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("figures/cells_2.png")
+```
+
+H3 **[cells]{colour="#ff0000"}** ([red]{colour="#ffffff" bg-colour="#ff0000"})
+at resolution 2 and
+their **[centers]{colour="#0000ff"}** ([blue]{colour="#ffffff" bg-colour="#0000ff"}) covering EUROCONTROL Area.
+
+:::
+
+
+## Data Preparation
+
+### Data Extraction
+We first extract data for data `D` (for example `2024-08-01`)
+1. flight list for date `D`
+1. point profile for flown trajectories, i.e. M3/CTFM for date `D`
+   in the correct bounding box.
+   We use `point_profiles_tidy()` from the `{eurocontrol}` package
+
+This is achieved via script `export_data.R`.
+The relevant trajectories are saved in
+`data-raw/trjs_{D}.parquet`, i.e. `data-raw/trjs_2024-08-01.parquet`.
+
+### Trajectory Resampling
+We load the trajectories and resample them at 30s using the Python `traffic` library.
+This is performed by the `resample_aug.py` and `resample_dec.py`
+scripts and is time consuming (40 min each).
+Execute as:
+
+> $ python resample_aug.py
+
+The result is in (52min 51s)
+`data/trajectories_2024-08-01_resampled_30s.parquet`
+
+### Fast H3 Labelling
+The script `prepare_pre_density.R` uses DuckDB for fast labelling
+of each lon/lat to the relevant H3 cell (at resolution `R`)
+and filtering for samples between bbox.
+Keep only point in the hex cells of the bbox and for day `D`.
+The result is saved in `trajectories_<YYYY-MM-DD>_resampled_30s_bbox_res_3.parquet` for date `D`.
+
+
+
+## Cell Occupancy and Density
+
+The script `prepare_density.R` calculates the occupancy per hour `H` of `D` 
+for each cell at resolution `R`
+.

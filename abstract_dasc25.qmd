@@ -1,0 +1,120 @@
+---
+title: "Call for Papers --- DASC 2025"
+filters:
+  - highlight-text
+format: html
+---
+
+## DASC '25
+The Conference will be held in Montreal, Canada, on 
+
+## Conference Theme
+
+AVIONICS’ RESPONSIBILITY FOR SAFE AND SUSTAINABLE NEXT GENERATION AEROSPACE OPERATIONS
+
+Digital avionics are the foundation for the kind of aviation and space flight we feel familiar with today, but aerospace finds itself in an era of tremendous changes: societal demands and geopolitical changes are transforming aerospace towards higher customization, more autonomy, greener operation and faster adaptability.
+
+Digital avionics systems are the core enablers for many of the new technologies, functions, and operations necessitated by these changes. Furthermore, avionics systems will need to undergo a transformation towards reduced carbon footprint, higher calculation power, lower latency, and higher flexibility - all while maintaining safety and security levels and decreasing certification times: a huge responsibility for the digital avionics systems of the future. 
+
+The 44th DASC will investigate the responsibility of digital avionics for the next generation of air and space vehicles to come. We provide the forum to present solutions making aerospace transformation possible, analyze open issues, and discuss disruptive ideas.
+
+You are invited to present your research addressing current and future challenges of avionics systems and exchange diverse perspectives with the world’s leading experts in the field.
+
+
+### Fields of Interest
+Emphasized are methods, tool, systems and functions for:
+
+The DASC encourages leading research & applications of the following fields but is open to other related topics as well.
+
+* Air Traffic Management (ATM)
+* Avionics Platforms
+* Avionics Technologies
+* Communications, Navigation, And Surveillance
+* And Information Networks 
+* Cyber, Systems, And Software (-Engineering)
+* Human Factors
+* Unmanned Aircraft Systems & Uncrewed
+* Spacecraft (UAS/USS)
+* Urban, Advanced Air Mobility & New Space
+
+## Proposal
+
+**Title**: Prepariing for Potential Closure of European Airspaces due to Re-entering Space Objects
+
+One of each in the abstract:
+
+i.  motivation
+i. short background why topic important
+i. approach chosen/research method
+i. experimental work
+i. results obtained/hoped~planned
+i. conclusions
+
+### Abstract
+(background, motivation)
+The risk of collision of re-entering space debris with aircraft is 
+increasing both due to ever increasing number of airborne flights and
+re-entries. National and international authorities need tools to balance
+safety and economic/logistic impact of adopted measures.
+
+(approach)
+We asses airspaces density as flown by commercial airlines
+distinguishing seasonal (summer and winter IATA season) and hourly patterns.
+(method)
+We base our hourly density estimation on (enhanced) flown trajectories as
+recorded by EUROCONTROL's Network Manager (NM)[^1] and overlapped on Uber's H3
+gridding system. Impact risk probabilities will then calculated based on work
+from [@patera2008].
+(conclusion)
+This combined with a buffered area along the the path of re-entry,
+can provide factual risk impact probabilities for deciding on closures and/or
+re-routings.
+(conclusion)
+
+
+[^1]: NM coordinates ATFCM operations on behalf of EUROCONTROL's 42 Member States
+and 2 Comprehensive Member States covering
+almost all European Civil Aviation Conference (ECAC) States.
+
+::: {#fig-cells}
+
+```{r cells-map}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("figures/flight_density_2024-08-01T12_2.png")
+```
+
+Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTROL Area.
+Note the empty cells for the war areas / no-fly zone in Ukraine, Syria and Libia.
+
+:::
+
+## Text in Web Based submission
+
+### Synopsis
+The risk of collision of re-entering space debris with aircraft is increasing due to both increasing number of airborne flights and re-entries. National and international authorities need to balance safety and economic impact of adopted measures.
+We asses airspaces density as flown by commercial airlines distinguishing seasonal and hourly patterns. We base our hourly density estimation on (enhanced) flown trajectories as recorded by EUROCONTROL's Network Manager binned over Uber's H3 gridding system. Impact risk probabilities will then calculated based on work such as from (Patera R. "Risk ro commercial aircraft from reentering space debris", 2008). This combined with a buffered area along the the path of re-entry, can provide risk impact probabilities for deciding on safety measure such as airspace closures and/or re-routings.
+
+
+### Extended Abstract
+We base our hourly flight density estimation on (enhanced) trajectories flown by Instrument Flight Rule (IFR) commercial flights as recorded by EUROCONTROL's Network Manager (NM)1 and overlapped on Uber's H3 gridding system at different resolutions [2], see <Figure 1> for resolution 2 which corresponds to hexagons of average area 86801.78 km2 and average edge length of 182.51 km.
+
+<Figure 1: plot of the grid system at resolution 2>
+
+We characterise densities on an hourly basis for representative days in summer and winter.[^2]
+We expand on the works of [1], [3], [4] and provide a reproducible example for States, Agencies or relevant authorities to build upon.
+
+<Figure 2> provides a promising result in the hourly flight density calculation which shows expected outcomes such as cells at zero density for war or no-fly zones such as Ukraine, Libia or Syria. Typical traffic flows such as from central Europe to Canary Islands or Atlantic crossing are clearly visible, providing a visual confirmation of the approach.
+
+<Figure 2: Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTROL Area.>
+
+Conclusion / Outcome
+
+We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled reentry of space objects that could pose a safety concern on civilian aviation.
+The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
+
+Footnotes
+
+[1]: NM coordinates Air Traffic Flow and Capacity Management (ATFCM) operations on behalf of EUROCONTROL's 42 Member States and 2 Comprehensive Member States covering almost all European Civil Aviation Conference (ECAC) States.
+
+[2]: We will consider representative days in International Air Transport Association (IATA) summer 2024 and winter 2025 season.
