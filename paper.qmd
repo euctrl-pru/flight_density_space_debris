@@ -143,6 +143,18 @@ Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTRO
 :::
 
 
+
+# Method
+
+From Equation 15 in [@patera2008], the impact (on the ground)
+probability density, $\sigma(L, i)$, at latitude $L$ of a reentring object
+whose orbit has inclination $i$ is given by:
+
+$$ \sigma(L, i) = \frac{1}{2 \pi^2 R^2 \sqrt{(\sin^2(i) - \sin^2(L))}}$$
+
+where $R$ is the Earth's radius.
+
+
 # Data
 
 ::: {#fig-data-densities}
@@ -150,7 +162,7 @@ Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTRO
 ```{r densities}
 #| out-width: "120%"
 #| echo: false
-knitr::include_graphics("media/figures/cubes.pdf")
+knitr::include_graphics("media/figures/cubes.png")
 ```
 
 Flight and population densities data (hex on Germany as an example).
