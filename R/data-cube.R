@@ -98,9 +98,17 @@ eur_hex <- eur_hex * 6 + c(-8.8, 8.5)
 
 de = de * 6 + c(-8.5, 8.5)
 
-pdf(here("media", "figures", "cubes.pdf"))
+# pdf(here("media", "figures", "cubes.pdf"))
+png(
+  filename = here("media", "figures", "cubes.png"),
+  width = 19,
+  height = 18.5,
+  units = "cm",
+  res = 600
+)
+
 plot.new()
-par(mar = c(5, 0, 5, 0))
+par(mar = c(0, 0, 0, 0), cex = 1.5)
 plot.window(xlim = c(-11, 8), ylim = c(-4, 14.5), asp = 1)
 #
 pl(s, 0, 0, TRUE, randomize = TRUE)
@@ -108,18 +116,18 @@ plot(de, add = TRUE, border = grey(.5))
 plot(eur_hex, add = TRUE, border = grey(.8))
 text(-11, 0, "hour", srt = -90, col = 'black')
 text(3.3, 9.5, "densities", srt = 0, col = 'black')
-text(1.45, 8.6, expression(rho[act]), col = 'black', cex = 1.05)
-text(4.45, 8.6, expression(rho[pop]), col = 'black', cex = 1.05)
+text(1.45, 8.6, expression(rho[act]), col = 'black')
+text(4.45, 8.6, expression(rho[pop]), col = 'black')
 # hours
-text(-10.1, 4, "23", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, 3, "22", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, 2, "21", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, 1, ".", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, 0, ".", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, -1, ".", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, -2, "2", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, -3, "1", srt = -90, col = 'black', cex = 0.7)
-text(-10.1, -4, "0", srt = -90, col = 'black', cex = 0.7)
+text(-10.1, 4, "23", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, 3, "22", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, 2, "21", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, 1, ".", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, 0, ".", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, -1, ".", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, -2, "2", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, -3, "1", srt = -90, col = 'black', cex = 0.8)
+text(-10.1, -4, "0", srt = -90, col = 'black', cex = 0.8)
 
 
 # location points:
