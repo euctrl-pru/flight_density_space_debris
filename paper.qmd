@@ -69,6 +69,10 @@ for resolution 2 which corresponds to hexagons of average area $86801.78\ km^2$
 and average edge length of $182.51 km$, see also table
 
 ```{r}
+#| label: tbl-resolutions
+#| tbl-cap: H3 hexagons, average values
+#| tbl-cap-location: bottom
+
 library(tidyverse)
 library(gt)
 library(gtExtras)
@@ -78,19 +82,21 @@ tribble(
   2L , 86801.780398997, 182.5129565,
   3L,  12393.434655088,  68.97922179,
   4L,   1770.347654491,  26.07175968
-
 ) |> 
   gt() |> 
    cols_label(
     resolution ~ "Resolution",
-    tidyselect::ends_with("area") ~ "Cell Area {{*persons* km^-2}}",
-    # hex_area ~ md("Cell Area ({km^2}})"),
-    hex_edge ~ "Edge length ({km}})"
+    hex_area ~ md("Cell Area"),
+    hex_edge ~ md("Edge length")
   ) |> 
     gt::tab_header(
     title = md("H3 Cell Statistics"),
     subtitle = md("average hexagons")
   ) |> 
+  cols_units(
+    hex_area = "km^2",
+    hex_edge = "km"
+  ) |>
   opt_align_table_header(align = "left")
 ```
 
@@ -126,34 +132,64 @@ almost all \acr{ECAC} States.
 and winter 2025 season.
 
 
-@fig-density-winter-res-2 provides a promising result in the hourly flight
+@fig-density-winter-res-3 provides a promising result in the hourly flight
 density calculation which at least shows
 expected outcomes such as cells at zero density for war or no-fly zones such as
 Ukraine, Libia or Syria.
 
-::: {#fig-density-winter-res-2}
+::: {#fig-density-winter-res-3}
 
-```{r density-winter-res-2}
-#| out-width: "100%"
+```{r density-winter-res-3}
+#| out-width: "110%"
 #| echo: false
-knitr::include_graphics("media/figures/flight_density_2024-08-01T12_2.png")
+knitr::include_graphics("media/figures/flight_density_2024-08-01T12_3.png")
 ```
 
-Flight density on 2024-08-01T12 for H3 cells at resolution 2 covering EUROCONTROL Area.
+Flight density in the EUROCONTROL Area on 2024-08-01T12 (H3 cells at resolution 3).
 :::
 
 
 
 # Method
 
-From Equation 15 in [@patera2008], the impact (on the ground)
-probability density, $\sigma(L, i)$, at latitude $L$ of a reentring object
-whose orbit has inclination $i$ is given by:
+## Impact probability density
+
+From Equation 15 in [@patera2008], the (on the ground) impact probability
+density, $\sigma(L, i)$, at latitude $L$ of a reentring object
+whose orbit has inclination $i$ (see @fig-orbital-inclination) is given by:
 
 $$ \sigma(L, i) = \frac{1}{2 \pi^2 R^2 \sqrt{(\sin^2(i) - \sin^2(L))}}$$
 
 where $R$ is the Earth's radius.
 
+::: {#fig-orbital-inclination}
+
+```{r orbital-inclination}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("media/figures/orbital_inclination_clip.png")
+```
+
+Orbital inclination is the angle between the plane of an orbit and the equator. An orbital inclination of 0° is directly above the equator, 90° crosses right above the pole, and 180° orbits above the equator in the opposite direction of Earth’s spin. (NASA illustration by Robert Simmon.).
+:::
+
+
+## Aircraft effective exposed area
+From Patera
+
+> Even for a ballistic coefficient of 50 lbs/ft2, the flight path angle
+> of a reentering object at 40,000 feet is -86.6 degrees, which corresponds
+> to nearly vertical descent.
+> Since most debris objects have ballistic coefficients equal to or 
+> less than 50 lbs/ft2, the vertical descent assumption is a very
+> accurate approximation.
+
+$$
+\varepsilon_i = \frac{s_{a} a_{h} + s_{d} a_{v}}{s_d}
+$$
+where $s_{a}$ is the average aircraft speed, $s_{d}$ is the average debris 
+object fall speed, $a_v$ area of the aircraft as viewed from above,
+$a_h$ area of the aircraft as viewed from the from the front of the aircraft.
 
 # Data
 
