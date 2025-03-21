@@ -309,8 +309,11 @@ all_acts <- ac_types |>
   map(.f = scraper) |>
   bind_rows()
 
-all_acts |>
-  write_csv("all_acts.csv")
+source("R/act_passengers.R")
+
+all_acts <- all_acts |>
+  left_join(act_all_pax) |>
+  write_csv("data/all_acts.csv")
 
 
 # ---- SkyBrary aircraft pages ----
