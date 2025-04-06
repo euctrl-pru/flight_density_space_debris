@@ -225,3 +225,31 @@ tribble(
   "TOBA", 1,   3,   3,   3, "One pilot and 3 passengers.",
   "TOR",  2,   0,   0,   0, "Flightcrew of two."
 ) -> act_all_pax
+
+
+# fmt: skip
+tribble(
+  ~icao, ~crew, ~pax_min, ~pax_typical, ~pax_max, ~accomodation,
+  "A139", 2,  0,  0,  15, "Crew: one or two; Capacity: up to 15 passengers, depending on configuration",
+  "A169", 2,  0,  8,  12, "Crew: 1 or 2; Capacity: 8 to 12 passengers, plus 250 kg (551 lbs) baggage and cargo; or 1 stretcher, plus 7 medical attendants; or 2 stretchers, plus 5 medical attendants",
+  "A189", 2,  0,  0,  19, "Crew: 1 or 2; Capacity: Up to 19 passengers",
+  "A337", 3,  0,  0,   0, "Crew: 2 pilots and 1 loadmaster",
+  "AC90", 2,  0,  0,   4, "Crew: Two; Capacity: four passengers",
+  "AS50", 1,  0,  0,   5, "Crew: 1; Capacity: 5 pax",
+  "AS65", 2,  0,  0,  10, "Crew: 1 or 2 pilots; Capacity: 10 troops",
+  "AT46", 2,  0,  0,  48, "Crew: 2 pilots",
+  "AT73", 4,  0,  0,  66, "",
+  "AT76", 4, 68, 68,  74, "",
+  "B429", 1,  0,  7,   7, "Crew: 1 pilot; Capacity: 7 passengers (six in passenger compartment; one beside pilot)",
+  "BE30", 2,  0, 10,  11, "",
+  "BER2", 5,  0, 44,  72, "Crew: 5; Capacity: 44 pax Be-200ES / 72 pax Be-210",
+  "BN2P", 1,  0,  9,   9, "Crew: 1; Capacity: 9 passengers",
+  "C10T", 1,  0,  5,   5, "Crew: 1; Capacity: 5 passengers",
+) -> sky_pax
+
+
+# fmt: skip
+tribble(
+  ~icao, ~crew, ~pax_min, ~pax_typical, ~pax_max, ~accomodation,
+  "AT8T", 2,  0,  1,  2, "Crew: One or Two (AT-802A – single-seat)",
+) -> doc8643_pax
