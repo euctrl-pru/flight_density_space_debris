@@ -9,7 +9,7 @@ tif <- system.file("tif/L7_ETMs.tif", package = "stars")
 r <- read_stars(tif)
 
 
-nrow <- 2
+nrow <- 3
 ncol <- 8
 m <- matrix(runif(nrow * ncol), nrow = nrow, ncol = ncol)
 m <- r[[1]][1:nrow, 1:ncol, 1]
@@ -101,7 +101,7 @@ de = de * 6 + c(-8.5, 8.5)
 # pdf(here("media", "figures", "cubes.pdf"))
 png(
   filename = here("media", "figures", "cubes.png"),
-  width = 19,
+  width = 19.5,
   height = 18.5,
   units = "cm",
   res = 600
@@ -115,9 +115,10 @@ pl(s, 0, 0, TRUE, randomize = TRUE)
 plot(de, add = TRUE, border = grey(.5))
 plot(eur_hex, add = TRUE, border = grey(.8))
 text(-11, 0, "hour", srt = -90, col = 'black')
-text(3.3, 9.5, "densities", srt = 0, col = 'black')
-text(1.45, 8.6, expression(rho[act]), col = 'black')
-text(4.45, 8.6, expression(rho[pop]), col = 'black')
+text(4.5, 9.5, "date", srt = 0, col = 'black')
+text(1.45, 8.6, expression(d[1]), col = 'black')
+text(4.45, 8.6, "...", col = 'black')
+text(7.45, 8.6, expression(d[n]), col = 'black')
 # hours
 text(-10.1, 4, "23", srt = -90, col = 'black', cex = 0.8)
 text(-10.1, 3, "22", srt = -90, col = 'black', cex = 0.8)
