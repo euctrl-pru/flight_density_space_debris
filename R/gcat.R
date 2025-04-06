@@ -311,33 +311,15 @@ gcat_base |>
   count()
 
 # keep the objects that reentered between start_date and end_date
-gcat_base |>
+gcat <- gcat_base |>
   filter(!(til < start_date), !(end_date < wef)) |>
   rename(inclination = `inc`) |>
   mutate(
     inclination = as.numeric(inclination),
     inclination = if_else(inclination < 0, 180 - inclination, inclination),
     NULL
-  )
+  ) |>
+  select(jcat, piece, type, inclination, reentry_date, dry_mass)
 
-# ---- weighting function ----
-# RE=6378000 # equatorial radius in m
-#
-# weighting_function = np.zeros(360)
-# num_of_satellites = len(RBGCAT)
-# timer = 0
-#
-# for line in RBGCAT:
-#   inclination = int(float(line[36]))
-# drymass = line[20]
-# if inclination > 90:
-#   inclination = 180 - inclination
-#
-# vals, lats = cs.latWeights(0.5, 550e3+RE, inclination) # get latitude weights
-#
-# weighting_function += vals # add the normalised times
-#
-# timer +=1
-# print("Working on satellite:", timer, "of", num_of_satellites)
-#
-# np.savetxt('Output data/10 year weighting function.csv', weighting_function)
+gcat |>
+  write_csv(here("data", "gcat.csv"))
