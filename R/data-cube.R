@@ -98,7 +98,6 @@ eur_hex <- eur_hex * 6 + c(-8.8, 8.5)
 
 de = de * 6 + c(-8.5, 8.5)
 
-# pdf(here("media", "figures", "cubes.pdf"))
 png(
   filename = here("media", "figures", "cubes.png"),
   width = 19.5,
