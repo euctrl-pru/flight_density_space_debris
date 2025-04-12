@@ -163,21 +163,26 @@ Flight density in the EUROCONTROL Area on 2024-08-01T12 (H3 cells at resolution 
 
 # Method
 
-The probability of impact for debris object $k$, $p_k$, is expressed as.
+We follow the same mathematical approach of [@patera2008].
+The probability, $p_k$, of a debris object $k$, impacting an aircraft over the
+area, $a$, is expressed as:
 
 $$
 p_k = \varepsilon_k \int_a \rho(\vec{x}) \sigma(\vec{x}) da
 $$ {#eq-impact-probability}
 
-where $\rho({\vec{x}})$ is the probability density of an aircraft
-and $\sigma(\vec{x})$ is probability density of a debris object in the
-position $\vec{x}$.
+where $\rho({\vec{x}})$ is the probability density of an aircraft in $\vec{x}$,
+$\sigma(\vec{x})$ is impact probability density of a debris object in the
+position $\vec{x}$ and $\varepsilon_k$ is the effective expose area.
+
+We can compute this probability for each hexagonal cell summing up for every
+group of same aircraft type (so with same $\varepsilon_k$).
 
 
 ## Impact probability density
 
 Debris that reenter the Earth’s atmosphere via drag-induced decay will fly
-circular orbits prior to reentry even if initially on an elliptical ones.
+circular orbits prior to reentry even if initially on elliptical ones.
 In fact drag at perigee will lower apogee and similarly drag at apogee will
 lower perigee. But because drag at perigee is higher due to denser atmosphere,
 the apogee  will decrease faster than perigee and the orbit will then tend to be
@@ -194,7 +199,7 @@ at latitude $\varphi$ of a reentring object whose orbit has inclination $i$
 
 $$ \sigma(\varphi, i) = \frac{1}{2 \pi^2 R^2 \sqrt{(\sin^2(i) - \sin^2(\varphi))}}$$ {#eq-impact-probability-density}
 
-So for example [@patera2008], if a building is located at latitude 30 degrees
+So for example if a building is located at latitude 30 degrees
 north (or south) and has an area of $\qty{1000}{m^2}$ and a piece of debris
 reenters the Earth’s atmosphere from an orbit having an inclination of 45 degrees,
 the impact probability is given by
@@ -208,27 +213,54 @@ where we used the equatorial value of $\qty{6378}{km}$, for the Earth's radius,
 $R$, as the distance of the building from the center of the planet.
 
 
-$\num{0.046}$
 
 ## Aircraft effective exposed area
-From Patera
 
-> Even for a ballistic coefficient of 50 lbs/ft2, the flight path angle
-> of a reentering object at 40,000 feet is -86.6 degrees, which corresponds
-> to nearly vertical descent.
-> Since most debris objects have ballistic coefficients equal to or 
-> less than 50 lbs/ft2, the vertical descent assumption is a very
-> accurate approximation.
+As from [@patera2008][^balistic_descent], we assume that reentring debris will
+descend vertically, which allows to express the effective expose area,
+$\varepsilon_i$, as
 
-The effective expose area, $\varepsilon_i$, is
 $$
-\varepsilon_i = \frac{s_{a} a_{h} + s_{d} a_{v}}{s_d}
+\varepsilon_i = \frac{s_{a} a_{h} + s_{d_i} a_{v}}{s_{d_i}}
 $$
-where $s_{a}$ is the average aircraft speed, $s_{d}$ is the average debris 
-object fall speed, $a_v$ area of the aircraft as viewed from above,
+
+where $s_{a}$ is the average aircraft speed, $s_{d_i}$ is the average fall speed
+of the $i$-th debris object, $a_v$ area of the aircraft as viewed from above,
 $a_h$ area of the aircraft as viewed from the from the front of the aircraft.
 
+In our calculations we will use
 
+* debris fall speed $s_{d} = \qty{145}{mph}$
+* aircraft speed, $s_{a}$, equal to its cruise speed
+* aircraft area as viewed from above, $a_v = W \times L$, where $W$ is the
+  wingspan, and $L$ the length
+* aircraft area as viewed from the front, $a_h = W \times H$, where $W$ is the
+  wingspan, and $H$ the height
+
+The values to use have been retrieved from [@performance_database;@skybrary;@doc8643].
+
+[^balistic_descent]: *Even for a ballistic coefficient of 50 lbs/ft2, the flight
+path angle of a reentering object at 40,000 feet is -86.6 degrees, which
+corresponds to nearly vertical descent.
+Since most debris objects have ballistic coefficients equal to or 
+less than 50 lbs/ft2, the vertical descent assumption is a very
+accurate approximation.*
+
+
+
+
+## Weighting function
+
+::: {#fig-weighting}
+
+```{r weighting}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("media/figures/weighting.png")
+```
+
+Weighting function derived from 25 years of reentries. 
+:::
 
 
 # Data
