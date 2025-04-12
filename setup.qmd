@@ -7,7 +7,7 @@ format:
   pdf: default
 ---
 
-This works takes NM CTFM profiles, resamples them and calculates number of
+This work takes NM CTFM profiles, resamples them and calculates the number of
 flight present per hour, `H`, of date, `D` in H3 hexagonal cells
 (at resolution `R`) covering the EUROCONTROL Member's airspace.
 
@@ -39,7 +39,7 @@ We use the following values:
 ```{r cells-map}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics("figures/cells_2.png")
+knitr::include_graphics("media/figures/cells_2.png")
 ```
 
 H3 **[cells]{colour="#ff0000"}** ([red]{colour="#ffffff" bg-colour="#ff0000"})
