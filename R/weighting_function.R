@@ -67,3 +67,5 @@ uuu |>
   )
 
 ggsave("media/figures/weighting.png")
+
+uuu |> write_csv(here::here("data", "weightings_2000-01-01_2025-01-01.csv"))
