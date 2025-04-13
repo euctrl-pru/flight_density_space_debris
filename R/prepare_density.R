@@ -13,15 +13,36 @@ c(
   "data/trajectories_2024-12-05_resampled_30s_bbox_res_2.parquet",
   "data/trajectories_2024-08-01_resampled_30s_bbox_res_3.parquet",
   "data/trajectories_2024-12-05_resampled_30s_bbox_res_3.parquet",
-  NULL) |>
+  NULL
+) |>
   map(.f = read_parquet) |>
   bind_rows() |>
-  summarise(occupancy = n() * 30 / 3600,
-            .by = c(year, month, day, hour, h3_resolution, cell)) |>
+  summarise(
+    occupancy = n() * 30 / 3600,
+    .by = c(year, month, day, hour, h3_resolution, cell)
+  ) |>
   arrange(desc(occupancy)) |>
   write_parquet(here("data", "flight_density.parquet"), compression = "gzip")
 
-
+# group per aircraft type too
+c(
+  "data/trajectories_2024-08-01_resampled_30s_bbox_res_2.parquet",
+  "data/trajectories_2024-12-05_resampled_30s_bbox_res_2.parquet",
+  "data/trajectories_2024-08-01_resampled_30s_bbox_res_3.parquet",
+  "data/trajectories_2024-12-05_resampled_30s_bbox_res_3.parquet",
+  NULL
+) |>
+  map(.f = read_parquet) |>
+  bind_rows() |>
+  summarise(
+    occupancy = n() * 30 / 3600,
+    .by = c(year, month, day, hour, h3_resolution, cell, aircraft_type)
+  ) |>
+  arrange(occupancy) |>
+  write_parquet(
+    here("data", "flight_density_per_aircraft_type.parquet"),
+    compression = "gzip"
+  )
 
 # # Alternative (but far slower) computation of density
 # c(
