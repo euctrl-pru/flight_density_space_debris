@@ -1,13 +1,6 @@
 # H3 hexagons covering NM area bbox
 
-library(giscoR)
-library(sf)
-library(smoothr)
-library(tidyverse)
-library(here)
-library(ggplot2)
-library(h3jsr)
-library(magrittr)
+library(aviodebris)
 
 source("R/cells.R")
 
