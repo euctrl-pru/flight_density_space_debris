@@ -1,5 +1,6 @@
 library(conflicted)
 library(tidyverse)
+library(aviodebris)
 library(arrow)
 library(sf)
 library(h3jsr)
@@ -11,7 +12,6 @@ library(grid)
 
 conflicts_prefer(dplyr::filter)
 
-source("R/cells.R")
 
 density <- arrow::read_parquet("data/flight_density.parquet")
 
