@@ -20,9 +20,17 @@ library(h3jsr)
 bb <- bbox_nm()
 xlim <- c(bb["xmin"], bb["xmax"])
 ylim <- c(bb["ymin"], bb["ymax"])
+res <- 3L
+
+eur_hex <- bbox_nm() |> hexes_for_bbox_at_res(resolution = res)
 
 weightings_h3_resolution_3_hourly |>
-  cell_to_polygon() |>
+  filter(h3_resolution_3 %in% (eur_hex |> pull(h3_address))) |>
+  cell_to_polygon(simple = FALSE) |>
   ggplot() +
-  geom_sf(crs = st_crs("EPSG:4326")) +
-  coord_sf(xlim = xlim, ylim = ylim)
+  ggplot2::geom_sf(
+    aes(fill = w),
+    linewidth = 0.3
+  )
+# +
+#   coord_sf(xlim = xlim, ylim = ylim)
