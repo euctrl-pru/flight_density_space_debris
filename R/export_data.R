@@ -7,6 +7,7 @@ library(tidyverse)
 library(arrow)
 library(here)
 library(aviodebris)
+library(sf)
 
 busy_2023 <- seq(as.Date("2023-07-03"), by = "day", length.out = 7)
 busy_2024 <- seq(as.Date("2024-07-01"), by = "day", length.out = 7)
@@ -27,7 +28,7 @@ resolution <- 3
 bbox <- aviodebris::bbox_nm() |>
   # take the bbox of the union of hexes at resolution 3
   aviodebris::hexes_for_bbox_at_res(resolution = resolution) |>
-  st_bbox()
+  sf::st_bbox()
 
 export_profile <- purrr::partial(
   point_profiles_tidy,
