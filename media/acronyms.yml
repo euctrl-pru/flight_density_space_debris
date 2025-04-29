@@ -37,4 +37,6 @@ acronyms:
       longname: Terminal Maneuvering Area
     - shortname: VFR
       longname: Visual Flight Rules
+    - shortname: LEO
+      longname: Low Earth Orbit
 ---
