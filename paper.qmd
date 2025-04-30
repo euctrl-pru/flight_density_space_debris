@@ -238,7 +238,7 @@ i.e. the effective risk area for the $k^{th}$ debris object impacting
 the aircraft (see @sec-eea later on).
 
 
-If we discretaze the area of interest $a$ using H3 cells,
+If we discretize the area of interest $a$ using H3 cells,
 we have
 
 $$
@@ -262,7 +262,8 @@ $$
 We assume the aircraft impact area to be much larger than the debris
 object area so as to neglet the debris impact area.
 We can also simplify the geometry of the aircraft and model it as
-a rectangular solid with dimesions of wingspan, length and height. 
+a rectangular solid with dimesions of wingspan ($W$), length ($L$) and
+height ($H$). 
 Now, if the aircraft were stationary, the area exposed to a debris impact would
 be the top view, while if the debris were stationary it would be the front view.
 In reality the aircraft is moving (manly) horizontally and the debris 
@@ -304,11 +305,11 @@ p_{t,k}(h) = \varepsilon_t \rho_t(h) \sigma_k(h)
 $$
 
 
-[^balistic_descent]: *Even for a ballistic coefficient of 50 lbs/ft2, the flight
-path angle of a reentering object at 40,000 feet is -86.6 degrees, which
-corresponds to nearly vertical descent.
+[^balistic_descent]: *Even for a ballistic coefficient of \qty{50}{lbs/ft^2},
+the flight path angle of a reentering object at \qty{40000}{ft} is 
+\ang{-86.6}, which corresponds to nearly vertical descent.
 Since most debris objects have ballistic coefficients equal to or 
-less than 50 lbs/ft2, the vertical descent assumption is a very
+less than \qty{50}{lbs/ft^2}, the vertical descent assumption is a very
 accurate approximation.* [@patera2008]
 
 
@@ -378,9 +379,9 @@ will then tend to be a circular one.
 
 ## Impact probability density for debris
 
-If we consider historical debris reentry data, we can numerically derive
-the debris impact probability as a weighting function by summing up and averaging
-all single densities:
+If we consider historical uncontrolled debris reentry data, we can numerically
+derive the debris impact probability as a weighting function by summing up and
+averaging all single densities:
 
 $$ \sigma(\varphi) = \sum_k \sigma(\varphi, i_k)$$
 
@@ -510,11 +511,12 @@ Data cube of hourly flight densities data over H3 hexes (in Germany as an exampl
 We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled reentry of space objects that could pose a safety concern on civilian aviation.
 The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
 
-Future work will explore the impact of megacostellations and the risk for
-European airspace.
 
-# Appendix {.appendix}
-# Orbital Elements {#sec-orbitals }
+Future work will explore the impact of megacostellations and flight growth
+forecast and what would happen in 20, 40, ..., 100 years in varios scenarios
+of uncontrolled  reentries and the risk for European airspace.
+
+# Appendix: Orbital Elements {#sec-orbitals }
 
 :::{#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="t"}
 
