@@ -5,35 +5,27 @@ library(arrow)
 library(sf)
 library(h3jsr)
 library(ggplot2)
-library(h3jsr)
 library(magrittr)
 library(giscoR)
 library(grid)
+library(here)
 
 conflicts_prefer(dplyr::filter)
 
-
-density <- arrow::read_parquet("data/flight_density.parquet")
+date <- "2024-07-05" |> as_date()
+density <- arrow::read_parquet(
+  str_glue("data/traffic_density_{date}_res_3_hourly.parquet")
+)
 
 res <- 3
-YYYY <- 2024
-MM <- 8
-DD <- 1
-HH <- 10
 
 eur_hex <- bbox_nm() |>
   hexes_for_bbox_at_res(resolution = res)
 
 
 ddd <- density |>
-  filter(
-    year == YYYY,
-    month == MM,
-    day == DD,
-    hour == HH,
-    h3_resolution == res
-  ) |>
-  mutate(occupancy = mean(occupancy), .by = cell) |>
+  group_by(cell) |>
+  summarise(occupancy = sum(occupancy) / 24) |>
   filter(cell %in% (eur_hex |> pull(h3_address))) |>
   select(cell, everything()) |>
   cell_to_polygon(simple = FALSE)
@@ -155,13 +147,6 @@ ggplot() +
   theme_minimal() +
   coord_sf(crs = "ESRI:102013", datum = NA) +
   labs(
-    title = "Hourly Flight Density",
-    subtitle = str_glue(
-      "EUROCONTROL Area, {YYYY}-{MM}-{DD}, Hour = {HH} UTC",
-      MM = str_pad(MM, width = 2, side = "left", pad = "0"),
-      DD = str_pad(DD, width = 2, side = "left", pad = "0"),
-      HH = str_pad(HH, width = 2, side = "left", pad = "0")
-    ),
     caption = "Data: Network Manager, EUROCONTROL",
     NULL
   ) +
@@ -184,10 +169,14 @@ ggplot() +
       margin = margin(t = -5, r = 10, b = 0, l = 0, unit = "mm")
     ),
     legend.position = c(0.18, 0.8),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 24),
+    legend.text = element_text(size = 24),
     NULL
   ) +
   guides(fill = guide_legend(override.aes = list(size = 3.0)))
 
-ggsave("media/figures/flight_density_2024-08-01T12_3.png")
+ggsave(here(
+  "media",
+  "figures",
+  str_glue("flight_density_{date}_{res}.png")
+))

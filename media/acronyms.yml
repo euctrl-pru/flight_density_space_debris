@@ -19,6 +19,8 @@ acronyms:
       longname: Flight Information Region
     - shortname: IFR
       longname: Instrument Flight Rules
+    - shortname: ITU
+      longname: International Telecommunication Union
     - shortname: GA
       longname: General Aviation
     - shortname: IATA
