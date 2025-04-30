@@ -441,7 +441,7 @@ $\varepsilon_T$ is effective exposed area for aircraft of type $t$.
 ```{r collision}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics("media/figures/cubes.png")
+knitr::include_graphics("media/example-image.png")
 ```
 
 Collision risk probability. 
@@ -451,16 +451,32 @@ Collision risk probability.
 
 ## Use Case: KOSMOS 482 Descent Craft reentry
 
-In few days (at the time of writing this paper) around May 10, 2025, the
-KOSMOS 482 Descent Craft should reenter the Earth atmosphere [@kosmos482reentry].
+In few days (at the time of writing this paper) at 6h May 10, 2025
+($\pm 2.8$ days), the KOSMOS 482 Descent Craft should reenter the
+Earth's atmosphere [@kosmos482reentry].
 This is supposedly the lander module from a 1972 failed Soviet Venera mission
 [@SpaceReviewKosmos] of \qty{480}{kg} weight and circa \qty{1}{m} diameter.
 Being supposed to survive Venus's atmosphere which is much denser and hotter than Earth's atmosphere (surface pressure 93 times that of Earth and temperatures reaching \qty{467}{degreesCelsius} (\qty{872}{degreesFarenheit})).
 So it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
 
+With what developed in this paper, we can derive the casuality risk and
+determine the maximum value using data for the busiest day in 
+the busiest 2024 week.
+
+Once the reentry track is known more or less accurately, the relevant
+H3 cells can be 
 
 
+::: {#fig-kosmos}
 
+```{r kosmos}
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics("media/example-image.png")
+```
+
+Casuality for KOSMOS 482 Descent Craft reentry. 
+:::
 
 
 
@@ -489,29 +505,44 @@ Data cube of hourly flight densities data over H3 hexes (in Germany as an exampl
 :::
 
 
-# Conclusion / Outcome
+# Conclusion and Future work
 
 We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled reentry of space objects that could pose a safety concern on civilian aviation.
 The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
 
+Future work will explore the impact of megacostellations and the risk for
+European airspace.
 
 # Appendix {.appendix}
+# Orbital Elements {#sec-orbitals }
 
-## Orbital Elements {#sec-orbitals .appendix}
-We refer to @fig-orbital-elements to describe the orbital parameters of
-interest for the current work.
+:::{#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="t"}
 
-:::{#fig-orbital-elements layout="[40,-3,57]" fig-env="figure*"}
+```{r ellipse-parameters}
+#| fig-cap: "Keplerian elements: semi-major axis, $a$, the distance between the foci, $2c$, the eccentricity, $e = (2c)/(2a)$. (the semiparameter (a.k.a. _semilatus rectum_), $p$, describes the size of the conic section by defining the width at the primary focus, and is defined as $p = b^2 / a = a (1 - e^2)$)"
 
-![Keplerian elements: semi-major axis, $a$, the eccentricity, $e = \frac{2c}{2a}$. (the semiparameter (a.k.a. _semilatus rectum_), $p$, describes the size of the conic section by defining the width at the primary focus, and is defined as
-$p = b^2 / a = a (1 - e^2)$)](media/figures/classical_orbital_elements_2.png)
+#| echo: false
+knitr::include_graphics("media/figures/classical_orbital_elements_2.png")
+```
 
-![Keplerian elements: inclination, $i$, the right ascension of the ascending node, $\Omega$ , and the argument of periapsis, $\omega$.(Earth rotates around $\hat{K}$)](media/figures/classical_orbital_elements_4.png)
+```{r keplerian-elements}
+#| fig-cap: "Keplerian elements: inclination, $i$, the right ascension of the ascending node, $\\Omega$ , and the argument of periapsis, $\\omega$.(Earth rotates around $\\hat{K}$)"
+#| echo: false
+
+knitr::include_graphics("media/figures/classical_orbital_elements_4.png")
+```
+
+
 
 Definition of Keplerian elements. The orbital elements describing the trajectory of orbiting object are illustrated in association with an inertial reference frame $\hat{I}$-$\hat{J}$-$\hat{K}$. The $I$-axis, $\hat{I}$, points toward the vernal equinox and the $J$-axis, $\hat{J}$, is perpendicular to the $I$-axis in the equatorial plane n the sense of Earth's rotation with the $K$-axis pointing up. The semi-major axis, $a$, the eccentricity, $e$, the inclination, $i$, the right ascension of the ascending node, $\Omega$ , and the argument of perigee, $\omega$, constitute, together with the mean anomaly at the initial position, $M_0$, a set of six constants of motion that are preserved in the absence of perturbation. True anomaly, $\nu$, specifies the location of an orbiting object within the orbit. It is the angle between perigee and the orbiting object’s position vector measured in the direction of the orbiting object’s motion.
 Figures from [@sellers2003understanding], respectively Figure 5-2 and Figure 5-9.
 
 :::
+
+
+We refer to @fig-orbital-elements to describe the orbital parameters of
+interest for the current work.
+
 
 The angular position, $\theta$, of the reentry point from the ascending node
 in the orbit plane is $\theta = \omega + \nu$.
@@ -522,6 +553,11 @@ $$\sin(\varphi) = \sin(\theta)\sin(i)$$ {#eq-spheric-coords}
 
 Mass of Earth, $M_{\oplus} = \qty{5.9722e24}{kg}$.
 
+These are used to derive numerically compute the weighting function,
+@fig-weighting-inclination-i:
+for debris with inclination $i$ we simulate an orbit of $N$, i.e. $10001$,
+positions and calculate the corresponding cartesian position and the
+equivalent longitude and latitude.
 
 
 # References {.unnumbered}
