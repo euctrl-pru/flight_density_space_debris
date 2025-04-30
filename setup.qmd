@@ -11,27 +11,18 @@ This work takes NM CTFM profiles, resamples them and calculates the number of
 flight present per hour, `H`, of date, `D` in H3 hexagonal cells
 (at resolution `R`) covering the EUROCONTROL Member's airspace.
 
-R and Python scripts are in the `R/` and `python/` directories respectively.
+R scripts are in the `R/` directory.
+
+You need duckdb 1.2.2 with `icu` extension and `h3` community extension
+installed (extension location hardcoded in `aviodebris::hexagonize`).
 
 We use the following values:
 
-* H3 hexagons at resolution `R = 2`: 
-  - Average Area (km2): `86801.78`
-  - Average edge length (Km): `182.51`
 * H3 hexagons at resolution `R = 3`: 
   - Average Area (km2): `12393.43`
   - Average edge length (Km): `68.98`
-* bounding box approximating EUROCONTROL Area (decimal degrees):
-  - xmin = -25.488281
-  - ymin = 26.638253
-  - xmax = 45.407181
-  - ymax = 71.864780
-* bounding box containing the HEX at resolution 2 that match
-  the bounding box approximating EUROCONTROL Area:
-  - xmin = -27.78166
-  - xmax =  48.56037
-  - ymin =  24.90098
-  - ymax =  72.85065
+* bounding box approximating EUROCONTROL Area (decimal degrees) in the
+  `aviodebris` packages (enclosing FIRs of Member States)
 
 
 ::: {#fig-cells}
@@ -39,12 +30,12 @@ We use the following values:
 ```{r cells-map}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics("media/figures/cells_2.png")
+knitr::include_graphics("media/figures/cells_3.png")
 ```
 
 H3 **[cells]{colour="#ff0000"}** ([red]{colour="#ffffff" bg-colour="#ff0000"})
-at resolution 2 and
-their **[centers]{colour="#0000ff"}** ([blue]{colour="#ffffff" bg-colour="#0000ff"}) covering EUROCONTROL Area.
+at resolution 3 and
+their **[centers]{colour="#0000ff"}** ([blue]{colour="#ffffff" bg-colour="#0000ff"}) covering EUROCONTROL Area (([blue]{colour="#ffffff" bg-colour="#0000ff"}) polygon).
 
 :::
 
@@ -59,31 +50,33 @@ We first extract data for data `D` (for example `2024-08-01`)
    We use `point_profiles_tidy()` from the `{eurocontrol}` package
 
 This is achieved via script `export_data.R`.
-The relevant trajectories are saved in
-`data-raw/trjs_{D}.parquet`, i.e. `data-raw/trjs_2024-08-01.parquet`.
+The relevant trajectories are saved in `data-raw/trjs/trjs_{D}.parquet`,
+i.e. `data-raw/trjs/trjs_2024-08-01.parquet`.
 
 ### Trajectory Resampling
-We load the trajectories and resample them at 30s using the Python `traffic` library.
-This is performed by the `resample_aug.py` and `resample_dec.py`
-scripts and is time consuming (40 min each).
-Execute as:
-
-> $ python resample_aug.py
-
-The result is in (52min 51s)
+We load the trajectories and resample them at 30s using helper function in the
+`aviodebris` package, 10min per day.  
+The result is in 
 `data/trajectories_2024-08-01_resampled_30s.parquet`
 
 ### Fast H3 Labelling
-The script `prepare_pre_density.R` uses DuckDB for fast labelling
+The `hexagonize` function in `aviodebris` uses DuckDB (plus ICU extension
+and H3 community extension) for fast labelling
 of each lon/lat to the relevant H3 cell (at resolution `R`)
-and filtering for samples between bbox.
+and filtering for samples within EUROCONTROL bbox.
 Keep only point in the hex cells of the bbox and for day `D`.
-The result is saved in `trajectories_<YYYY-MM-DD>_resampled_30s_bbox_res_3.parquet` for date `D`.
+The result is saved in `trajectories_<YYYY-MM-DD>_resampled_30s_bbox_res_<R>.parquet` for date `D`.
 
 
 
 ## Cell Occupancy and Density
 
-The script `prepare_density.R` calculates the occupancy per hour `H` of `D` 
-for each cell at resolution `R`
-.
+The function `traffic_density_hourly` in the package `aviodebris` calculates
+the occupancy per hour `H` of `D` for each cell at resolution `R`.
+A file for each day is saved as
+`traffic_density_<YYYY-MM-DD>_res_<R>_hourly.parquet` for date `D`.
+The results are summarised per aircraft type.
+
+## Collision and Casuality Risk
+The function `collision_and_casuality_risk_expectation_hourly`
+calculates both collision and casuality risk on a hourly basis.
