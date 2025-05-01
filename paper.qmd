@@ -1,5 +1,5 @@
 ---
-title: "Preparing for Potential Closure of European Airspaces due to Reentering Space Objects"
+title: "Preparing for Potential Closure of European Airspaces due to Re-entering Space Objects"
 
 filters:
   - acronyms
@@ -35,9 +35,13 @@ author:
   - name: Rainer Koelle
     affiliations: 
       - ref: aiu
+    orcid: 0000-0003-2810-1404
+    email: rainer.koelle@eurocontrol.int
   - name: Quinten Goens
     affiliations: 
       - ref: aiu
+    orcid: 0000-0003-2187-1924
+    email: quinten.goens@eurocontrol.int
 affiliations:
   - id: aiu
     name: EUROCONTROL
@@ -59,39 +63,38 @@ The risk of collision between uncontrolled re-entering space debris and aircraft
 is  increasing due to both ever-growing number of airborne flights and 
 of orbiting bodies (and relevant re-entries). 
 National and international authorities need to balance safety and economic
-impact of adopted measures should a reentry event be announced, usually on short
+impact of adopted measures should a re-entry event be announced, usually on short
 notice.  
-We employ hourly and daily spatial density of flight calculated from
+We employ hourly and daily spatial flight densities calculated from
 trajectories as recorded by EUROCONTROL's Network Manager and
-binned over Uber's H3 gridding system.  
+binned with the Uber H3 geospatial indexing system.  
 Impact risk probabilities are then calculated based on previous theoretical
-work but using these flights trajectories instead of proxies such as
-population density or ADS-B/Mode S message counts.
+work. This work enhances the model by employing using actual flown flight trajectories as a basis for time-varying flight densities rather than relying on proxies such as the population density or ADS-B/Mode S message counts.
 These densities combined with a buffered area along the eventual path of
-re-entry, can provide risk impact probabilities to authorities as an aid
+re-entry, can provide mid-air impact probabilities to authorities as an aid
 for deciding on safety measures such as airspace closures and/or re-routings.
 
 # Introduction
 
-The ever-growing forecast number of flights, see @fig-forecast, and the modern
-race to commercialisation of space call for a reevaluation of the risk of
-collision and casuality due to uncontrolled debris reentries.
-Oversighting authorities need methodologies and tools to assess which 
+With forecasts predicting a steadily growing number of flights, see @fig-forecast, and the modern
+race to commercialise space call for a re-evaluation of the risk of
+collision and casualties due to uncontrolled debris re-entries.
+Overseeing authorities need methodologies and tools to assess which 
 safety measures are the most adequate to minimize casualties and economic
 impact.
 
 Surging number of flights in Europe [@forecastUpdate2025] and in the
-world, but more importantly under development/deployment megaconstellations
-of satellites on \acr{LEO} such as already active Starlink and OneWeb or
+world, but more importantly under development/deployment mega-constellations
+of satellites in \acr{LEO}, such as already active Starlink and OneWeb or
 planned ones like Kuiper, Starshield, Xingwang et al. will add thousand
-of orbiting objects with a short operational life some of which will 
-inevitably reenter Earth atmosphere in an uncontrolled manner, cfr. @tbl-megaconstellations [@megaconstellations].
+of orbiting objects with a short operational life. Some of these will 
+inevitably re-enter the Earth's atmosphere in an uncontrolled manner, cfr. @tbl-megaconstellations [@megaconstellations].
 
 This paper develops a practical and straightforward pipeline to rapidly
-assess the risk from uncontrolled reentry of space debris for the European
+assess the risk from uncontrolled re-entry of space debris for the European
 region.
-Apart from the general risk assessment of potential reentries, we analyze
-a soon to happen reentry of debris from a 1972 failed USSR mission to Venus.
+Apart from the general risk assessment of potential re-entries, we analyse
+a soon to occur re-entry of debris from a 1972 failed USSR mission to Venus.
 
 ::: {#fig-forecast}
 
@@ -318,10 +321,10 @@ accurate approximation.* [@patera2008]
 ## Impact probability density for debris of inclination $i$
 
 Debris that reenter the Earth’s atmosphere via drag-induced decay will fly
-circular orbits prior to reentry even if initially on elliptical
+circular orbits prior to re-entry even if initially on elliptical
 ones.[^circular-orbit]
 
-The angular position, $\theta$, of the reentry point from the ascending node, 
+The angular position, $\theta$, of the re-entry point from the ascending node, 
 see @sec-orbitals, is uniformly distributed for uncontrolled rentries,
 $\sigma(\theta) = 1 / (2\pi)$. This is due to uncertainties in atmospheric drag
 and the gravitational effects of the Equatorial bulge.
@@ -378,13 +381,13 @@ will then tend to be a circular one.
 
 ## Impact probability density for debris
 
-If we consider historical debris reentry data, we can numerically derive
+If we consider historical debris re-entry data, we can numerically derive
 the debris impact probability as a weighting function by summing up and averaging
 all single densities:
 
 $$ \sigma(\varphi) = \sum_k \sigma(\varphi, i_k)$$
 
-From [@gcat] we extracted 1968 debris reentries during 25 calendar years from 
+From [@gcat] we extracted 1968 debris re-entries during 25 calendar years from 
 1st Jan 2000 till 31st Dec 2024.
 The result of combining all the U-shaped densities can be seen in @fig-weighting.
 
@@ -396,7 +399,7 @@ The result of combining all the U-shaped densities can be seen in @fig-weighting
 knitr::include_graphics("media/figures/weighting.png")
 ```
 
-Weighting function derived from 25 years of reentries as an
+Weighting function derived from 25 years of re-entries as an
 empirical approximation of $\sigma(\varphi)$. 
 :::
 
@@ -449,11 +452,11 @@ Collision risk probability.
 
 
 
-## Use Case: KOSMOS 482 Descent Craft reentry
+## Use Case: KOSMOS 482 Descent Craft re-entry
 
 In few days (at the time of writing this paper) at 6h May 10, 2025
 ($\pm 2.8$ days), the KOSMOS 482 Descent Craft should reenter the
-Earth's atmosphere [@kosmos482reentry].
+Earth's atmosphere [@kosmos482re-entry].
 This is supposedly the lander module from a 1972 failed Soviet Venera mission
 [@SpaceReviewKosmos] of \qty{480}{kg} weight and circa \qty{1}{m} diameter.
 Being supposed to survive Venus's atmosphere which is much denser and hotter than Earth's atmosphere (surface pressure 93 times that of Earth and temperatures reaching \qty{467}{degreesCelsius} (\qty{872}{degreesFarenheit})).
@@ -463,7 +466,7 @@ With what developed in this paper, we can derive the casuality risk and
 determine the maximum value using data for the busiest day in 
 the busiest 2024 week.
 
-Once the reentry track is known more or less accurately, the relevant
+Once the re-entry track is known more or less accurately, the relevant
 H3 cells can be 
 
 
@@ -475,7 +478,7 @@ H3 cells can be
 knitr::include_graphics("media/example-image.png")
 ```
 
-Casuality for KOSMOS 482 Descent Craft reentry. 
+Casuality for KOSMOS 482 Descent Craft re-entry. 
 :::
 
 
@@ -507,7 +510,7 @@ Data cube of hourly flight densities data over H3 hexes (in Germany as an exampl
 
 # Conclusion and Future work
 
-We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled reentry of space objects that could pose a safety concern on civilian aviation.
+We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled re-entry of space objects that could pose a safety concern on civilian aviation.
 The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
 
 Future work will explore the impact of megacostellations and the risk for
@@ -544,7 +547,7 @@ We refer to @fig-orbital-elements to describe the orbital parameters of
 interest for the current work.
 
 
-The angular position, $\theta$, of the reentry point from the ascending node
+The angular position, $\theta$, of the re-entry point from the ascending node
 in the orbit plane is $\theta = \omega + \nu$.
 It is related to the latitude, $\varphi$, via the Cartesian coordinate $k$,
 $k = R \sin(\varphi) = R \sin(\theta)\sin(i)$, or
