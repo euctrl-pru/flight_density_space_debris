@@ -59,26 +59,35 @@ acronyms:
 ---
 
 # Abstract
-The risk of collision between uncontrolled re-entering space debris and aircraft
+<!-- teaser --> The risk of collision between uncontrolled re-entering space debris and aircraft
 is  increasing due to both ever-growing number of airborne flights and 
 of orbiting bodies (and relevant re-entries). 
-National and international authorities need to balance safety and economic
+<!-- why important --> National and international authorities need to balance safety and economic
 impact of adopted measures should a re-entry event be announced, usually on short
-notice.  
-We employ hourly and daily spatial flight densities calculated from
+notice. <!-- no hard line breaks in abstracts -->
+<!-- approach / experiments --> We employ hourly and daily spatial flight densities calculated from
 trajectories as recorded by EUROCONTROL's Network Manager and
 binned with the Uber H3 geospatial indexing system.  
 Impact risk probabilities are then calculated based on previous theoretical
-work. This work enhances the model by employing using actual flown flight trajectories as a basis for time-varying flight densities rather than relying on proxies such as the population density or ADS-B/Mode S message counts.
+work. 
+<!-- results / conclusions --> This work enhances the model by employing using actual flown flight trajectories as a basis for time-varying flight densities rather than relying on proxies such as the population density or ADS-B/Mode S message counts.
 These densities combined with a buffered area along the eventual path of
 re-entry, can provide mid-air impact probabilities to authorities as an aid
 for deciding on safety measures such as airspace closures and/or re-routings.
 
 # Introduction
 
+<!-- teaser opening --><!-- might need a rewrite - first jotting down -->
+The quest for space is a driver for technological development.
+Key milestones include the first human traval to space and surrounding the globe, the first and now many succeeding successful landings on the moon, and regular operations of space stations in the orbit.
+These developments helped to identify options for the wider use of space, benefits, and LALALALA.
+This is showcased by an increasing number of activities aimed to generate value through the exploration of space ranging from scientific understanding and experimentation, sustainable prooduction of goods in a non-gravity environment, services, and recently leisure.
+The increased number of launches, however, also increased the number of artefacts <!-- falling down and --> re-entering the atmosphere.  
+
+<!-- zooming in on problem -->
 With forecasts predicting a steadily growing number of flights, see @fig-forecast, and the modern
-race to commercialise space it is clear a re-evaluation of the risks of
-collision and casualties due to uncontrolled debris re-entries is needed.
+race to commercialise space, there is a need to re-evaluate the risks of
+collision and casualties due to uncontrolled debris re-entries.
 Overseeing authorities need methodologies and tools to assess which 
 safety measures are the most adequate to minimise potential casualties and economic
 impact.
@@ -90,7 +99,12 @@ planned ones like Kuiper, Starshield, Xingwang et al. will add thousand
 of orbiting objects with a short operational life. Some of these will 
 inevitably re-enter the Earth's atmosphere in an uncontrolled manner, cfr. @tbl-megaconstellations [@megaconstellations].
 
-This paper develops a practical and straightforward pipeline to rapidly
+<!-- now we have the risk / topic established -- next we need something to speak about a "high-level goal" or "what other work looked into to place this paper as a 'further development' -->
+
+...
+
+<!-- contribution of the paper -->
+This paper develops a practical and straightforward data-driven pipeline to rapidly
 assess the risk from uncontrolled re-entry of space debris for the European
 region.
 Apart from the general risk assessment of potential re-entries, 
