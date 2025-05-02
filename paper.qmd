@@ -520,11 +520,23 @@ Data cube of hourly flight densities data over H3 hexes (in Germany as an exampl
 
 # Conclusion and Future work
 
+<!-- opening statement linking back to abstract/intro and movtivation for this work --------->
+Space debris re-entry is an increasing risk to aviation and the general public.
+
+<!-- what was shown in the paper ------------------------------------------------------------>
+This paper expands on previous work and ...
+
+<!-- benefits / strengths / weaknesses of the approach --------------------------------------->
+
+<!-- application of the results -------------------------------------------------------------->
 We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled re-entry of space objects that could pose a safety concern on civilian aviation.
 The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
 
+<!-- future work ----------------------------------------------------------------------------->
 Future work will explore the impact of megacostellations and the risk for
 European airspace.
+
+<!-- if any final ~ highly inspirational thought / words ------------------------------------->
 
 # Appendix {.appendix}
 # Orbital Elements {#sec-orbitals }
