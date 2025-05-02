@@ -423,18 +423,21 @@ Weightings for H3 cells in \acr{NM} area.
 
 
 ## Hourly impact probability per H3 cell
-By combining the hourly aircraft density (per aircraft type) with the relevant
-weightings per H3 cell, we can numerically compute the hourly impact probability
-for each hexagonal cell as:
+
+When combining the hourly ($H$) aircraft density (per aircraft type) with the
+relevant weightings per H3 cell, $h$, we can numerically compute the hourly
+impact probability for each hexagonal cell as:
 
 $$
- E_h =  \sum_t W(h) \cdot \rho_{t}(h) \cdot \varepsilon_t
+ E_{h, H} =  \sum_t W(h) \cdot \rho_{t,H}(h) \cdot \varepsilon_t
 $$
 
-where $E_h$ is the collision expectation in the hexagon $h$,
-$W(h)$ is the median value of the weighting function over the area of hexagon $h$, $t$ is the \acr{ICAO} aircraft type,
-$\rho_{t}(h)$ is the traffic density for type $t$ in cell $h$ and
-$\varepsilon_T$ is effective exposed area for aircraft of type $t$.
+where $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$,
+$W(h)$ is the median value of the weighting function over the area of hexagon
+$h$,
+$\rho_{t,H}(h)$ is the traffic density for the \acr{ICAO} aircraft type $t$ in
+cell $h$ at hout $H$ and
+$\varepsilon_t$ is effective exposed area for aircraft of type $t$.
 
 
 ::: {#fig-collision}
@@ -442,30 +445,35 @@ $\varepsilon_T$ is effective exposed area for aircraft of type $t$.
 ```{r collision}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics("media/example-image.png")
+knitr::include_graphics(here::here("media", "figures", "collision_expectation_2024-07-05_3.png"))
 ```
 
-Collision risk probability. 
+Averaged hourly collision expectation on 2024-07-05. 
 :::
 
 
 
 ## Use Case: KOSMOS 482 Descent Craft reentry
 
-In few days (at the time of writing this paper) at 6h May 10, 2025
+In few days (at the time of writing of this paper) at 6h May 10, 2025
 ($\pm 2.8$ days), the KOSMOS 482 Descent Craft should reenter the
 Earth's atmosphere [@kosmos482reentry].
 This is supposedly the lander module from a 1972 failed Soviet Venera mission
-[@SpaceReviewKosmos] of \qty{480}{kg} weight and circa \qty{1}{m} diameter.
-Being supposed to survive Venus's atmosphere which is much denser and hotter than Earth's atmosphere (surface pressure 93 times that of Earth and temperatures reaching \qty{467}{degreesCelsius} (\qty{872}{degreesFarenheit})).
-So it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
+[@SpaceReviewKosmos] of \qty{480}{kg} weight and approximately
+\qty{1}{m} diameter.
+Being supposed to survive Venus's atmosphere which is much denser and hotter than Earth's atmosphere (surface pressure 93 times that of Earth and temperatures reaching \ang{467}C (\ang{872}F)),
+it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
 
-With what developed in this paper, we can derive the casuality risk and
-determine the maximum value using data for the busiest day in 
-the busiest 2024 week.
+Knowing that the debris inclination is $\ang{51.7}$,
+see @fig-weighting-inclination-i, we can derive the maximum collision expectation using data for the busiest day in the busiest 2024 week as a
+proxy for the traffic density on the day of reentry.
 
-Once the reentry track is known more or less accurately, the relevant
-H3 cells can be 
+
+
+
+Once the reentry track is known, the H3 cells around \qty{35}{km} on each side 
+can be identified to retrieve the values of collision expectancy.
+
 
 
 ::: {#fig-kosmos}
@@ -516,7 +524,7 @@ Future work will explore the impact of megacostellations and flight growth
 forecast and what would happen in 20, 40, ..., 100 years in varios scenarios
 of uncontrolled  reentries and the risk for European airspace.
 
-# Appendix: Orbital Elements {#sec-orbitals }
+# Appendix: Orbital Elements {#sec-orbitals}
 
 :::{#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="t"}
 
