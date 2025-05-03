@@ -181,19 +181,36 @@ megas |>
 
 # Method
 
-We follow the same mathematical approach of 
-[@patera2008; @wrightAirspaceClosuresDue2025] but instead of
-approximating flight density with population density [@patera2008] or
+<!-- ESTABLISH SOME CONTEXT ---------------------------------------------- -->
+The modelling and tracking of uncontrolled re-entries poses challenges.
+Actual and historic data is sparse, and the size, shape, and attitude or rotation of re-entering objects increase the level of uncertainty for modelling.
+Common approaches employ a mix of handingling the uncertainty of object or debris movement and exposed area, including temporal uncertainty windows.
+
+      <!-- is there more to say and provide context? -->
+
+<!-- APPROACH / METHOD --------------------------------------------------- -->
+<!-- it would be cool, if we can add a diagram here that shows the path from data, major processing building blocks to the results -->
+<!-- as a minimum, we should say something about the WHAT -->
+In general, the method for estimating the risk to commercial aircraft from reentering debris objects revolves around estimating the exposure of a single flight and the population of flights to the re-entering object.
+In that respect, a robust determination of flight density is a key aspect. 
+
+
+We follow the same mathematical approach of [@patera2008; @wrightAirspaceClosuresDue2025].
+However, this paper augments the approximation of risk exposure. 
+Instead of approximating flight density with population density [@patera2008] or
 aircraft transponder data [@wrightAirspaceClosuresDue2025], we use actual flown
 flight trajectories.
 
+This work focusses on the European region.
 The hourly flight density estimation is based on on flown \acr{IFR} trajectories as
-recorded by EUROCONTROL's \acr{NM}[^1] and binned using Uber's H3 geospatial indexing system
-[@uber-h3] in order to decrease spatial complexity which in turn enables fast processing.
-This work will use H3 cells at resolution 3 which corresponds to hexagons of an
-average area $\qty{12393}{km^2}$ and an average edge length of
+recorded by EUROCONTROL's \acr{NM}[^1].
+To decrease spatial complexity, the data is binned using Uber's H3 geospatial indexing system [@uber-h3]. 
+The reduction of the spatial complexity enables fast processing.
+For this work, we employ a H3-cell-resolution of 3. 
+This corresponds to hexagons of an average area $\qty{12393}{km^2}$ and an average edge length of
 $\qty{68.979}{km}$ [@h3resolutions] as depicted in @fig-cells.  
 
+<!-- CAN WE MOTIVATE WHY resolution 3??? -- e.g. is this an area used in other works, or does it do something? -->
 
 ::: {#fig-cells}
 
@@ -209,27 +226,23 @@ box of 43 EUROCONTROL Member States \acr{FIR}s (blue shaded polygon).
 
 :::
 
+To build an upper threshold for flight exposure, this study uses the busiest week during the \acr{IATA} summer ISO week in 2023 and 2024.   <!-- does ISO do here anything? --> 
+The flight densities are characterised on an hourly basis for all days in these weeks.  
 
-The flight densities are characterised on an hourly basis for all days in the busiest \acr{IATA} summer ISO week in 2023 and 2024.
+<!-- next sentence feels like an orphan ... do we need this here? ------>
+This paper expands the works of [@wrightAirspaceClosuresDue2025; @patera2008] and provides a reproducible example for States, Agencies or relevant authorities to build upon.
 
-
-This paper expands the works of [@wrightAirspaceClosuresDue2025; @patera2008] and
-provides a reproducible example for States, Agencies or relevant authorities
-to build upon.
-
-[^1]: NM coordinates \acr{ATFCM} operations on behalf of EUROCONTROL's 42 Member States
-and 2 Comprehensive Member States covering
-almost all \acr{ECAC} States.
+[^1]: NM coordinates \acr{ATFCM} operations on behalf of EUROCONTROL's 42 Member States and 2 Comprehensive Member States covering almost all \acr{ECAC} States.
 
 
-
-Next sections will develop the mathematical background for the evaluation of
-collision and casualties risk of which traffic density is a key component.
+<!-- next sentence feels like an orphan ... do we need this here? ------>
+Next sections will develop the mathematical background for the evaluation of collision and casualties risk of which traffic density is a key component.
 
 @fig-density-summer2024-res-3 shows hourly flight density for the 5th of July 2024.
-Expected outcomes such as cells at zero density for war or no-fly zones
-(Ukraine, Libia or Syria) or typical traffic flows (North Atlantic, Canaries
-and East-bound over Türkiye) are clearly highlighted.
+The chart shows the expected outcomes in terms of major traffic flows, and areas of high or low traffic.
+For example, cells with a density of zero are clearly visible for areas of war or no-fly zones
+(Ukraine, Libia or Syria). The major traffic flows (North Atlantic, Canaries
+and East-bound over Türkiye) are clearly highlighted showing densities of more than 10.
 
 ::: {#fig-density-summer2024-res-3}
 
