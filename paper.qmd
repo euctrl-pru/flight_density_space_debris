@@ -59,7 +59,8 @@ acronyms:
 ---
 
 # Abstract
-<!-- teaser --> The risk of collision between uncontrolled re-entering space debris and aircraft
+<!-- teaser --> The recent decades observed an increasing number of space activities and associated launches. 
+The risk of collision between uncontrolled re-entering space debris and aircraft
 is  increasing due to both ever-growing number of airborne flights and 
 of orbiting bodies (and relevant re-entries). 
 <!-- why important --> National and international authorities need to balance safety and economic
@@ -80,7 +81,7 @@ for deciding on safety measures such as airspace closures and/or re-routings.
 <!-- teaser opening --><!-- might need a rewrite - first jotting down -->
 The quest for space is a driver for technological development.
 Key milestones include the first human traval to space and surrounding the globe, the first and now many succeeding successful landings on the moon, and regular operations of space stations in the orbit.
-These developments helped to identify options for the wider use of space, benefits, and LALALALA.
+These developments helped to identify options for the wider use of space, benefits, and its commercialisation.
 This is showcased by an increasing number of activities aimed to generate value through the exploration of space ranging from scientific understanding and experimentation, sustainable prooduction of goods in a non-gravity environment, services, and recently leisure.
 The increased number of launches, however, also increased the number of artefacts <!-- falling down and --> re-entering the atmosphere.  
 
@@ -88,20 +89,23 @@ The increased number of launches, however, also increased the number of artefact
 With forecasts predicting a steadily growing number of flights, see @fig-forecast, and the modern
 race to commercialise space, there is a need to re-evaluate the risks of
 collision and casualties due to uncontrolled debris re-entries.
-Overseeing authorities need methodologies and tools to assess which 
+The increasing risk landscape poses challenges in terms of oversight and risk management.
+There is a growing demand by overseeing authorities for new methodologies and tools to assess which 
 safety measures are the most adequate to minimise potential casualties and economic
 impact.
 
-Surging number of flights in Europe [@forecastUpdate2025] and in the
-world, but more importantly under development/deployment mega-constellations
-of satellites in \acr{LEO}, such as already active Starlink and OneWeb or
-planned ones like Kuiper, Starshield, Xingwang et al. will add thousand
-of orbiting objects with a short operational life. Some of these will 
-inevitably re-enter the Earth's atmosphere in an uncontrolled manner, cfr. @tbl-megaconstellations [@megaconstellations].
+The increase in space operations does not exist in a vacuum. 
+The continual growth of air traffic - despite temporal bumps - is evidenced by the surging number of flights in Europe [@forecastUpdate2025] and across the world. 
+On-going development/deployment activities of mega-constellations of satellites in Low Earth Orbit \acr{LEO}, 
+such as already active Starlink and OneWeb or planned ones (e.g. Kuiper, Starshield, Xingwang) will add thousand of orbiting objects with a short operational life. 
+Some of these will inevitably re-enter the Earth's atmosphere in an uncontrolled manner, c.f. @tbl-megaconstellations [@megaconstellations].
 
 <!-- now we have the risk / topic established -- next we need something to speak about a "high-level goal" or "what other work looked into to place this paper as a 'further development' -->
 
-...
+Aviation safety risk management is a well-established domain in air transportation. 
+Despite the increasing need for situational awareness of space objects and their re-entry, the classical risk avoidance paradigm revolves around restricting the airspace.
+While the probability of a strike is low, it can result in catastrophic consequences. 
+The growing number of space operations requires NEW - ADVANCED TOOLS. PREVIOUS WORK DID A,B, and MAYBE C - WE DO SOMETHING ON TOP.
 
 <!-- contribution of the paper -->
 This paper develops a practical and straightforward data-driven pipeline to rapidly
