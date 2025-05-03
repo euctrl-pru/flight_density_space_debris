@@ -462,13 +462,17 @@ $$
  E_{h, H} =  \sum_t W(h) \cdot \rho_{t,H}(h) \cdot \varepsilon_t
 $$
 
-where $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$,
-$W(h)$ is the median value of the weighting function over the area of hexagon
+where 
+* $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$,
+* $W(h)$ is the median value of the weighting function over the area of hexagon
 $h$,
-$\rho_{t,H}(h)$ is the traffic density for the \acr{ICAO} aircraft type $t$ in
-cell $h$ at hout $H$ and
-$\varepsilon_t$ is effective exposed area for aircraft of type $t$.
+* $\rho_{t,H}(h)$ is the traffic density for the \acr{ICAO} aircraft type $t$ in
+cell $h$ at hour $H$, and
+* $\varepsilon_t$ is effective exposed area for aircraft of type $t$.
 
+@fig-collision depicts the determined hourly collision expectation.
+As identified in @fig-density-summer2024-res-3 areas of higher traffic density observe a higher collision expectation.
+<!-- WHAT ELSE CAN WE SAY ABOUT THIS PLOT? -->
 
 ::: {#fig-collision}
 
@@ -483,20 +487,18 @@ Averaged hourly collision expectation on 2024-07-05.
 
 
 
-## Use Case: KOSMOS 482 Descent Craft re-entry
+# Application Use Case: KOSMOS 482 Descent Craft re-entry
+<!-- I would make this a separate section in the paper -->
 
 In few days (at the time of writing of this paper) at 6h May 10, 2025
 ($\pm 2.8$ days), the KOSMOS 482 Descent Craft should reenter the
 Earth's atmosphere [@kosmos482re-entry].
-This is supposedly the lander module from a 1972 failed Soviet Venera mission
-[@SpaceReviewKosmos] of $\qty{480}{kg}$ weight and approximately
-$\qty{1}{m}$ diameter.
+This is supposedly the lander module from a 1972 failed Soviet Venera mission [@SpaceReviewKosmos]
+The module is reported to weigh about $\qty{480}{kg}$ and has a diameter of approximately $\qty{1}{m}$.
 Being supposed to survive Venus's atmosphere which is much denser and hotter than Earth's atmosphere (surface pressure 93 times that of Earth and temperatures reaching \ang{467}C (\ang{872}F)),
 it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
 
-Knowing that the debris inclination is $\ang{51.7}$,
-see @fig-weighting-inclination-i, we can derive the maximum collision expectation using data for the busiest day in the busiest 2024 week as a
-proxy for the traffic density on the day of reentry.
+Knowing that the debris inclination is $\ang{51.7}$, see @fig-weighting-inclination-i, we can derive the maximum collision expectation using data for the busiest day in the busiest 2024 week as a proxy for the traffic density on the day of reentry.
 
 
 
@@ -504,7 +506,7 @@ proxy for the traffic density on the day of reentry.
 Once the reentry track is known, the H3 cells around \qty{35}{km} on each side 
 can be identified to retrieve the values of collision expectancy.
 It can then be decided whether it is advisable to close the airspace and
-traffic around the area afftected.
+traffic around the area affected.
 
 
 ::: {#fig-kosmos}
@@ -548,21 +550,38 @@ Data cube of hourly flight densities data over H3 hexes (in Germany as an exampl
 # Conclusion and Future work
 
 <!-- opening statement linking back to abstract/intro and movtivation for this work --------->
-Space debris re-entry is an increasing risk to aviation and the general public.
+Space objects and debris re-entry is an increasing risk to aviation and the general public.
+The higher pace of commercial space operations will see an increase of launches and subsequent re-entries.
+Dependent on the mission, objects re-entering the atmosphere can take on differnt forms, shapes, and sizes.
+On top, a higher number of these entries may be uncontrolled.
+With the continual growth of air traffic, there is a need to enhance aviation safety risk awareness and respond in a more tailored fashion to accomodate the associated uncertainties, reduce the impact on aviation, and limit the risk to the travelling public.
 
 <!-- what was shown in the paper ------------------------------------------------------------>
-This paper expands on previous work and ...
+This paper expands on previous work.
+With a focus on Europe, we establish an upper bound for the traffic density based on actual flights.
+
+... SOME MORE STUFF DONE IN THE PAPER ...
+
+The findings are applied to a use-case: the imminent re-entry of the lander module of an earlier Venus mission.
+The maximum collision expectation for the busiest day in 2024 is determined.
 
 <!-- benefits / strengths / weaknesses of the approach --------------------------------------->
+
+The approach presented in this paper builds on previous research.
+Our approach utilises H3-tesselation to reduce the spatial complexity.
+This cell indexing approach reduces the computation significantly.
+
+        WHAT ARE THINGS THAT ARE "WEAKNESSES" = STUFF THAT CAN BE IMPROVED? IT WOULD BE GOOD TO HAVE A LINE OR TWO ON THIS.
+
+<!-- future work ---------------------------------------------------------------------------->
+
+Future work will address the shortcomings. <!-- or can we say something about the next concrete steps to remedy some weaknesses -->
 
 <!-- application of the results -------------------------------------------------------------->
 We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled re-entry of space objects that could pose a safety concern on civilian aviation.
 The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
 
-
-Future work will explore the impact of megacostellations and flight growth
-forecast and what would happen in 20, 40, ..., 100 years in varios scenarios
-of uncontrolled  reentries and the risk for European airspace.
+As part of this research and to inform the decision-makers it is planned to explore the impact of megacostellations and flight growth forecast and what would happen in the mid- to long-term in varios scenarios of uncontrolled re-entries and the risk for European airspace.
 
 # Appendix: Orbital Elements {#sec-orbitals}
 
