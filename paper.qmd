@@ -292,25 +292,32 @@ $$
 
 ## Aircraft effective exposed area{#sec-eea}
 
-We assume the aircraft impact area to be much larger than the debris
-object area so as to neglet the debris impact area.
-We can also simplify the geometry of the aircraft and model it as
-a rectangular solid with dimesions of wingspan ($W$), length ($L$) and
-height ($H$). 
-Now, if the aircraft were stationary, the area exposed to a debris impact would
-be the top view, while if the debris were stationary it would be the front view.
-In reality an aircraft en-route is moving (mainly) horizontally and the debris 
-vertically [^balistic_descent], which which allows to express the effective
-exposed area, $\varepsilon_k$, as
+For the actual collision encounter between a re-entering object and an aircraft, we assume the aircraft impact area to be much larger than the debris object area.
+Thus, the area spanned by the debris object is smaller than the aircraft dimensions. 
+This assumption holds for practically all commercial aircraft within the scope of this study, and we can neglect the debris impact area.
+Accordingly, we can also simplify the geometry of the aircraft and model it as a rectangular solid with dimesions of wingspan ($W$), length ($L$) and height ($H$). 
+
+Regarding the aircraft-debris encounter geometry, this yields to two conceptual considerations. 
+<!-- TERMINOLOGY? rectangular solid -- impact --> top plane, front plane? Does the literture use "view"  -->
+1.) if the aircraft were stationary, the area exposed to the debris impact would be the top view, and
+2.) if the debris were stationary, it would be the front view.
+
+Our focus is on commercial aircraft in flight, and - implicitly - operating at higher altitudes.
+The en-route portion of a flight is characterised by the aircraft in straight and level flight, moving (mainly) horizontally.
+At the same time, the movement of the re-entered debris object at regular en-route flight levels will be vertically [^balistic_descent].
+This encounter geometry allows to express the effective exposed area, $\varepsilon_k$, as
 
 $$
 \varepsilon_k = \frac{s_{a} a_{h} + s_{d_k} a_{v}}{s_{d_k}}
 $$
 
-where $s_{a}$ is the average aircraft speed, $s_{d_k}$ is the average fall speed
-of the $k$-th debris object, $a_T$ area of the aircraft as viewed from the top,
-$a_F$ area of the aircraft as viewed from the from the front of the aircraft.
+where 
+* $s_{a}$ is the average aircraft speed, 
+* $s_{d_k}$ is the average fall speed of the $k$-th debris object, 
+* $a_T$ area of the aircraft as viewed from the top, and 
+* $a_F$ area of the aircraft as viewed from the from the front of the aircraft.
 
+This can be further instantiated for specific aircraft types.
 In the calculations the following is assumed to be true ($t$ subscript for aircraft type)
 
 * constant debris fall speed $s_{d_k} = \qty{145}{mph} = S$
@@ -322,16 +329,18 @@ In the calculations the following is assumed to be true ($t$ subscript for aircr
   where $W_t$ is the wingspan, and $H_t$ the height for the specific aircraft
   type $t$
 
-The effective exposed area now only depends on the aircraft type $t$ (dimensions
+The effective exposed area now only depends on the aircraft type $t$ (i.e., its dimensions
 and cruise speed) and can be rewritten as:
 
 $$
 \varepsilon_t = \frac{C_{t} F_{t} + S A_{t}}{S}
 $$
 
+These aircraft properties are well-known. 
+While there does not exist a single openly available date base for these aircraft parameters, we collected the information from a series of sources and integrated them into a lookup dataset.
 The values $W_t$, $H_t$ and $L_t$ have been retrieved from [@performance_database;@skybrary;@doc8643].
 
-The impact probability for cell $h$ and single aircraft of type $t$ becomes:
+The impact probability for cell $h$ under consideration of a specific aircraft of type $t$ becomes:
 
 $$
 p_{t,k}(h) = \varepsilon_t \rho_t(h) \sigma_k(h)
