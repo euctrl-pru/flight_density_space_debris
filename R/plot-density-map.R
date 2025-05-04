@@ -17,10 +17,10 @@ density <- arrow::read_parquet(
   str_glue("data/traffic_density_{date}_res_3_hourly.parquet")
 )
 
-res <- 3
+resolution <- 3
 
 eur_hex <- bbox_nm() |>
-  hexes_for_bbox_at_res(resolution = res)
+  hexes_for_bbox_at_res(resolution = resolution)
 
 
 ddd <- density |>
@@ -36,7 +36,7 @@ min <- 0
 
 
 eur_hex_union <- bbox_nm() |>
-  bbox_of_hexes_for_bbox_at_res(resolution = res)
+  bbox_of_hexes_for_bbox_at_res(resolution = resolution)
 
 gisco_RG <- gisco_get_countries(
   resolution = "20",
@@ -46,9 +46,8 @@ gisco_RG <- gisco_get_countries(
 ) |>
   mutate(res = "20M")
 
-gisco <- gisco_RG
 
-EUR_res20 <- gisco |>
+EUR_res20 <- gisco_RG |>
   st_intersection(eur_hex_union) |>
   select(res)
 
@@ -74,30 +73,6 @@ draw_key_hex <- function(data, params, size) {
     v$x,
     v$y,
     gp = grid::gpar(col = data$colour, fill = alpha(data$fill, data$alpha))
-  )
-}
-
-"%||%" <- function(a, b) {
-  if (!is.null(a)) a else b
-}
-
-# Copy & Paste from ggplot2::draw_key_rect
-draw_key_cust <- function(data, params, size) {
-  # make fill inherit color if NA
-  if (is.na(data$fill)) data$fill <- data$col
-
-  grid::rectGrob(
-    gp = grid::gpar(
-      col = NA,
-      fill = alpha(
-        data$fill %||%
-          data$colour %||%
-          "grey20",
-        data$alpha
-      ),
-      lty = data$linetype %||%
-        1
-    )
   )
 }
 
@@ -178,5 +153,5 @@ ggplot() +
 ggsave(here(
   "media",
   "figures",
-  str_glue("flight_density_{date}_{res}.png")
+  str_glue("flight_density_{date}_{resolution}.png")
 ))
