@@ -59,7 +59,7 @@ acronyms:
 ---
 
 # Abstract
-<!-- teaser --> The recent decades observed an increasing number of space activities and associated launches. 
+<!-- teaser --> The recent decades observed an increasing number of space activities resulting in higher numbers of re-entries at the end of the mission lifespan or orbital decay. 
 The risk of collision between uncontrolled re-entering space debris and aircraft
 is  increasing due to both ever-growing number of airborne flights and 
 of orbiting bodies (and relevant re-entries). 
@@ -184,7 +184,7 @@ megas |>
 <!-- ESTABLISH SOME CONTEXT ---------------------------------------------- -->
 The modelling and tracking of uncontrolled re-entries poses challenges.
 Actual and historic data is sparse, and the size, shape, and attitude or rotation of re-entering objects increase the level of uncertainty for modelling.
-Common approaches employ a mix of handingling the uncertainty of object or debris movement and exposed area, including temporal uncertainty windows.
+Common approaches employ a mix of handling the uncertainty of object or debris movement, the associated exposed area, including temporal uncertainty windows.
 
       <!-- is there more to say and provide context? -->
 
@@ -256,37 +256,37 @@ Flight density in the EUROCONTROL Area on the 5th of July 2024, the busiest day 
 :::
 
 
-
 ## Impact probability for a single flight and single debris
-The probability, $p_k$, of a debris (point) object $k$, impacting an
+
+Safety and collision risk awareness is directly linked to the probability of a re-entering space object colliding with a transversing flight.
+This probability, $p_k$, of a debris (point) object $k$, impacting an
 aircraft (point) object over the area, $a$, is expressed as:
 
 $$
 p_k = \varepsilon_k \int_a \rho(\vec{x}) \sigma_k(\vec{x}) da
 $$
 
-where $\rho({\vec{x}})$ is the probability density of an aircraft in $\vec{x}$,
-$\sigma(\vec{x})$ is the impact probability density of a debris object $k$
-in the position $\vec{x}$ and $\varepsilon_k$ is the effective exposed area,
-i.e. the effective risk area for the $k^{th}$ debris object impacting
+where 
+* $\rho({\vec{x}})$ is the probability density of an aircraft in $\vec{x}$,
+* $\sigma(\vec{x})$ is the impact probability density of a debris object $k$
+in the position $\vec{x}$, and 
+* $\varepsilon_k$ is the effective exposed area, i.e., the effective risk area for the $k^{th}$ debris object impacting
 the aircraft (see @sec-eea later on).
 
-
-Using H3 to discretise the area of interest $a$ using H3 cells gives
+Our approach builds on the discretisation of the geo-spatial risk area.
+For this purpose we use a hexagon-based tesselation pattern.
+Uber's H3 method ensures non-overlapping hexagons, with an equidistant relationship between all neighbours, and enables an efficient indexing of the tessel-cells. 
+Using H3 to discretise the area of interest $a$ gives
 
 $$
 p_k = \varepsilon_k \sum_h \rho(h) \sigma_k(h).
 $$ 
 
-Where for each cell $h$ the following applies
+The impact probability $p_{k}(h)$ for each cell $h$ is determined by the following
 
 $$
 p_{k}(h) = \varepsilon_k \rho(h) \sigma_k(h).
 $$
-
-
-
-
 
 
 
