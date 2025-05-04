@@ -296,7 +296,8 @@ $a_F$ area of the aircraft as viewed from the from the front of the aircraft.
 
 In the calculations the following is assumed to be true ($t$ subscript for aircraft type)
 
-* constant debris fall speed $s_{d_k} = \qty{145}{mph} = S$
+* constant debris fall speed $s_{d_k} = \qty{145}{mph} = S$ 
+  [[pag 8 @patera2008]]
 * constant aircraft speed, $s_{a} = C_t$, equal to its cruise speed, 
 * aircraft area as viewed from the top, $a_T = W_t \times L_t = A_t$, 
   where $W_t$ is the wingspan, and $L_t$ the length for the specific aircraft
@@ -312,7 +313,8 @@ $$
 \varepsilon_t = \frac{C_{t} F_{t} + S A_{t}}{S}
 $$
 
-The values $W_t$, $H_t$ and $L_t$ have been retrieved from [@performance_database;@skybrary;@doc8643].
+The values $W_t$, $H_t$ and $L_t$ have been collected from [@performance_database;@skybrary;@doc8643]; we used \qty{1000}{m^2} for 
+$\varepsilon_t$ in case of missing aircraft type.
 
 The impact probability for cell $h$ and single aircraft of type $t$ becomes:
 
