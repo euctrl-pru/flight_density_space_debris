@@ -36,9 +36,9 @@ europe_hex <- function(res_h3, res_spatial = "20M") {
     select(res)
 }
 
-res <- 3L
+resolution <- 3L
 
-eur_hex <- bbox_nm() |> hexes_for_bbox_at_res(resolution = res)
+eur_hex <- bbox_nm() |> hexes_for_bbox_at_res(resolution = resolution)
 
 ddd <- weightings_h3_resolution_3_hourly |>
   filter(h3_resolution_3 %in% (eur_hex |> pull(h3_address))) |>
@@ -55,7 +55,7 @@ ddd |>
   ) +
   labs(
     title = "weightings on the spherical Earth",
-    subtitle = "H3 hexes (res = 3)"
+    subtitle = "H3 hexes (resolution = 3)"
   )
 
 
