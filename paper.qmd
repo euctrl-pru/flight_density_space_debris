@@ -25,29 +25,43 @@ format:
       file: media/siunitx.html
 author:
   - id: es
-    name: Enrico Spinielli
+    name: Author 1
     affiliations:
-      - ref: aiu
-    orcid: 0000-0001-8584-9131
-    email: enrico.spinielli@eurocontrol.int
-    attributes:
-      corresponding: true
-  - name: Rainer Koelle
-    affiliations: 
-      - ref: aiu
-    orcid: 0000-0003-2810-1404
-    email: rainer.koelle@eurocontrol.int
-  - name: Quinten Goens
-    affiliations: 
-      - ref: aiu
-    orcid: 0000-0003-2187-1924
-    email: quinten.goens@eurocontrol.int
+      - ref: fake
+    # name: Enrico Spinielli
+    # affiliations:
+    #   - ref: aiu
+    # orcid: 0000-0001-8584-9131
+    # email: enrico.spinielli@eurocontrol.int
+    # attributes:
+    #   corresponding: true
+  - name: Author 2
+    affiliations:
+      - ref: fake
+  # - name: Rainer Koelle
+  #   affiliations: 
+  #     - ref: aiu
+  #   orcid: 0000-0003-2810-1404
+  #   email: rainer.koelle@eurocontrol.int
+  - name: Author 3
+    affiliations:
+      - ref: fake
+  # - name: Quinten Goens
+  #   affiliations: 
+  #     - ref: aiu
+  #   orcid: 0000-0003-2187-1924
+  #   email: quinten.goens@eurocontrol.int
 affiliations:
   - id: aiu
     name: EUROCONTROL
     department: Aviation Intelligence Unit
     city: Brussels
     country: Belgium
+  - id: fake
+    name: ACME
+    department: Best Tricks
+    city: Los Angeles
+    country: USA
 bibliography: media/references.bib
 acronyms:
   insert_loa: false
@@ -69,8 +83,8 @@ editor:
 <!-- teaser -->
 
 The recent decades observed an increase in the number of space activities.
-This resulted in higher numbers of re-entries at the end of the respective mission
-lifespan or orbital decay. The risk of collision between uncontrolled
+This resulted in higher numbers of re-entries at the end of the respective 
+mission lifespan or orbital decay. The risk of collision between uncontrolled
 re-entering space debris and aircraft is increasing due to the continual 
 growth of flights and of orbiting bodies and their relevant re-entries. 
 <!-- why important --> National and international
@@ -78,20 +92,18 @@ authorities need to balance safety and economic impact of adopted
 measures. This is particularly challenging should a re-entry event be announced on short notice.
 Thus, there is a need for effective tools to reduce the uncertainty and increase the safety awareness of uncontrolled re-entries. 
 <!-- approach / experiments --> To determine the risk exposure, this paper follows a data-driven approach.
-We employ hourly and daily spatial flight densities calculated from trajectories as recorded by
-EUROCONTROL's Network Manager and binned with the Uber H3 geospatial
-indexing system. Impact risk probabilities are then calculated based on previous
-theoretical work. 
-<!-- results / conclusions --> This work enhances the
-model by using actual flown flight trajectories as a basis for
-time-varying flight densities rather than relying on proxies such as the
-population density or ADS-B/Mode S message counts. These densities
-combined with a buffered area along the eventual path of re-entry, can
-provide mid-air impact probabilities to authorities as an aid for
-deciding on safety measures such as airspace closures and/or
+We employ hourly and daily spatial flight densities calculated from trajectories
+as recorded by EUROCONTROL's Network Manager and binned with the Uber H3
+geospatial indexing system.
+Impact risk probabilities are then calculated based on previous theoretical
+work. 
+<!-- results / conclusions --> This work enhances the previou model by using
+actual flown flight trajectories as a basis for time-varying flight densities
+rather than relying on proxies such as the population density or ADS-B/Mode S
+message counts. These densities combined with a buffered area along the eventual path of re-entry, can provide mid-air impact probabilities to authorities
+as an aid for deciding on safety measures such as airspace closures and/or
 re-routings.
 The findings and the approach are demonstrated on the basis of an expected re-entry from an earlier space mission.\
-       IS IT WORTH TO STATE THE DETERMINED RISK?  \
 The approach in this paper enables a computing time efficient mechanism to support the re-entry related decision-making.
 
 
@@ -114,9 +126,9 @@ uncontrolled debris re-entries. The increasing risk landscape poses
 challenges in terms of oversight and risk management. The operational and 
 economic demand by air transport requires a trade-off with large-scale
 airspace and flow management measures to address the inherent safety risk.
-There is a growing demand by overseeing authorities for new methodologies and tools to
-assess which safety measures are the most adequate to minimise potential
-casualties and economic impact.
+There is a growing demand by overseeing authorities for methodologies and
+tools to assess which safety measures are the most adequate to minimise
+potential casualties and economic impact.
 
 The increase in space operations does not exist in a vacuum. The
 continual growth of air traffic - despite temporal bumps - is evidenced
@@ -124,10 +136,10 @@ by the surging number of flights in Europe [@forecastUpdate2025] and
 across the world. On-going development/deployment activities of
 mega-constellations of satellites in \acr{LEO}, such as the
 already active Starlink and OneWeb or planned ones (e.g. Kuiper,
-Starshield, Xingwang), will add thousand of orbiting objects with a short
+Starshield, Xingwang), will add thousand of orbiting objects,
+c.f. [@tbl-megaconstellations;@megaconstellations] with a short
 operational life. Some of these will inevitably re-enter the Earth's
-atmosphere in an uncontrolled manner, c.f. [@tbl-megaconstellations;
-@megaconstellations].
+atmosphere in an uncontrolled manner.
 These numbers and occurrence rates will pose challenges to the steadily increasing air traffic. 
 
 <!-- now we have the risk / topic established -- next we need something to speak about a "high-level goal" or "what other work looked into to place this paper as a 'further development' -->
@@ -136,9 +148,14 @@ Aviation safety risk management is a well-established domain in air
 transportation. Despite the increasing need for situational awareness of
 space objects and their re-entry, the classical risk avoidance paradigm
 revolves around restricting the airspace. 
-Such airspace closures impact the flow of air traffic, as the operating schedule will get distorted due to delays or re-routings circumnavigating the exposed volume of airspace.
-While the probability of a strike is low, it can result in catastrophic consequences. 
-The growing number of space operations requires therefore tools to help improve the monitoring and trajectory prediction of uncontrolled re-entries, techniques to help reduce the uncertainty in terms of the dimension and duration of required airspace measures, including computationally efficient and fast methods to determine the risk exposure.
+Such airspace closures impact the flow of air traffic, as the operating schedule
+will get distorted due to delays or re-routings circumnavigating the exposed volume of airspace.
+While the probability of a strike is low, it can result in catastrophic 
+consequences. 
+The growing number of space operations requires therefore tools to help improve
+the monitoring and impact of uncontrolled re-entries, techniques to help reduce
+the uncertainty in terms of the dimension and duration of required airspace
+measures, including computationally efficient and fast methods to determine the risk exposure.
 
 <!-- contribution of the paper -->
 
@@ -215,14 +232,18 @@ megas |>
 
 <!-- ESTABLISH SOME CONTEXT ---------------------------------------------- -->
 
-The modelling and tracking of uncontrolled re-entries poses challenges in terms of safety awareness and operational risk.
+The modelling and tracking of uncontrolled re-entries poses challenges in terms
+of safety awareness and operational risk.
 Actual and historic data is sparse, and the size, shape, and attitude or
 rotation of re-entering objects increase the level of uncertainty for
-modelling. To support the decision-making, common approaches employ a mix of handling the uncertainty of
-object or debris movement and the associated exposed area for encounter, including
-temporal uncertainty windows.
-Thus, computationally efficient methods to assess and continuously revalidate the collision risk of uncontrolled re-entries and aircraft will help to fine-tune the decision-making and geospatial and temporal constraints on aviation.
-     
+modelling. To support the decision-making, common approaches employ a mix of
+handling the uncertainty of
+object or debris movement and the associated exposed area for encounter,
+including temporal uncertainty windows.
+Thus, computationally efficient methods to assess and continuously revalidate
+the collision risk of uncontrolled re-entries and aircraft will help to
+fine-tune the decision-making and geospatial and temporal constraints on
+aviation.
 
 <!-- is there more to say and provide context? -->
 
@@ -259,7 +280,7 @@ $\qty{68.979}{km}$ [@h3resolutions] as depicted in @fig-cells.
 
 ::: {#fig-cells}
 ```{r cells-map}
-#| out-width: "120%"
+#| out-width: "110%"
 #| echo: false
 #| fig-scap: "H3 cells at resolution 3"
 knitr::include_graphics("media/figures/cells_3.png")
@@ -297,7 +318,7 @@ densities of more than 10.
 
 ::: {#fig-density-summer2024-res-3}
 ```{r density-winter-res-3}
-#| out-width: "110%"
+#| out-width: "105%"
 #| width: "9cm"
 #| echo: false
 knitr::include_graphics("media/figures/flight_density_2024-07-05_3.png")
@@ -451,14 +472,9 @@ $$
 where we used the equatorial value of $\qty{6378}{km}$, for the Earth's radius,
 $R$, as the distance of the building from the centre of the planet.
 
-The impact probability density $\sigma(\varphi, i)$ for an inclination $i$ of
-$\ang{51.7}$ is plotted in @fig-weighting-inclination-i and takes a characteristic U shape with zero values for latitudes beyond $i$.
-This density has been derived by simulating a full circular orbit at
-\qty{550}{km} height with 10000  positions and calculating the relevant longitudes and latitudes at half degree resolution.
-
 ::: {#fig-weighting-inclination-i}
 ```{r weighting-inclination-i}
-#| out-width: "100%"
+#| out-width: "90%"
 #| echo: false
 knitr::include_graphics("media/figures/weighting_inclination_i.png")
 ```
@@ -466,6 +482,11 @@ knitr::include_graphics("media/figures/weighting_inclination_i.png")
 Impact probability density $\sigma(\varphi, i = 51.7)$ for debris of
 inclination $i$ and altitude $\qty{550}{km}$.
 :::
+
+The impact probability density $\sigma(\varphi, i)$ for an inclination $i$ of
+$\ang{51.7}$ is plotted in @fig-weighting-inclination-i and takes a characteristic U shape with zero values for latitudes beyond $i$.
+This density has been derived by simulating a full circular orbit as detailed
+in @#sec-orbitals.
 
 
 [^circular-orbit]: In fact drag at perigee will lower apogee and similarly drag
@@ -485,11 +506,6 @@ averaging all single densities:
 $$ \sigma(\varphi) = \frac{1}{N} \sum_{k = 1}^N \sigma(\varphi, i_k)$$
 
 
-
-From [@gcat] we extracted 1968 debris re-entries during 25 calendar years from 
-1st Jan 2000 till 31st Dec 2024.
-The result of combining all the U-shaped densities can be seen in @fig-weighting.
-
 ::: {#fig-weighting}
 ```{r weighting}
 #| out-width: "100%"
@@ -501,6 +517,11 @@ Weighting function derived from 25 years of re-entries as an empirical
 approximation of $\sigma(\varphi)$.
 :::
 
+
+
+From [@gcat] we extracted 1968 debris re-entries during 25 calendar years from 
+1st Jan 2000 till 31st Dec 2024.
+The result of combining all the U-shaped densities can be seen in @fig-weighting.
 
 
 Spatially projecting $\sigma(\lambda,\varphi)$ on the H3 cells in the
@@ -568,28 +589,17 @@ Averaged hourly collision expectation on 2024-07-05.
 # Use Case: KOSMOS 482 Descent Craft re-entry
 <!-- I would make this a separate section in the paper -->
 
-In few days (at the time of writing of this paper) at 23:06 May 10, 2025
-($\pm 1.8$ days), the KOSMOS 482 Descent Craft should re-enter the
+In few days (at the time of writing of this paper) at 10:05 May 10, 2025
+($\pm 1.5$ days), the KOSMOS 482 Descent Craft should re-enter the
 Earth's atmosphere [@kosmos482reentry].
 This is the lander module from a 1972 failed USSR Venera mission [@SpaceReviewKosmos],
 it is reported to weigh about $\qty{480}{kg}$ and to have a diameter of approximately $\qty{1}{m}$.
 Being built to survive Venus's atmosphere which is much denser and hotter than Earth's one (surface pressure 93 times that of Earth and temperatures reaching \ang{467}C (\ang{872}F)),
 it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
 
-::: {#fig-kosmos-cell}
-```{r kosmos-cell}
-#| out-width: "45%"
-#| echo: false
-knitr::include_graphics(here::here("media", "figures", "cell_london.png"))
-```
-
-Cell with highest collision expectation due to KOSMO debris re-entry based on 2024-07-05 traffic.
-:::
-
 Knowing that the debris inclination is $\ang{51.7}$, see @fig-weighting-inclination-i, we can derive the maximum collision expectation using data for the busiest day in the busiest 2024 week as a proxy for the traffic density on the day of re-entry.
 Using the approach in this study and the weightings for this specific debris,
-the cell with the highest impact risk is cell, `83194afffffffff` (located South
-of London, cf. @fig-kosmos-cell), with a value of $1.89 \cdot  10^{-10}$.
+the cell with the highest impact risk is cell, `83194afffffffff` (located South of London), with a value of $1.89 \cdot  10^{-10}$.
 
 The risk is very low.
 
@@ -605,6 +615,9 @@ traffic around the area affected.
 We have calculated collision risk probabilities for the two
 busiest weeks in 2023 and 2024. The relevant dataset represents a data cube
 as logically depicted in @fig-data-densities.
+The processing of data for 1 day takes less than 30 min from
+data extraction to impact probability calculation on a
+high-end laptop (MacBook Pro M1 Max).
 
 ::: {#fig-data-densities}
 ```{r densities}
@@ -617,14 +630,14 @@ Data cube of hourly flight densities data over H3 hexes (in Germany as
 an example) for multiple dates, $d_1 \cdots d_n$.
 :::
 
-Code and sample data is available in the companion GitHub repository of
+Code and sample data are available in the companion GitHub repository of
 the paper at <https://github.com/euctrl-pru/flight_density_space_debris>.
 We have also developed an R package `aviodebris` to heavy-lift the
-various data processing steps to produce the results in the paper;
-it is available at <https://github.com/euctrl-pru/aviodebris>.
+various data processing steps which  is available at
+<https://github.com/euctrl-pru/aviodebris>.
 
 
-::: {#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="htb"}
+::: {#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="h"}
 ```{r ellipse-parameters}
 #| fig-cap: "Keplerian elements: semi-major axis, $a$, the distance between the foci, $2c$, the eccentricity, $e = (2c)/(2a)$. (the semi-parameter (a.k.a. _semilatus rectum_), $p$, describes the size of the conic section by defining the width at the primary focus, and is defined as $p = b^2 / a = a (1 - e^2)$)"
 
@@ -656,6 +669,8 @@ orbiting object's motion. Figures from [@sellers2003understanding],
 respectively Figure 5-2 and Figure 5-9.
 :::
 
+
+
 # Conclusion and Future work
 
 <!-- opening statement linking back to abstract/intro and motivation for this work --------->
@@ -674,7 +689,7 @@ In particular we derive impact risk probability for the European airspace
 using flown trajectories.
 
 The findings are applied to a use-case: the imminent re-entry of the
-lander module of an earlier Venus mission. The maximum collision
+lander module of an earlier failed Venus mission. The maximum collision
 expectation for the busiest day in 2024 is determined.
 
 <!-- benefits / strengths / weaknesses of the approach --------------------------------------->
@@ -696,9 +711,9 @@ As part of this research and to inform the decision-makers it is planned to expl
 
 # Appendix: Orbital Elements {#sec-orbitals}
 
-
 We refer to @fig-orbital-elements to describe the orbital parameters of
 interest for the current work.
+
 
 The angular position, $\theta$, of the re-entry point from the ascending
 node[^ascending-node] in the orbit plane is $\theta = \omega + \nu$. It is related to the
@@ -713,7 +728,7 @@ Mass of Earth, $M_{\oplus} = \qty{5.9722e24}{kg}$.
 
 These are used to derive numerically compute the weighting function,
 @fig-weighting-inclination-i:
-for debris with inclination $i$ we simulate an orbit of $N$, i.e. $10001$,
+for debris with inclination $i$ we simulate an orbit of $N$, i.e. $10000$,
 positions and calculate the corresponding Cartesian position and the
 equivalent longitude and latitude.
 
