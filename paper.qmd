@@ -232,9 +232,9 @@ Thus, computationally efficient methods to assess and continuously revalidate th
 
 <!-- as a minimum, we should say something about the WHAT -->
 In general, the method for estimating the risk to commercial aircraft
-from reentering debris objects revolves around estimating the exposure
+from re-entering debris objects revolves around estimating the exposure
 of a single flight and the population of flights to the re-entering
-object. In that respect, a robust determination of flight density is a
+object. In that respect, a robust determination of the flight density for encounter airspace volumes is a
 key aspect.
 
 We follow the same mathematical approach of [@patera2008;
@@ -242,7 +242,8 @@ We follow the same mathematical approach of [@patera2008;
 approximation of risk exposure. Instead of approximating flight density
 with population density [@patera2008] or aircraft transponder data
 [@wrightAirspaceClosuresDue2025], we use actual flown flight
-trajectories.
+trajectories. This provides a more realistic figure of the number of affected air traffic.
+Thus, flight density is directly related to the number of flight operations per volume of airspace.
 
 This work focusses on the European region. The hourly flight density
 estimation is based on on flown \acr{IFR} trajectories as recorded by
@@ -269,10 +270,11 @@ bounding box of 43 EUROCONTROL Member States \acr{FIR}s (blue shaded
 polygon).
 :::
 
-To build an upper threshold for flight exposure, this study uses the
+To build an upper threshold for the flight exposure, this study uses the
 busiest week during the \acr{IATA} summer ISO week in 2023 and 2024.
+This ensures a reasonable value, as peak airspace utilisation provides a handle on the air traffic operations and interactions of the different aircraft as part of wider *'traffic flows'*.
 <!-- does ISO do here anything? --> The flight densities are
-characterised on an hourly basis for all days in these weeks.
+characterised on an hourly basis for all days in these weeks per H3-cell.
 
 <!-- next sentence feels like an orphan ... do we need this here? ------>
 This paper expands the works of [@wrightAirspaceClosuresDue2025; @patera2008] and provides a reproducible example for States, Agencies or relevant authorities to build upon.
@@ -281,15 +283,15 @@ This paper expands the works of [@wrightAirspaceClosuresDue2025; @patera2008] an
 
 
 <!-- next sentence feels like an orphan ... do we need this here? ------>
-Next sections will develop the mathematical background for the
-evaluation of collision and casualties risk of which traffic density is
+The next sections will develop the mathematical background for the
+evaluation of the collision and casualty risk for which air traffic density is
 a key component.
 
-@fig-density-summer2024-res-3 shows hourly flight density for the 5th of
-July 2024. The chart shows the expected outcomes in terms of major
+@fig-density-summer2024-res-3 shows the hourly flight density for the 5th of
+July 2024. The chart depicts the expected outcomes in terms of major
 traffic flows, and areas of high or low traffic. For example, cells with
 a density of zero are clearly visible for areas of war or no-fly zones
-(Ukraine, Libya or Syria). The major traffic flows (North Atlantic,
+(Ukraine, Libya or Syria). At the same time, the major traffic flows (North Atlantic,
 Canaries and East-bound over Türkiye) are clearly highlighted showing
 densities of more than 10.
 
@@ -325,6 +327,8 @@ the aircraft (see @sec-eea later on).
 Our approach builds on the discretisation of the geospatial risk area.
 For this purpose we use a hexagon-based tessellation pattern.
 Uber's H3 method ensures non-overlapping hexagons (and 5 pentagons), with an equidistant relationship between all neighbours, and enables an efficient indexing of the tessel-cells. 
+While this paper focusses on the determination of the risk exposure per cell, the approach would allow to identify adjacent cells to account for the inherent uncertainty and risk appetite of decision-makers.
+
 Using H3 to discretise the area of interest $a$ gives
 
 $$
@@ -345,14 +349,13 @@ This assumption holds for practically all commercial aircraft within the scope o
 Accordingly, we can also simplify the geometry of the aircraft and model it as a rectangular solid with dimensions of wingspan ($W$), length ($L$) and height ($H$). 
 
 Regarding the aircraft-debris encounter geometry, this yields to two conceptual considerations:
-<!-- TERMINOLOGY? rectangular solid -- impact top plane, front plane? Does the literature use "view"  -->
 
 1. if the aircraft were stationary, the area exposed to the debris impact would be the top face of the rectangular solid, and
 2. if the debris were stationary, it would be the front face.
 
-Our focus is on commercial aircraft in flight, and - implicitly - operating at higher altitudes.
+Our focus is on commercial aircraft in flight, and - implicitly - operating at higher altitudes (i.e., flight levels).
 The en-route portion of a flight is characterised by the aircraft in straight and level flight, moving (mainly) horizontally.
-At the same time, the falling of the re-entering debris object at regular en-route flight levels will be vertical[^ballistic_descent].
+At the same time, the trajectory of a falling re-entering debris object at regular en-route flight levels will be a vertical decent movement[^ballistic_descent].
 This encounter geometry allows to express the effective exposed area, $\varepsilon_k$, as
 
 $$
@@ -388,9 +391,9 @@ $$
 \varepsilon_t = \frac{C_{t} F_{t} + S A_{t}}{S}
 $$ {#eq-effective-exposed-area-simplified}
 
-These aircraft properties are well-known. 
+These aircraft properties are well-known design parameters. 
 While there does not exist a single openly available date base for these aircraft parameters, we collected the information from a series of sources and integrated them into a lookup dataset.
-The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used $\varepsilon_t = \qty{1000}{m^2}$ missing entries.
+The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used $\varepsilon_t = \qty{1000}{m^2}$ missing entries or unknown aircraft types.
 
 The impact probability for cell $h$ under consideration of a specific
 aircraft of type $t$ becomes:
@@ -413,14 +416,15 @@ accurate approximation.* [@patera2008]
 Debris that re-enter the Earth’s atmosphere via drag-induced decay will fly
 circular orbits prior to re-entry even if initially on elliptical
 ones.[^circular-orbit]
-
-The angular position, $\theta = \omega + \nu$, of the re-entry point from the
+A characteristic point for the determination of the re-entry position is the *'ascending node'*.
+This denotes the intersection point of the object crossing the plane of Earth's equator if moving from the southern hemnisphere to the northern one.
+The respective angular position, $\theta = \omega + \nu$, of the re-entry point from the
 ascending node, see @sec-orbitals, is uniformly distributed for uncontrolled
 re-entries, $\sigma(\theta) = 1 / (2\pi)$.
-This is due to uncertainties in atmospheric drag (among other things solar
-activity can expand the atmosphere) and the gravitational effects of the
+This is due to uncertainties in atmospheric drag and the gravitational effects of the
 Equatorial bulge.
-Hence we assume that the impact longitude, $\lambda$, is uniformly distributed.
+The height of the atmosphere is not a constant across the globe. Next to the gravitational effects, the atmosphere may also expand due to solar activity.
+Given these uncertainties, we assume that the impact longitude, $\lambda$, is uniformly distributed.
 
 The impact probability density, $\sigma(\varphi, i)$,
 at latitude $\varphi$ of a re-entering object whose orbit has inclination $i$
@@ -499,7 +503,7 @@ approximation of $\sigma(\varphi)$.
 
 
 Spatially projecting $\sigma(\lambda,\varphi)$ on the H3 cells in the
-\acr{NM} area we obtain the weightings per cell (per hour $H$), $W_H(h)$, as in
+\acr{NM} area, we obtain the weightings per cell (per hour $H$), $W_H(h)$, as in
 @fig-weighting-nm-area.
 
 ::: {#fig-weighting-nm-area}
