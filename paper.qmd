@@ -112,7 +112,7 @@ With forecasts predicting a steadily growing number of flights, see
 need to re-evaluate the risks of collision and casualties due to
 uncontrolled debris re-entries. The increasing risk landscape poses
 challenges in terms of oversight and risk management. The operational and 
-economic demand by air transport requires a tradeoff with large-scale
+economic demand by air transport requires a trade-off with large-scale
 airspace and flow management measures to address the inherent safety risk.
 There is a growing demand by overseeing authorities for new methodologies and tools to
 assess which safety measures are the most adequate to minimise potential
@@ -128,7 +128,7 @@ Starshield, Xingwang), will add thousand of orbiting objects with a short
 operational life. Some of these will inevitably re-enter the Earth's
 atmosphere in an uncontrolled manner, c.f. [@tbl-megaconstellations;
 @megaconstellations].
-These numbers and occurence rates will pose challenges to the steadily increasing air traffic. 
+These numbers and occurrence rates will pose challenges to the steadily increasing air traffic. 
 
 <!-- now we have the risk / topic established -- next we need something to speak about a "high-level goal" or "what other work looked into to place this paper as a 'further development' -->
 
@@ -221,10 +221,10 @@ rotation of re-entering objects increase the level of uncertainty for
 modelling. To support the decision-making, common approaches employ a mix of handling the uncertainty of
 object or debris movement and the associated exposed area for encounter, including
 temporal uncertainty windows.
-Thus, computationally efficient methods to assess and continously revalidate the collision risk of uncontrolled re-entries and aircraft will help to fine-tune the decision-making and geo-spactial and temporal constraints on aviation.
-```         
-  <!-- is there more to say and provide context? -->
-```
+Thus, computationally efficient methods to assess and continuously revalidate the collision risk of uncontrolled re-entries and aircraft will help to fine-tune the decision-making and geospatial and temporal constraints on aviation.
+     
+
+<!-- is there more to say and provide context? -->
 
 <!-- APPROACH / METHOD --------------------------------------------------- -->
 
@@ -473,7 +473,7 @@ denser atmosphere (the perigee is closest to Earth), the apogee  will decrease f
 
 ## Impact probability density for debris
 
-If we consider historical uncontrolled debris re-entry data, we can numerically
+Considering historical uncontrolled debris re-entry data, we can numerically
 derive the debris impact probability as a weighting function by summing up and
 averaging all single densities:
 
