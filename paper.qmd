@@ -359,7 +359,7 @@ At the same time, the trajectory of a falling re-entering debris object at regul
 This encounter geometry allows to express the effective exposed area, $\varepsilon_k$, as
 
 $$
-\varepsilon_k = \frac{s_{a} a_{h} + s_{d_k} a_{v}}{s_{d_k}}
+\varepsilon_k = \frac{s_{a} a_{F} + s_{d_k} a_{T}}{s_{d_k}}
 $$ {#eq-effective-exposed-area}
 
 where 
@@ -377,7 +377,7 @@ aircraft type)
   ([we adopt this value from pag 7-8 in @patera2008])
 * constant aircraft speed, $s_{a} = C_t$, equal to its cruise speed, under the
   simplification that the majority of the flight time spent cruising, 
-* aircraft area as viewed from the top, $a_T = W_t \times L_t = A_t$, 
+* aircraft area as viewed from the top, $a_T = W_t \times L_t = T_t$, 
   where $W_t$ is the wingspan, and $L_t$ the length for the specific aircraft
   type $t$
 * aircraft area as viewed from the front, $a_F = W_t \times H_t = F_t$, 
@@ -388,12 +388,13 @@ The effective exposed area now only depends on the aircraft type $t$
 (i.e., its dimensions and cruise speed) and can be rewritten as:
 
 $$
-\varepsilon_t = \frac{C_{t} F_{t} + S A_{t}}{S}
+\varepsilon_t = \frac{C_{t} F_{t} + S T_{t}}{S}
 $$ {#eq-effective-exposed-area-simplified}
 
 These aircraft properties are well-known design parameters. 
 While there does not exist a single openly available date base for these aircraft parameters, we collected the information from a series of sources and integrated them into a lookup dataset.
-The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used $\varepsilon_t = \qty{1000}{m^2}$ missing entries or unknown aircraft types.
+The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used $\varepsilon_t = \qty{500}{m^2}$
+and $pax = 7$ for missing entries which usually are due to smaller aircraft not listed in the above sources.
 
 The impact probability for cell $h$ under consideration of a specific
 aircraft of type $t$ becomes:
@@ -539,7 +540,7 @@ $$
 where 
 
 * $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$,
-* $W_H(h)$ is the median value of the weighting function over the area of hexagon
+* $W(h)$ is the mean value of the weighting function over the area of hexagon
 $h$,
 * $\rho_{t,H}(h)$ is the traffic density for the \acr{ICAO} aircraft type $t$ in
 cell $h$ at hour $H$, and
@@ -568,7 +569,7 @@ Averaged hourly collision expectation on 2024-07-05.
 In few days (at the time of writing of this paper) at 23:06 May 10, 2025
 ($\pm 1.8$ days), the KOSMOS 482 Descent Craft should re-enter the
 Earth's atmosphere [@kosmos482reentry].
-Supposedly the lander module from a 1972 failed USSR Venera mission [@SpaceReviewKosmos],
+This is the lander module from a 1972 failed USSR Venera mission [@SpaceReviewKosmos],
 it is reported to weigh about $\qty{480}{kg}$ and to have a diameter of approximately $\qty{1}{m}$.
 Being built to survive Venus's atmosphere which is much denser and hotter than Earth's one (surface pressure 93 times that of Earth and temperatures reaching \ang{467}C (\ang{872}F)),
 it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
@@ -680,7 +681,7 @@ $\hat{I}$, points toward the vernal equinox and the $J$-axis, $\hat{J}$,
 is perpendicular to the $I$-axis in the equatorial plane n the sense of
 Earth's rotation with the $K$-axis pointing up. The semi-major axis,
 $a$, the eccentricity, $e$, the inclination, $i$, the right ascension of
-the ascending node, $\Omega$ , and the argument of perigee, $\omega$,
+the ascending node, $\Omega$, and the argument of perigee, $\omega$,
 constitute, together with the mean anomaly at the initial position,
 $M_0$, a set of six constants of motion that are preserved in the
 absence of perturbation. True anomaly, $\nu$, specifies the location of
@@ -694,7 +695,7 @@ We refer to @fig-orbital-elements to describe the orbital parameters of
 interest for the current work.
 
 The angular position, $\theta$, of the re-entry point from the ascending
-node in the orbit plane is $\theta = \omega + \nu$. It is related to the
+node[^ascending-node] in the orbit plane is $\theta = \omega + \nu$. It is related to the
 latitude, $\varphi$, via the Cartesian coordinate $k$,
 $k = R \sin(\varphi) = R \sin(\theta)\sin(i)$, or
 
@@ -710,6 +711,8 @@ for debris with inclination $i$ we simulate an orbit of $N$, i.e. $10001$,
 positions and calculate the corresponding Cartesian position and the
 equivalent longitude and latitude.
 
+
+[^ascending-node]: For an earth satellite, the ascending node is the point in its orbit where a satellite crosses the equatorial plane going from south to north.
 
 # References {.unnumbered}
 
