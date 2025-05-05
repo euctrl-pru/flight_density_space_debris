@@ -68,21 +68,21 @@ editor:
 
 <!-- teaser -->
 
-The recent decades observed an increasing number of space activities
-resulting in higher numbers of re-entries at the end of the mission
+The recent decades observed an increase in the number of space activities.
+This resulted in higher numbers of re-entries at the end of the respective mission
 lifespan or orbital decay. The risk of collision between uncontrolled
-re-entering space debris and aircraft is increasing due to both
-ever-growing number of airborne flights and of orbiting bodies (and
-relevant re-entries). <!-- why important --> National and international
+re-entering space debris and aircraft is increasing due to the continual 
+growth of flights and of orbiting bodies and their relevant re-entries). 
+<!-- why important --> National and international
 authorities need to balance safety and economic impact of adopted
-measures should a re-entry event be announced, usually on short notice.
-<!-- no hard line breaks in abstracts -->
-<!-- approach / experiments --> We employ hourly and daily spatial
-flight densities calculated from trajectories as recorded by
+measures. This is particularly challenging should a re-entry event be announced on short notice.
+Thus, there is a need for effective tools to reduce the uncertainty and increase the safety awareness of uncontrolled re-entries. 
+<!-- approach / experiments --> To determine the risk exposure, this paper follows a data-driven approach.
+We employ hourly and daily spatial flight densities calculated from trajectories as recorded by
 EUROCONTROL's Network Manager and binned with the Uber H3 geospatial
-indexing system.\
-Impact risk probabilities are then calculated based on previous
-theoretical work. <!-- results / conclusions --> This work enhances the
+indexing system. Impact risk probabilities are then calculated based on previous
+theoretical work. 
+<!-- results / conclusions --> This work enhances the
 model by using actual flown flight trajectories as a basis for
 time-varying flight densities rather than relying on proxies such as the
 population density or ADS-B/Mode S message counts. These densities
@@ -90,15 +90,20 @@ combined with a buffered area along the eventual path of re-entry, can
 provide mid-air impact probabilities to authorities as an aid for
 deciding on safety measures such as airspace closures and/or
 re-routings.
+The findings and the approach are demonstrated on the basis of an expected re-entry from an earlier space mission.\
+       IS IT WORTH TO STATE THE DETERMINED RISK?  \
+The approach in this paper enables a computing time efficient mechanism to support the re-entry related decision-making.
+
 
 # Introduction
 
 <!-- teaser opening --><!-- might need a rewrite - first jotting down -->
-The quest for space is a driver for technological development.
+The quest for space is a driver for technological development and exploitation.
 Key milestones include the first human travel to space and circumnavigating the globe, the first and now many succeeding successful landings on the moon, and regular operations of space stations in the orbit.
-These developments helped to identify options for the wider use of space, benefits, and its commercialisation.
-This is showcased by an increasing number of activities aimed to generate value through the exploration of space ranging from scientific understanding and experimentation, sustainable production of goods in a non-gravity environment, services, and recently leisure.
+These developments helped to identify options for the wider use of space, associated technological or operational benefits, and its commercialisation.
+This is showcased by an increasing number of activities aimed to generate value through the exploration of space ranging from scientific understanding and experimentation, sustainable production of goods in a non-gravity environment, space-asset based services, and recently even leisure.
 The increased number of launches, however, also increased the number of artefacts <!-- falling down and --> re-entering the atmosphere.  
+While ascent operations are typically well controlled and coordinated, a high number of re-entries ensue based on lifespan, decay, or side-effects, such as debris, failed components, etc.
 
 <!-- zooming in on problem -->
 
@@ -106,8 +111,10 @@ With forecasts predicting a steadily growing number of flights, see
 @fig-forecast, and the modern race to commercialise space, there is a
 need to re-evaluate the risks of collision and casualties due to
 uncontrolled debris re-entries. The increasing risk landscape poses
-challenges in terms of oversight and risk management. There is a growing
-demand by overseeing authorities for new methodologies and tools to
+challenges in terms of oversight and risk management. The operational and 
+economic demand by air transport requires a tradeoff with large-scale
+airspace and flow management measures to address the inherent safety risk.
+There is a growing demand by overseeing authorities for new methodologies and tools to
 assess which safety measures are the most adequate to minimise potential
 casualties and economic impact.
 
@@ -115,22 +122,23 @@ The increase in space operations does not exist in a vacuum. The
 continual growth of air traffic - despite temporal bumps - is evidenced
 by the surging number of flights in Europe [@forecastUpdate2025] and
 across the world. On-going development/deployment activities of
-mega-constellations of satellites in Low Earth Orbit \acr{LEO}, such as
+mega-constellations of satellites in \acr{LEO}, such as the
 already active Starlink and OneWeb or planned ones (e.g. Kuiper,
-Starshield, Xingwang) will add thousand of orbiting objects with a short
+Starshield, Xingwang), will add thousand of orbiting objects with a short
 operational life. Some of these will inevitably re-enter the Earth's
 atmosphere in an uncontrolled manner, c.f. [@tbl-megaconstellations;
 @megaconstellations].
+These numbers and occurence rates will pose challenges to the steadily increasing air traffic. 
 
 <!-- now we have the risk / topic established -- next we need something to speak about a "high-level goal" or "what other work looked into to place this paper as a 'further development' -->
 
 Aviation safety risk management is a well-established domain in air
 transportation. Despite the increasing need for situational awareness of
 space objects and their re-entry, the classical risk avoidance paradigm
-revolves around restricting the airspace. While the probability of a
-strike is low, it can result in catastrophic consequences. The growing
-number of space operations requires NEW - ADVANCED TOOLS. PREVIOUS WORK
-DID A,B, and MAYBE C - WE DO SOMETHING ON TOP.
+revolves around restricting the airspace. 
+Such airspace closures impact the flow of air traffic, as the operating schedule will get distorted due to delays or re-routings circumnavigating the exposed volume of airspace.
+While the probability of a strike is low, it can result in catastrophic consequences. 
+The growing number of space operations requires therefore tools to help improve the monitoring and trajectory prediction of uncontrolled re-entries, techniques to help reduce the uncertainty in terms of the dimension and duration of required airspace measures, including computationally efficient and fast methods to determine the risk exposure.
 
 <!-- contribution of the paper -->
 
