@@ -215,13 +215,13 @@ megas |>
 
 <!-- ESTABLISH SOME CONTEXT ---------------------------------------------- -->
 
-The modelling and tracking of uncontrolled re-entries poses challenges.
+The modelling and tracking of uncontrolled re-entries poses challenges in terms of safety awareness and operational risk.
 Actual and historic data is sparse, and the size, shape, and attitude or
 rotation of re-entering objects increase the level of uncertainty for
-modelling. Common approaches employ a mix of handling the uncertainty of
-object or debris movement, the associated exposed area, including
+modelling. To support the decision-making, common approaches employ a mix of handling the uncertainty of
+object or debris movement and the associated exposed area for encounter, including
 temporal uncertainty windows.
-
+Thus, computationally efficient methods to assess and continously revalidate the collision risk of uncontrolled re-entries and aircraft will help to fine-tune the decision-making and geo-spactial and temporal constraints on aviation.
 ```         
   <!-- is there more to say and provide context? -->
 ```
