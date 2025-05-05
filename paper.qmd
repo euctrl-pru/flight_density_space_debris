@@ -535,7 +535,7 @@ $$
 where 
 
 * $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$,
-* $W(h)$ is the median value of the weighting function over the area of hexagon
+* $W_H(h)$ is the median value of the weighting function over the area of hexagon
 $h$,
 * $\rho_{t,H}(h)$ is the traffic density for the \acr{ICAO} aircraft type $t$ in
 cell $h$ at hour $H$, and
