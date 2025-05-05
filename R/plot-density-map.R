@@ -101,7 +101,6 @@ ggplot() +
     aes(fill = occupancy),
     alpha = 0.8,
     key_glyph = draw_key_hex
-    # key_glyph = draw_key_cust
   ) +
   scale_fill_viridis_c(
     trans = "log",
@@ -117,7 +116,14 @@ ggplot() +
       nrow = 1
     )
   ) +
-  geom_sf(data = EUR_res20, fill = NA, linewidth = 0.65, colour = "white") +
+  # highlight MAX
+  geom_sf(
+    data = ddd |> mutate(MAX = max(occupancy)) |> filter(occupancy == MAX),
+    fill = "black",
+    alpha = 0.8,
+    key_glyph = draw_key_hex
+  ) +
+  geom_sf(data = EUR_res20, fill = NA, linewidth = 0.45, colour = "white") +
   # annotate() +
   theme_minimal() +
   coord_sf(crs = "ESRI:102013", datum = NA) +
@@ -150,8 +156,13 @@ ggplot() +
   ) +
   guides(fill = guide_legend(override.aes = list(size = 3.0)))
 
-ggsave(here(
-  "media",
-  "figures",
-  str_glue("flight_density_{date}_{resolution}.png")
-))
+ggsave(
+  # width = 80,
+  # units = "mm",
+  dpi = 600,
+  here(
+    "media",
+    "figures",
+    str_glue("flight_density_{date}_{resolution}.png")
+  )
+)

@@ -1,4 +1,4 @@
-# pipeline fot the paper
+# pipeline for the paper
 
 library(tidyverse)
 library(aviodebris)
