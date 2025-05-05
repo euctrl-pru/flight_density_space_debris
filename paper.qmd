@@ -417,14 +417,14 @@ Debris that re-enter the Earth’s atmosphere via drag-induced decay will fly
 circular orbits prior to re-entry even if initially on elliptical
 ones.[^circular-orbit]
 A characteristic point for the determination of the re-entry position is the *'ascending node'*.
-This denotes the intersection point of the object crossing the plane of Earth's equator if moving from the southern hemnisphere to the nothern one.
+This denotes the intersection point of the object crossing the plane of Earth's equator if moving from the southern hemnisphere to the northern one.
 The respective angular position, $\theta = \omega + \nu$, of the re-entry point from the
 ascending node, see @sec-orbitals, is uniformly distributed for uncontrolled
 re-entries, $\sigma(\theta) = 1 / (2\pi)$.
-This is due to uncertainties in atmospheric drag (among other things solar
-activity can expand the atmosphere) and the gravitational effects of the
+This is due to uncertainties in atmospheric drag and the gravitational effects of the
 Equatorial bulge.
-Hence we assume that the impact longitude, $\lambda$, is uniformly distributed.
+The height of the atmosphere is not a constant across the globe. Next to the gravitational effects, the atmosphere may also expand due to solar activity.
+Given these uncertainties, we assume that the impact longitude, $\lambda$, is uniformly distributed.
 
 The impact probability density, $\sigma(\varphi, i)$,
 at latitude $\varphi$ of a re-entering object whose orbit has inclination $i$
@@ -503,7 +503,7 @@ approximation of $\sigma(\varphi)$.
 
 
 Spatially projecting $\sigma(\lambda,\varphi)$ on the H3 cells in the
-\acr{NM} area we obtain the weightings per cell (per hour $H$), $W_H(h)$, as in
+\acr{NM} area, we obtain the weightings per cell (per hour $H$), $W_H(h)$, as in
 @fig-weighting-nm-area.
 
 ::: {#fig-weighting-nm-area}
