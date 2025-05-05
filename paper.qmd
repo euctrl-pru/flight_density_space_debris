@@ -1,11 +1,9 @@
 ---
 title: "Preparing for Potential Closure of European Airspaces due to Re-entering Space Objects"
-
 filters:
   - acronyms
   - highlight-text
   - abstract-section
-
 format:
   ieee-pdf:
     keep-tex: true
@@ -16,13 +14,12 @@ format:
       - file: media/preamble.tex
     include-before-body:
       - text: |
-          % NOTE: make siunitx's \qty work without clashing with the one in physics
           \let\qty\SI
+          % NOTE: make siunitx's \qty work without clashing with the one in physics
   ieee-html: 
     html-math-method: mathjax
     include-in-header:
       file: media/siunitx.html
-
 author:
   - id: es
     name: Enrico Spinielli
@@ -48,74 +45,109 @@ affiliations:
     department: Aviation Intelligence Unit
     city: Brussels
     country: Belgium
-
 bibliography: media/references.bib
-
 acronyms:
   insert_loa: false
   fromfile:
     - ./media/acronyms.yml
-
+editor: 
+  markdown: 
+    wrap: 72
 ---
+```{r}
+```
+
+
+```{r}
+```
 
 # Abstract
-<!-- teaser --> The recent decades observed an increasing number of space activities resulting in higher numbers of re-entries at the end of the mission lifespan or orbital decay. 
-The risk of collision between uncontrolled re-entering space debris and aircraft
-is  increasing due to both ever-growing number of airborne flights and 
-of orbiting bodies (and relevant re-entries). 
-<!-- why important --> National and international authorities need to balance safety and economic
-impact of adopted measures should a re-entry event be announced, usually on short
-notice. <!-- no hard line breaks in abstracts -->
-<!-- approach / experiments --> We employ hourly and daily spatial flight densities calculated from
-trajectories as recorded by EUROCONTROL's Network Manager and
-binned with the Uber H3 geospatial indexing system.  
-Impact risk probabilities are then calculated based on previous theoretical
-work. 
-<!-- results / conclusions --> This work enhances the model by employing using actual flown flight trajectories as a basis for time-varying flight densities rather than relying on proxies such as the population density or ADS-B/Mode S message counts.
-These densities combined with a buffered area along the eventual path of
-re-entry, can provide mid-air impact probabilities to authorities as an aid
-for deciding on safety measures such as airspace closures and/or re-routings.
+
+<!-- teaser -->
+
+The recent decades observed an increasing number of space activities
+resulting in higher numbers of re-entries at the end of the mission
+lifespan or orbital decay. The risk of collision between uncontrolled
+re-entering space debris and aircraft is increasing due to both
+ever-growing number of airborne flights and of orbiting bodies (and
+relevant re-entries). <!-- why important --> National and international
+authorities need to balance safety and economic impact of adopted
+measures should a re-entry event be announced, usually on short notice.
+<!-- no hard line breaks in abstracts -->
+<!-- approach / experiments --> We employ hourly and daily spatial
+flight densities calculated from trajectories as recorded by
+EUROCONTROL's Network Manager and binned with the Uber H3 geospatial
+indexing system.\
+Impact risk probabilities are then calculated based on previous
+theoretical work. <!-- results / conclusions --> This work enhances the
+model by using actual flown flight trajectories as a basis for
+time-varying flight densities rather than relying on proxies such as the
+population density or ADS-B/Mode S message counts. These densities
+combined with a buffered area along the eventual path of re-entry, can
+provide mid-air impact probabilities to authorities as an aid for
+deciding on safety measures such as airspace closures and/or
+re-routings.
 
 # Introduction
 
-<!-- teaser opening --><!-- might need a rewrite - first jotting down -->
-The quest for space is a driver for technological development.
-Key milestones include the first human traval to space and surrounding the globe, the first and now many succeeding successful landings on the moon, and regular operations of space stations in the orbit.
-These developments helped to identify options for the wider use of space, benefits, and its commercialisation.
-This is showcased by an increasing number of activities aimed to generate value through the exploration of space ranging from scientific understanding and experimentation, sustainable prooduction of goods in a non-gravity environment, services, and recently leisure.
-The increased number of launches, however, also increased the number of artefacts <!-- falling down and --> re-entering the atmosphere.  
+<!-- teaser opening -->
+
+<!-- might need a rewrite - first jotting down -->
+
+The quest for space is a driver for technological development. Key
+milestones include the first human travel to space and surrounding the
+globe, the first and now many succeeding successful landings on the
+moon, and regular operations of space stations in the orbit. These
+developments helped to identify options for the wider use of space,
+benefits, and its commercialisation. This is showcased by an increasing
+number of activities aimed to generate value through the exploration of
+space ranging from scientific understanding and experimentation,
+sustainable production of goods in a non-gravity environment, services,
+and, more recently, space tourism. The increased number of launches,
+however, also increased the number of artefacts
+<!-- falling down and --> re-entering the atmosphere.
 
 <!-- zooming in on problem -->
-With forecasts predicting a steadily growing number of flights, see @fig-forecast, and the modern
-race to commercialise space, there is a need to re-evaluate the risks of
-collision and casualties due to uncontrolled debris re-entries.
-The increasing risk landscape poses challenges in terms of oversight and risk management.
-There is a growing demand by overseeing authorities for new methodologies and tools to assess which 
-safety measures are the most adequate to minimise potential casualties and economic
-impact.
 
-The increase in space operations does not exist in a vacuum. 
-The continual growth of air traffic - despite temporal bumps - is evidenced by the surging number of flights in Europe [@forecastUpdate2025] and across the world. 
-On-going development/deployment activities of mega-constellations of satellites in Low Earth Orbit \acr{LEO}, 
-such as already active Starlink and OneWeb or planned ones (e.g. Kuiper, Starshield, Xingwang) will add thousand of orbiting objects with a short operational life. 
-Some of these will inevitably re-enter the Earth's atmosphere in an uncontrolled manner, c.f. @tbl-megaconstellations [@megaconstellations].
+With forecasts predicting a steadily growing number of flights, see
+@fig-forecast, and the modern race to commercialise space, there is a
+need to re-evaluate the risks of collision and casualties due to
+uncontrolled debris re-entries. The increasing risk landscape poses
+challenges in terms of oversight and risk management. There is a growing
+demand by overseeing authorities for new methodologies and tools to
+assess which safety measures are the most adequate to minimise potential
+casualties and economic impact.
+
+The increase in space operations does not exist in a vacuum. The
+continual growth of air traffic - despite temporal bumps - is evidenced
+by the surging number of flights in Europe [@forecastUpdate2025] and
+across the world. On-going development/deployment activities of
+mega-constellations of satellites in Low Earth Orbit \acr{LEO}, such as
+already active Starlink and OneWeb or planned ones (e.g. Kuiper,
+Starshield, Xingwang) will add thousand of orbiting objects with a short
+operational life. Some of these will inevitably re-enter the Earth's
+atmosphere in an uncontrolled manner, c.f. [@tbl-megaconstellations;
+@megaconstellations].
 
 <!-- now we have the risk / topic established -- next we need something to speak about a "high-level goal" or "what other work looked into to place this paper as a 'further development' -->
 
-Aviation safety risk management is a well-established domain in air transportation. 
-Despite the increasing need for situational awareness of space objects and their re-entry, the classical risk avoidance paradigm revolves around restricting the airspace.
-While the probability of a strike is low, it can result in catastrophic consequences. 
-The growing number of space operations requires NEW - ADVANCED TOOLS. PREVIOUS WORK DID A,B, and MAYBE C - WE DO SOMETHING ON TOP.
+Aviation safety risk management is a well-established domain in air
+transportation. Despite the increasing need for situational awareness of
+space objects and their re-entry, the classical risk avoidance paradigm
+revolves around restricting the airspace. While the probability of a
+strike is low, it can result in catastrophic consequences. The growing
+number of space operations requires NEW - ADVANCED TOOLS. PREVIOUS WORK
+DID A,B, and MAYBE C - WE DO SOMETHING ON TOP.
 
 <!-- contribution of the paper -->
-This paper develops a practical and straightforward data-driven pipeline to rapidly
-assess the risk from uncontrolled re-entry of space debris for the European
-region.
-Apart from the general risk assessment of potential re-entries, 
-a soon to occur re-entry of debris from a 1972 failed USSR mission to Venus is analysed.
+
+This paper develops a practical and straightforward data-driven pipeline
+to rapidly assess the risk from uncontrolled re-entry of space debris
+for the European region. Apart from the general risk assessment of
+potential re-entries, a soon to occur re-entry of debris from a 1972
+failed USSR mission to Venus is analysed.
 
 ::: {#fig-forecast}
-
 ```{r forecast}
 #| out-width: "100%"
 #| echo: false
@@ -125,10 +157,10 @@ knitr::include_graphics("media/figures/forecast_statfor.png")
 
 EUROCONTROL 7-year forecast 2025-2031 (Spring 2025).
 :::
- 
+
 ```{r}
 #| label: tbl-megaconstellations
-#| tbl-cap: Megaconstellations (planned > 1000) as per filing to the \acr{ITU}
+#| tbl-cap: Mega-constellations (planned > 1000) as per filing to the \acr{ITU}
 #| tbl-cap-location: bottom
 
 library(tibble)
@@ -178,42 +210,56 @@ megas |>
 
 ```
 
-
 # Method
 
 <!-- ESTABLISH SOME CONTEXT ---------------------------------------------- -->
-The modelling and tracking of uncontrolled re-entries poses challenges.
-Actual and historic data is sparse, and the size, shape, and attitude or rotation of re-entering objects increase the level of uncertainty for modelling.
-Common approaches employ a mix of handling the uncertainty of object or debris movement, the associated exposed area, including temporal uncertainty windows.
 
-      <!-- is there more to say and provide context? -->
+The modelling and tracking of uncontrolled re-entries poses challenges.
+Actual and historic data is sparse, and the size, shape, and attitude or
+rotation of re-entering objects increase the level of uncertainty for
+modelling. Common approaches employ a mix of handling the uncertainty of
+object or debris movement, the associated exposed area, including
+temporal uncertainty windows.
+
+```         
+  <!-- is there more to say and provide context? -->
+```
 
 <!-- APPROACH / METHOD --------------------------------------------------- -->
+
 <!-- it would be cool, if we can add a diagram here that shows the path from data, major processing building blocks to the results -->
+
 <!-- as a minimum, we should say something about the WHAT -->
-In general, the method for estimating the risk to commercial aircraft from reentering debris objects revolves around estimating the exposure of a single flight and the population of flights to the re-entering object.
-In that respect, a robust determination of flight density is a key aspect. 
 
+In general, the method for estimating the risk to commercial aircraft
+from reentering debris objects revolves around estimating the exposure
+of a single flight and the population of flights to the re-entering
+object. In that respect, a robust determination of flight density is a
+key aspect.
 
-We follow the same mathematical approach of [@patera2008; @wrightAirspaceClosuresDue2025].
-However, this paper augments the approximation of risk exposure. 
-Instead of approximating flight density with population density [@patera2008] or
-aircraft transponder data [@wrightAirspaceClosuresDue2025], we use actual flown
-flight trajectories.
+We follow the same mathematical approach of [@patera2008;
+@wrightAirspaceClosuresDue2025]. However, this paper augments the
+approximation of risk exposure. Instead of approximating flight density
+with population density [@patera2008] or aircraft transponder data
+[@wrightAirspaceClosuresDue2025], we use actual flown flight
+trajectories.
 
-This work focusses on the European region.
-The hourly flight density estimation is based on on flown \acr{IFR} trajectories as
-recorded by EUROCONTROL's \acr{NM}[^1].
-To decrease spatial complexity, the data is binned using Uber's H3 geospatial indexing system [@uber-h3]. 
-The reduction of the spatial complexity enables fast processing.
-For this work, we employ a H3-cell-resolution of 3. 
-This corresponds to hexagons of an average area $\qty{12393}{km^2}$ and an average edge length of
-$\qty{68.979}{km}$ [@h3resolutions] as depicted in @fig-cells.  
+This work focusses on the European region. The hourly flight density
+estimation is based on on flown \acr{IFR} trajectories as recorded by
+EUROCONTROL's \acr{NM}[^1]. To decrease spatial complexity, the data is
+binned using Uber's H3 geospatial indexing system [@uber-h3]. The
+reduction of the spatial complexity enables fast processing. For this
+work, we employ a H3-cell-resolution of 3. This corresponds to hexagons
+of an average area $\qty{12393}{km^2}$ and an average edge length of
+$\qty{68.979}{km}$ [@h3resolutions] as depicted in @fig-cells.
+
+[^1]: NM coordinates \acr{ATFCM} operations on behalf of EUROCONTROL's
+    42 Member States and 2 Comprehensive Member States covering almost
+    all \acr{ECAC} States.
 
 <!-- CAN WE MOTIVATE WHY resolution 3??? -- e.g. is this an area used in other works, or does it do something? -->
 
 ::: {#fig-cells}
-
 ```{r cells-map}
 #| out-width: "120%"
 #| echo: false
@@ -221,385 +267,402 @@ $\qty{68.979}{km}$ [@h3resolutions] as depicted in @fig-cells.
 knitr::include_graphics("media/figures/cells_3.png")
 ```
 
-H3 cells (red) at resolution 3 and their centers (blue) covering the bounding
-box of 43 EUROCONTROL Member States \acr{FIR}s (blue shaded polygon).
-
+H3 cells (red) at resolution 3 and their centres (blue) covering the
+bounding box of 43 EUROCONTROL Member States \acr{FIR}s (blue shaded
+polygon).
 :::
 
-To build an upper threshold for flight exposure, this study uses the busiest week during the \acr{IATA} summer ISO week in 2023 and 2024.   <!-- does ISO do here anything? --> 
-The flight densities are characterised on an hourly basis for all days in these weeks.  
+To build an upper threshold for flight exposure, this study uses the
+busiest week during the \acr{IATA} summer ISO week in 2023 and 2024.
+<!-- does ISO do here anything? --> The flight densities are
+characterised on an hourly basis for all days in these weeks.
 
 <!-- next sentence feels like an orphan ... do we need this here? ------>
-This paper expands the works of [@wrightAirspaceClosuresDue2025; @patera2008] and provides a reproducible example for States, Agencies or relevant authorities to build upon.
 
-[^1]: NM coordinates \acr{ATFCM} operations on behalf of EUROCONTROL's 42 Member States and 2 Comprehensive Member States covering almost all \acr{ECAC} States.
-
+This paper expands the works of [@wrightAirspaceClosuresDue2025;
+@patera2008] and provides a reproducible example for States, Agencies or
+relevant authorities to build upon.
 
 <!-- next sentence feels like an orphan ... do we need this here? ------>
-Next sections will develop the mathematical background for the evaluation of collision and casualties risk of which traffic density is a key component.
 
-@fig-density-summer2024-res-3 shows hourly flight density for the 5th of July 2024.
-The chart shows the expected outcomes in terms of major traffic flows, and areas of high or low traffic.
-For example, cells with a density of zero are clearly visible for areas of war or no-fly zones
-(Ukraine, Libia or Syria). The major traffic flows (North Atlantic, Canaries
-and East-bound over Türkiye) are clearly highlighted showing densities of more than 10.
+Next sections will develop the mathematical background for the
+evaluation of collision and casualties risk of which traffic density is
+a key component.
+
+@fig-density-summer2024-res-3 shows hourly flight density for the 5th of
+July 2024. The chart shows the expected outcomes in terms of major
+traffic flows, and areas of high or low traffic. For example, cells with
+a density of zero are clearly visible for areas of war or no-fly zones
+(Ukraine, Libya or Syria). The major traffic flows (North Atlantic,
+Canaries and East-bound over Türkiye) are clearly highlighted showing
+densities of more than 10.
 
 ::: {#fig-density-summer2024-res-3}
-
 ```{r density-winter-res-3}
 #| out-width: "110%"
 #| echo: false
 knitr::include_graphics("media/figures/flight_density_2024-07-05_3.png")
 ```
 
-Flight density in the EUROCONTROL Area on the 5th of July 2024, the busiest day of the busiest week in 2024 (H3 cells at resolution $3$).
+Flight density in the EUROCONTROL Area on the 5th of July 2024, the
+busiest day of the busiest week in 2024 (H3 cells at resolution $3$).
 :::
-
 
 ## Impact probability for a single flight and single debris
 
-Safety and collision risk awareness is directly linked to the probability of a re-entering space object colliding with a transversing flight.
-This probability, $p_k$, of a debris (point) object $k$, impacting an
-aircraft (point) object over the area, $a$, is expressed as:
+Safety and collision risk awareness is directly linked to the
+probability of a re-entering space object colliding with a transversing
+flight. This probability, $p_k$, of a debris (point) object $k$,
+impacting an aircraft (point) object over the area, $a$, is expressed
+as:
 
 $$
 p_k = \varepsilon_k \int_a \rho(\vec{x}) \sigma_k(\vec{x}) da
 $$
 
-where 
-* $\rho({\vec{x}})$ is the probability density of an aircraft in $\vec{x}$,
-* $\sigma(\vec{x})$ is the impact probability density of a debris object $k$
-in the position $\vec{x}$, and 
-* $\varepsilon_k$ is the effective exposed area, i.e., the effective risk area for the $k^{th}$ debris object impacting
-the aircraft (see @sec-eea later on).
+where \* $\rho({\vec{x}})$ is the probability density of an aircraft in
+$\vec{x}$, \* $\sigma(\vec{x})$ is the impact probability density of a
+debris object $k$ in the position $\vec{x}$, and \* $\varepsilon_k$ is
+the effective exposed area, i.e., the effective risk area for the
+$k^{th}$ debris object impacting the aircraft (see @sec-eea later on).
 
-Our approach builds on the discretisation of the geo-spatial risk area.
-For this purpose we use a hexagon-based tesselation pattern.
-Uber's H3 method ensures non-overlapping hexagons, with an equidistant relationship between all neighbours, and enables an efficient indexing of the tessel-cells. 
-Using H3 to discretise the area of interest $a$ gives
+Our approach builds on the discretisation of the geospatial risk area.
+For this purpose we use a hexagon-based tessellation pattern. Uber's H3
+method ensures non-overlapping hexagons, with an equidistant
+relationship between all neighbours, and enables an efficient indexing
+of the tessel-cells. Using H3 to discretise the area of interest $a$
+gives
 
 $$
 p_k = \varepsilon_k \sum_h \rho(h) \sigma_k(h).
-$$ 
+$$
 
-The impact probability $p_{k}(h)$ for each cell $h$ is determined by the following
+The impact probability $p_{k}(h)$ for each cell $h$ is determined by the
+following
 
 $$
 p_{k}(h) = \varepsilon_k \rho(h) \sigma_k(h).
 $$
 
+## Aircraft effective exposed area {#sec-eea}
 
+For the actual collision encounter between a re-entering object and an
+aircraft, we assume the aircraft impact area to be much larger than the
+debris object area. Thus, the area spanned by the debris object is
+smaller than the aircraft dimensions. This assumption holds for
+practically all commercial aircraft within the scope of this study, and
+we can neglect the debris impact area. Accordingly, we can also simplify
+the geometry of the aircraft and model it as a rectangular solid with
+dimensions of wingspan ($W$), length ($L$) and height ($H$).
 
-## Aircraft effective exposed area{#sec-eea}
+Regarding the aircraft-debris encounter geometry, this yields to two
+conceptual considerations.
+<!-- TERMINOLOGY? rectangular solid -- impact --> top plane, front
+plane? Does the literature use "view" --\> 1.) if the aircraft were
+stationary, the area exposed to the debris impact would be the top view,
+and 2.) if the debris were stationary, it would be the front view.
 
-For the actual collision encounter between a re-entering object and an aircraft, we assume the aircraft impact area to be much larger than the debris object area.
-Thus, the area spanned by the debris object is smaller than the aircraft dimensions. 
-This assumption holds for practically all commercial aircraft within the scope of this study, and we can neglect the debris impact area.
-Accordingly, we can also simplify the geometry of the aircraft and model it as a rectangular solid with dimesions of wingspan ($W$), length ($L$) and height ($H$). 
+Our focus is on commercial aircraft in flight, and - implicitly -
+operating at higher altitudes. The en-route portion of a flight is
+characterised by the aircraft in straight and level flight, moving
+(mainly) horizontally. At the same time, the movement of the re-entered
+debris object at regular en-route flight levels will be vertically [^2].
+This encounter geometry allows to express the effective exposed area,
+$\varepsilon_k$, as
 
-Regarding the aircraft-debris encounter geometry, this yields to two conceptual considerations. 
-<!-- TERMINOLOGY? rectangular solid -- impact --> top plane, front plane? Does the literture use "view"  -->
-1.) if the aircraft were stationary, the area exposed to the debris impact would be the top view, and
-2.) if the debris were stationary, it would be the front view.
-
-Our focus is on commercial aircraft in flight, and - implicitly - operating at higher altitudes.
-The en-route portion of a flight is characterised by the aircraft in straight and level flight, moving (mainly) horizontally.
-At the same time, the movement of the re-entered debris object at regular en-route flight levels will be vertically [^balistic_descent].
-This encounter geometry allows to express the effective exposed area, $\varepsilon_k$, as
+[^2]: *Even for a ballistic coefficient of* \qty{50}{lbs/ft^2}, the
+    flight path angle of a reentering object at \qty{40000}{ft} is
+    \ang{-86.6}, which corresponds to nearly vertical descent. Since
+    most debris objects have ballistic coefficients equal to or less
+    than \qty{50}{lbs/ft^2}, the vertical descent assumption is a very
+    accurate approximation. [@patera2008]
 
 $$
 \varepsilon_k = \frac{s_{a} a_{h} + s_{d_k} a_{v}}{s_{d_k}}
 $$
 
-where 
-* $s_{a}$ is the average aircraft speed, 
-* $s_{d_k}$ is the average fall speed of the $k$-th debris object, 
-* $a_T$ area of the aircraft as viewed from the top, and 
-* $a_F$ area of the aircraft as viewed from the from the front of the aircraft.
+where \* $s_{a}$ is the average aircraft speed, \* $s_{d_k}$ is the
+average fall speed of the $k$-th debris object, \* $a_T$ area of the
+aircraft as viewed from the top, and \* $a_F$ area of the aircraft as
+viewed from the from the front of the aircraft.
 
-This can be further instantiated for specific aircraft types.
-In the calculations the following is assumed to be true ($t$ subscript for aircraft type)
+This can be further instantiated for specific aircraft types. In the
+calculations the following is assumed to be true ($t$ subscript for
+aircraft type)
 
-* constant debris fall speed $s_{d_k} = \qty{145}{mph} = S$ 
-  [[pag 8 @patera2008]]
-* constant aircraft speed, $s_{a} = C_t$, equal to its cruise speed, 
-* aircraft area as viewed from the top, $a_T = W_t \times L_t = A_t$, 
-  where $W_t$ is the wingspan, and $L_t$ the length for the specific aircraft
-  type $t$
-* aircraft area as viewed from the front, $a_F = W_t \times H_t = F_t$, 
-  where $W_t$ is the wingspan, and $H_t$ the height for the specific aircraft
-  type $t$
+-   constant debris fall speed $s_{d_k} = \qty{145}{mph} = S$ [[page 8
+    @patera2008]\]
+-   constant aircraft speed, $s_{a} = C_t$, equal to its cruise speed,
+-   aircraft area as viewed from the top, $a_T = W_t \times L_t = A_t$,
+    where $W_t$ is the wingspan, and $L_t$ the length for the specific
+    aircraft type $t$
+-   aircraft area as viewed from the front,
+    $a_F = W_t \times H_t = F_t$, where $W_t$ is the wingspan, and $H_t$
+    the height for the specific aircraft type $t$
 
-The effective exposed area now only depends on the aircraft type $t$ (i.e., its dimensions
-and cruise speed) and can be rewritten as:
+The effective exposed area now only depends on the aircraft type $t$
+(i.e., its dimensions and cruise speed) and can be rewritten as:
 
 $$
 \varepsilon_t = \frac{C_{t} F_{t} + S A_{t}}{S}
 $$
 
-These aircraft properties are well-known. 
-While there does not exist a single openly available date base for these aircraft parameters, we collected the information from a series of sources and integrated them into a lookup dataset.
-The values $W_t$, $H_t$ and $L_t$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used \qty{1000}{m^2} for 
-$\varepsilon_t$ in case of missing aircraft type.
+These aircraft properties are well-known. While there does not exist a
+single openly available date base for these aircraft parameters, we
+collected the information from a series of sources and integrated them
+into a lookup dataset. The values $W_t$, $H_t$ and $L_t$ have been
+retrieved from [@performance_database; @skybrary; @doc8643]; we used
+\qty{1000}{m^2} for $\varepsilon_t$ in case of missing aircraft type.
 
-The impact probability for cell $h$ under consideration of a specific aircraft of type $t$ becomes:
+The impact probability for cell $h$ under consideration of a specific
+aircraft of type $t$ becomes:
 
 $$
 p_{t,k}(h) = \varepsilon_t \rho_t(h) \sigma_k(h)
 $$
 
-
-[^balistic_descent]: *Even for a ballistic coefficient of \qty{50}{lbs/ft^2},
-the flight path angle of a reentering object at \qty{40000}{ft} is 
-\ang{-86.6}, which corresponds to nearly vertical descent.
-Since most debris objects have ballistic coefficients equal to or 
-less than \qty{50}{lbs/ft^2}, the vertical descent assumption is a very
-accurate approximation.* [@patera2008]
-
-
 ## Impact probability density for debris of inclination $i$
 
-Debris that reenter the Earth’s atmosphere via drag-induced decay will fly
-circular orbits prior to re-entry even if initially on elliptical
-ones.[^circular-orbit]
+Debris that reenter the Earth's atmosphere via drag-induced decay will
+fly circular orbits prior to re-entry even if initially on elliptical
+ones.[^3]
 
-The angular position, $\theta$, of the re-entry point from the ascending node, 
-see @sec-orbitals, is uniformly distributed for uncontrolled rentries,
-$\sigma(\theta) = 1 / (2\pi)$. This is due to uncertainties in atmospheric drag
-and the gravitational effects of the Equatorial bulge.
-Hence we assume that the impact longitude, $\lambda$, is uniformely distributed.
+[^3]: In fact drag at perigee will lower apogee and similarly drag at
+    apogee will lower perigee. But because drag at perigee is higher due
+    to denser atmosphere, the apogee will decrease faster than perigee
+    and the orbit will then tend to be a circular one.
 
-The impact probability density, $\sigma(\varphi, i)$,
-at latitude $\varphi$ of a reentring object whose orbit has inclination $i$
-(see @fig-orbital-elements) is given by [[Equation 15 in @patera2008]]:
+The angular position, $\theta$, of the re-entry point from the ascending
+node, see @sec-orbitals, is uniformly distributed for uncontrolled
+reentries, $\sigma(\theta) = 1 / (2\pi)$. This is due to uncertainties in
+atmospheric drag and the gravitational effects of the Equatorial bulge.
+Hence we assume that the impact longitude, $\lambda$, is uniformly
+distributed.
+
+The impact probability density, $\sigma(\varphi, i)$, at latitude
+$\varphi$ of a reentering object whose orbit has inclination $i$ (see
+@fig-orbital-elements) is given by [[Equation 15 in @patera2008]\]:
 
 $$ \sigma(\varphi, i) = \frac{1}{2 \pi^2 R^2 \sqrt{(\sin^2(i) - \sin^2(\varphi))}}$$ {#eq-impact-probability-density}
 
-where $R$ is the distance from the center of the Earth of the object potentially
-being impacted by the debris.
+where $R$ is the distance from the centre of the Earth of the object
+potentially being impacted by the debris.
 
-So for example if a building is located at latitude 30 degrees and has an area 
-of $\qty{1000}{m^2}$ and a piece of debris reenters the Earth’s atmosphere
-from an orbit having an inclination of 45 degrees, the impact probability is 
-given by
+So for example if a building is located at latitude 30 degrees and has
+an area of $\qty{1000}{m^2}$ and a piece of debris reenters the Earth's
+atmosphere from an orbit having an inclination of 45 degrees, the impact
+probability is given by
 
 $$\begin{aligned}
 P &= \Delta A \times \sigma(\varphi, i) = 1000 \times \sigma\Bigl(\frac{\pi}{6}, \frac{\pi}{4}\Bigl) \\
   &= 1000 \times \num{2.490756e-15} = \num{2.490756e-12}
 \end{aligned}$$
 
-where we used the equatorial value of $\qty{6378}{km}$, for the Earth's radius,
-$R$, as the distance of the building from the center of the planet.
+where we used the equatorial value of $\qty{6378}{km}$, for the Earth's
+radius, $R$, as the distance of the building from the centre of the
+planet.
 
-The impact probability density $\sigma(\varphi, i)$ for an inclination $i$ of
-$\ang{51.7}$ is plotted in @fig-weighting-inclination-i and takes a characteristic
-U shape.
+The impact probability density $\sigma(\varphi, i)$ for an inclination
+$i$ of $\ang{51.7}$ is plotted in @fig-weighting-inclination-i and takes
+a characteristic U shape.
 
 ::: {#fig-weighting-inclination-i}
-
 ```{r weighting-inclination-i}
 #| out-width: "100%"
 #| echo: false
 knitr::include_graphics("media/figures/weighting_inclination_i.png")
 ```
 
-Impact probability density $\sigma(\varphi, i = 51.7)$ for debris of inclination $i$ and altitude $\qty{550}{km}$. 
+Impact probability density $\sigma(\varphi, i = 51.7)$ for debris of
+inclination $i$ and altitude $\qty{550}{km}$.
 :::
-
-
-
-
-[^circular-orbit]: In fact drag at perigee will lower apogee and similarly drag
-at apogee will lower perigee. But because drag at perigee is higher due to
-denser atmosphere, the apogee  will decrease faster than perigee and the orbit
-will then tend to be a circular one.
-
-
-
-
 
 ## Impact probability density for debris
 
-If we consider historical uncontrolled debris reentry data, we can numerically
-derive the debris impact probability as a weighting function by summing up and
-averaging all single densities:
+If we consider historical uncontrolled debris reentry data, we can
+numerically derive the debris impact probability as a weighting function
+by summing up and averaging all single densities:
 
 $$ \sigma(\varphi) = \sum_k \sigma(\varphi, i_k)$$
 
-From [@gcat] we extracted 1968 debris re-entries during 25 calendar years from 
-1st Jan 2000 till 31st Dec 2024.
-The result of combining all the U-shaped densities can be seen in @fig-weighting.
+From [@gcat] we extracted 1968 debris re-entries during 25 calendar
+years from 1st Jan 2000 till 31st Dec 2024. The result of combining all
+the U-shaped densities can be seen in @fig-weighting.
 
 ::: {#fig-weighting}
-
 ```{r weighting}
 #| out-width: "100%"
 #| echo: false
 knitr::include_graphics("media/figures/weighting.png")
 ```
 
-Weighting function derived from 25 years of re-entries as an
-empirical approximation of $\sigma(\varphi)$. 
+Weighting function derived from 25 years of re-entries as an empirical
+approximation of $\sigma(\varphi)$.
 :::
-
-
 
 Spatially combining $\sigma(\lambda,\varphi)$ for the H3 cells in the
 \acr{NM} area we obtain the weightings per cell (per hour) as in
 @fig-weighting-nm-area.
 
 ::: {#fig-weighting-nm-area}
-
 ```{r weighting-nm-area}
 #| out-width: "100%"
 #| echo: false
 knitr::include_graphics("media/figures/weighting_on_Earth.png")
 ```
 
-Weightings for H3 cells in \acr{NM} area. 
+Weightings for H3 cells in \acr{NM} area.
 :::
-
-
-
-
 
 ## Hourly impact probability per H3 cell
 
-When combining the hourly ($H$) aircraft density (per aircraft type) with the
-relevant weightings per H3 cell, $h$, we can numerically compute the hourly
-impact probability for each hexagonal cell as:
+When combining the hourly ($H$) aircraft density (per aircraft type)
+with the relevant weightings per H3 cell, $h$, we can numerically
+compute the hourly impact probability for each hexagonal cell as:
 
 $$
  E_{h, H} =  \sum_t W(h) \cdot \rho_{t,H}(h) \cdot \varepsilon_t
 $$
 
-where 
-* $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$,
-* $W(h)$ is the median value of the weighting function over the area of hexagon
-$h$,
-* $\rho_{t,H}(h)$ is the traffic density for the \acr{ICAO} aircraft type $t$ in
-cell $h$ at hour $H$, and
-* $\varepsilon_t$ is effective exposed area for aircraft of type $t$.
+where \* $E_{h,H}$ is the collision expectation in the hexagon $h$ at
+hour $H$, \* $W(h)$ is the median value of the weighting function over
+the area of hexagon $h$, \* $\rho_{t,H}(h)$ is the traffic density for
+the \acr{ICAO} aircraft type $t$ in cell $h$ at hour $H$, and \*
+$\varepsilon_t$ is effective exposed area for aircraft of type $t$.
 
-@fig-collision depicts the determined hourly collision expectation.
-As identified in @fig-density-summer2024-res-3 areas of higher traffic density observe a higher collision expectation.
+@fig-collision depicts the determined hourly collision expectation. As
+identified in @fig-density-summer2024-res-3 areas of higher traffic
+density observe a higher collision expectation.
 <!-- WHAT ELSE CAN WE SAY ABOUT THIS PLOT? -->
 
 ::: {#fig-collision}
-
 ```{r collision}
 #| out-width: "100%"
 #| echo: false
 knitr::include_graphics(here::here("media", "figures", "collision_expectation_2024-07-05_3.png"))
 ```
 
-Averaged hourly collision expectation on 2024-07-05. 
+Averaged hourly collision expectation on 2024-07-05.
 :::
 
-
-
 # Application Use Case: KOSMOS 482 Descent Craft re-entry
+
 <!-- I would make this a separate section in the paper -->
 
 In few days (at the time of writing of this paper) at 6h May 10, 2025
 ($\pm 2.8$ days), the KOSMOS 482 Descent Craft should reenter the
-Earth's atmosphere [@kosmos482re-entry].
-This is supposedly the lander module from a 1972 failed Soviet Venera mission [@SpaceReviewKosmos]
-The module is reported to weigh about $\qty{480}{kg}$ and has a diameter of approximately $\qty{1}{m}$.
-Being supposed to survive Venus's atmosphere which is much denser and hotter than Earth's atmosphere (surface pressure 93 times that of Earth and temperatures reaching \ang{467}C (\ang{872}F)),
-it could re-enter Earth intact and not break into smaller fragments some of which could burn up.
+Earth's atmosphere [@kosmos482re-entry]. This is supposedly the lander
+module from a 1972 failed Soviet Venera mission [@SpaceReviewKosmos] The
+module is reported to weigh about $\qty{480}{kg}$ and has a diameter of
+approximately $\qty{1}{m}$. Being supposed to survive Venus's atmosphere
+which is much denser and hotter than Earth's atmosphere (surface
+pressure 93 times that of Earth and temperatures reaching \ang{467}C
+(\ang{872}F)), it could re-enter Earth intact and not break into smaller
+fragments some of which could burn up.
 
-Knowing that the debris inclination is $\ang{51.7}$, see @fig-weighting-inclination-i, we can derive the maximum collision expectation using data for the busiest day in the busiest 2024 week as a proxy for the traffic density on the day of reentry.
+Knowing that the debris inclination is $\ang{51.7}$, see
+@fig-weighting-inclination-i, we can derive the maximum collision
+expectation using data for the busiest day in the busiest 2024 week as a
+proxy for the traffic density on the day of reentry.
 
-
-
-
-Once the reentry track is known, the H3 cells around \qty{35}{km} on each side 
-can be identified to retrieve the values of collision expectancy.
-It can then be decided whether it is advisable to close the airspace and
-traffic around the area affected.
-
+Once the reentry track is known, the H3 cells around \qty{35}{km} on
+each side can be identified to retrieve the values of collision
+expectancy. It can then be decided whether it is advisable to close the
+airspace and traffic around the area affected.
 
 ::: {#fig-kosmos}
-
 ```{r kosmos}
 #| out-width: "100%"
 #| echo: false
 knitr::include_graphics("media/example-image.png")
 ```
 
-Casuality for KOSMOS 482 Descent Craft re-entry. 
+Casuality for KOSMOS 482 Descent Craft re-entry.
 :::
-
-
-
-
-
 
 # Data and Code for Reproducibility
 
-We have calculated collision and casuality risk probabilities for the two
-busiest weeks in 2023 and 2024. The relevant dataset represents a data cube
-as logically depicted in @fig-data-densities is available in the companion
-GitHub repository of the paper at <https://github.com/espinielli/flight_density_space_debris>.
-We have also developed a companion R package `aviodebris` to heavylift the
-various data processing steps to produce the results in the paper;
-it is available at <https://github.com/espinielli/aviodebris>.
+We have calculated collision and casuality risk probabilities for the
+two busiest weeks in 2023 and 2024. The relevant dataset represents a
+data cube as logically depicted in @fig-data-densities is available in
+the companion GitHub repository of the paper at
+<https://github.com/espinielli/flight_density_space_debris>. We have
+also developed a companion R package `aviodebris` to heavy lift the
+various data processing steps to produce the results in the paper; it is
+available at <https://github.com/espinielli/aviodebris>.
 
 ::: {#fig-data-densities}
-
 ```{r densities}
 #| out-width: "100%"
 #| echo: false
 knitr::include_graphics("media/figures/cubes.png")
 ```
 
-Data cube of hourly flight densities data over H3 hexes (in Germany as an example) for multiple dates, $d_1 \cdots d_n$. 
+Data cube of hourly flight densities data over H3 hexes (in Germany as
+an example) for multiple dates, $d_1 \cdots d_n$.
 :::
-
 
 # Conclusion and Future work
 
-<!-- opening statement linking back to abstract/intro and movtivation for this work --------->
-Space objects and debris re-entry is an increasing risk to aviation and the general public.
-The higher pace of commercial space operations will see an increase of launches and subsequent re-entries.
-Dependent on the mission, objects re-entering the atmosphere can take on differnt forms, shapes, and sizes.
-On top, a higher number of these entries may be uncontrolled.
-With the continual growth of air traffic, there is a need to enhance aviation safety risk awareness and respond in a more tailored fashion to accomodate the associated uncertainties, reduce the impact on aviation, and limit the risk to the travelling public.
+<!-- opening statement linking back to abstract/intro and motivation for this work --------->
+
+Space objects and debris re-entry is an increasing risk to aviation and
+the general public. The higher pace of commercial space operations will
+see an increase of launches and subsequent re-entries. Dependent on the
+mission, objects re-entering the atmosphere can take on different forms,
+shapes, and sizes. On top, a higher number of these entries may be
+uncontrolled. With the continual growth of air traffic, there is a need
+to enhance aviation safety risk awareness and respond in a more tailored
+fashion to accommodate the associated uncertainties, reduce the impact
+on aviation, and limit the risk to the travelling public.
 
 <!-- what was shown in the paper ------------------------------------------------------------>
-This paper expands on previous work.
-With a focus on Europe, we establish an upper bound for the traffic density based on actual flights.
+
+This paper expands on previous work. With a focus on Europe, we
+establish an upper bound for the traffic density based on actual
+flights.
 
 ... SOME MORE STUFF DONE IN THE PAPER ...
 
-The findings are applied to a use-case: the imminent re-entry of the lander module of an earlier Venus mission.
-The maximum collision expectation for the busiest day in 2024 is determined.
+The findings are applied to a use-case: the imminent re-entry of the
+lander module of an earlier Venus mission. The maximum collision
+expectation for the busiest day in 2024 is determined.
 
 <!-- benefits / strengths / weaknesses of the approach --------------------------------------->
 
-The approach presented in this paper builds on previous research.
-Our approach utilises H3-tesselation to reduce the spatial complexity.
-This cell indexing approach reduces the computation significantly.
+The approach presented in this paper builds on previous research. Our
+approach utilises H3-tessellation to reduce the spatial complexity. This
+cell indexing approach reduces the computation significantly.
 
-        WHAT ARE THINGS THAT ARE "WEAKNESSES" = STUFF THAT CAN BE IMPROVED? IT WOULD BE GOOD TO HAVE A LINE OR TWO ON THIS.
+```         
+    WHAT ARE THINGS THAT ARE "WEAKNESSES" = STUFF THAT CAN BE IMPROVED? IT WOULD BE GOOD TO HAVE A LINE OR TWO ON THIS.
+```
 
 <!-- future work ---------------------------------------------------------------------------->
 
-Future work will address the shortcomings. <!-- or can we say something about the next concrete steps to remedy some weaknesses -->
+Future work will address the shortcomings.
+<!-- or can we say something about the next concrete steps to remedy some weaknesses -->
 
 <!-- application of the results -------------------------------------------------------------->
-We show how National and/or International authorities could prepare for the more and more likely and frequent occurrence of uncontrolled re-entry of space objects that could pose a safety concern on civilian aviation.
-The techniques we implemented on realistic data and sound algorithms can contribute to the bag of tools in the hands of technical and political entities aiming at guaranteeing the utmost safety and minimal economic disruption to civil aviation in Europe.
 
-As part of this research and to inform the decision-makers it is planned to explore the impact of megacostellations and flight growth forecast and what would happen in the mid- to long-term in varios scenarios of uncontrolled re-entries and the risk for European airspace.
+We show how National and/or International authorities could prepare for
+the more and more likely and frequent occurrence of uncontrolled
+re-entry of space objects that could pose a safety concern on civilian
+aviation. The techniques we implemented on realistic data and sound
+algorithms can contribute to the bag of tools in the hands of technical
+and political entities aiming at guaranteeing the utmost safety and
+minimal economic disruption to civil aviation in Europe.
+
+As part of this research and to inform the decision-makers it is planned
+to explore the impact of mega-constellations and flight growth forecast
+and what would happen in the mid- to long-term in various scenarios of
+uncontrolled re-entries and the risk for European airspace.
 
 # Appendix: Orbital Elements {#sec-orbitals}
 
-:::{#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="h"}
-
+::: {#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="h"}
 ```{r ellipse-parameters}
-#| fig-cap: "Keplerian elements: semi-major axis, $a$, the distance between the foci, $2c$, the eccentricity, $e = (2c)/(2a)$. (the semiparameter (a.k.a. _semilatus rectum_), $p$, describes the size of the conic section by defining the width at the primary focus, and is defined as $p = b^2 / a = a (1 - e^2)$)"
+#| fig-cap: "Keplerian elements: semi-major axis, $a$, the distance between the foci, $2c$, the eccentricity, $e = (2c)/(2a)$. (the semi-parameter (a.k.a. _semilatus rectum_), $p$, describes the size of the conic section by defining the width at the primary focus, and is defined as $p = b^2 / a = a (1 - e^2)$)"
 
 #| echo: false
 knitr::include_graphics("media/figures/classical_orbital_elements_2.png")
@@ -612,21 +675,29 @@ knitr::include_graphics("media/figures/classical_orbital_elements_2.png")
 knitr::include_graphics("media/figures/classical_orbital_elements_4.png")
 ```
 
-
-
-Definition of Keplerian elements. The orbital elements describing the trajectory of orbiting object are illustrated in association with an inertial reference frame $\hat{I}$-$\hat{J}$-$\hat{K}$. The $I$-axis, $\hat{I}$, points toward the vernal equinox and the $J$-axis, $\hat{J}$, is perpendicular to the $I$-axis in the equatorial plane n the sense of Earth's rotation with the $K$-axis pointing up. The semi-major axis, $a$, the eccentricity, $e$, the inclination, $i$, the right ascension of the ascending node, $\Omega$ , and the argument of perigee, $\omega$, constitute, together with the mean anomaly at the initial position, $M_0$, a set of six constants of motion that are preserved in the absence of perturbation. True anomaly, $\nu$, specifies the location of an orbiting object within the orbit. It is the angle between perigee and the orbiting object’s position vector measured in the direction of the orbiting object’s motion.
-Figures from [@sellers2003understanding], respectively Figure 5-2 and Figure 5-9.
-
+Definition of Keplerian elements. The orbital elements describing the
+trajectory of orbiting object are illustrated in association with an
+inertial reference frame $\hat{I}$-$\hat{J}$-$\hat{K}$. The $I$-axis,
+$\hat{I}$, points toward the vernal equinox and the $J$-axis, $\hat{J}$,
+is perpendicular to the $I$-axis in the equatorial plane n the sense of
+Earth's rotation with the $K$-axis pointing up. The semi-major axis,
+$a$, the eccentricity, $e$, the inclination, $i$, the right ascension of
+the ascending node, $\Omega$ , and the argument of perigee, $\omega$,
+constitute, together with the mean anomaly at the initial position,
+$M_0$, a set of six constants of motion that are preserved in the
+absence of perturbation. True anomaly, $\nu$, specifies the location of
+an orbiting object within the orbit. It is the angle between perigee and
+the orbiting object's position vector measured in the direction of the
+orbiting object's motion. Figures from [@sellers2003understanding],
+respectively Figure 5-2 and Figure 5-9.
 :::
-
 
 We refer to @fig-orbital-elements to describe the orbital parameters of
 interest for the current work.
 
-
-The angular position, $\theta$, of the re-entry point from the ascending node
-in the orbit plane is $\theta = \omega + \nu$.
-It is related to the latitude, $\varphi$, via the Cartesian coordinate $k$,
+The angular position, $\theta$, of the re-entry point from the ascending
+node in the orbit plane is $\theta = \omega + \nu$. It is related to the
+latitude, $\varphi$, via the Cartesian coordinate $k$,
 $k = R \sin(\varphi) = R \sin(\theta)\sin(i)$, or
 
 $$\sin(\varphi) = \sin(\theta)\sin(i)$$ {#eq-spheric-coords}
@@ -634,11 +705,10 @@ $$\sin(\varphi) = \sin(\theta)\sin(i)$$ {#eq-spheric-coords}
 Mass of Earth, $M_{\oplus} = \qty{5.9722e24}{kg}$.
 
 These are used to derive numerically compute the weighting function,
-@fig-weighting-inclination-i:
-for debris with inclination $i$ we simulate an orbit of $N$, i.e. $10001$,
-positions and calculate the corresponding cartesian position and the
-equivalent longitude and latitude.
-
+@fig-weighting-inclination-i: for debris with inclination $i$ we
+simulate an orbit of $N$, i.e. $10001$, positions and calculate the
+corresponding Cartesian position and the equivalent longitude and
+latitude.
 
 # References {.unnumbered}
 
