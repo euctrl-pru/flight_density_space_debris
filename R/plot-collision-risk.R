@@ -26,7 +26,7 @@ eur_hex <- bbox_nm() |>
 
 ddd <- density |>
   group_by(cell) |>
-  summarise(collision_expectation = sum(collision_expectation) / 24) |>
+  summarise(collision_expectation = sum(collision_expectation)) |>
   ungroup() |>
   filter(cell %in% (eur_hex |> pull(h3_address))) |>
   cell_to_polygon(simple = FALSE)

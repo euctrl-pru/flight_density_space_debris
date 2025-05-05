@@ -47,8 +47,8 @@ traffic_density_3_30s <- purrr::partial(
 days |> purrr::walk(traffic_density_3_30s)
 
 # 4. compute casuality
-casuality_3_30s_hourly <- purrr::partial(
-  collision_and_casuality_risk_expectation_hourly,
+casualty_3_30s_hourly <- purrr::partial(
+  collision_and_casualty_risk_expectation_hourly,
   resolution = 3L
 )
-days |> purrr::walk(casuality_3_30s_hourly)
+days |> purrr::walk(casualty_3_30s_hourly)
