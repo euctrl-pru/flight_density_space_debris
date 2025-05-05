@@ -104,6 +104,7 @@ ggplot() +
   ) +
   scale_fill_viridis_c(
     transform = "log10",
+    # transform = "pseudo_log",
     breaks = seq(min, MAX, length.out = 4) |>
       format(digits = 3) |>
       as.numeric(),
