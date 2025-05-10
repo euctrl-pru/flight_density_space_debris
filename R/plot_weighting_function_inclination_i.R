@@ -10,7 +10,7 @@ alt <- 550e3
 
 # inclination of Kosmos 482 Descent Craft (1972-023E, cat. nr. 6073)
 # see https://sattrackcam.blogspot.com/2025/04/kosmos-842-descent-craft-reentry.html
-inclination_deg = 51.7
+inclination_deg = 51.95
 
 www <- latitude_weights(
   delta_lat = 0.5,
