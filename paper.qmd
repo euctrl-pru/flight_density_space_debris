@@ -1,15 +1,22 @@
 ---
 title: "Preparing for Potential Closure of European Airspaces due to Re-entering Space Objects"
+
 filters:
   - acronyms
   - highlight-text
   - abstract-section
+
 crossref:
   eq-title: Equation     # (default is "")
+  fig-prefix: Fig.   # (default is "Figure")
+  # tbl-prefix: table    # (default is "Table")
+  ref-hyperlink: false # (default is true)
+  fig-title: Fig.
 
 format:
   ieee-pdf:
     keep-tex: true
+    colorlinks: false
     # fig-pos: 'H'
     journaltype: conference
     papersize: a4
@@ -654,7 +661,7 @@ the airspace and re-route traffic around the affected area.
 ```{r densities}
 #| out-width: "70%"
 #| echo: false
-#| fig-pos: H
+#| fig-pos: t
 knitr::include_graphics("media/figures/cubes.png")
 ```
 
