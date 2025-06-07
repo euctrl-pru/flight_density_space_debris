@@ -430,7 +430,7 @@ The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performanc
 
 
 [^pax]: `pax` values, i.e. number of passengers, will be used for future work on
-        casuality risk calculation.
+        casualty risk calculation.
 
 
 The impact probability for cell $h$ under consideration of a specific
@@ -733,7 +733,7 @@ This cell indexing approach reduces the computation burden significantly.
 
 <!-- future work ---------------------------------------------------------------------------->
 
-Future work will address the derivation of casuality expectation using
+Future work will address the derivation of casualty expectation using
 seats information for aircraft types in the traffic.
 <!-- or can we say something about the next concrete steps to remedy some weaknesses -->
 
