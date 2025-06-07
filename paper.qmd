@@ -7,7 +7,7 @@ filters:
   - abstract-section
 
 crossref:
-  # eq-title: Equation     # (default is "")
+  eq-prefix: ""
   fig-prefix: Fig.   # (default is "Figure")
   fig-title: Fig.
   # tbl-prefix: table    # (default is "Table")
@@ -551,7 +551,7 @@ we obtain the weightings per cell (per hour $H$), $W_H(h)$, as in
 
 
 
-Then @eq-impact-k becomes
+Then (@eq-impact-k) becomes
 
 $$
 p_t(h) = \varepsilon_t \rho_t(h) \sigma(h).
@@ -812,7 +812,7 @@ For debris with inclination $i$ we simulate an orbit of $N$, i.e. $10000$,
 positions ($\nu$) and calculate the corresponding Cartesian positions and
 the equivalent longitudes and latitudes.
 The latitudes are then binned on half degree intervals to compute
-$\sigma(\varphi, i)$, as per @eq-impact-probability-density.
+$\sigma(\varphi, i)$, as per (@eq-impact-probability-density).
 
 
 [^ascending-node]: For an earth satellite, the ascending node is the point in its orbit where a satellite crosses the equatorial plane going from south to north.
