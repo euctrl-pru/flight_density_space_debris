@@ -7,11 +7,11 @@ filters:
   - abstract-section
 
 crossref:
-  eq-title: Equation     # (default is "")
+  # eq-title: Equation     # (default is "")
   fig-prefix: Fig.   # (default is "Figure")
+  fig-title: Fig.
   # tbl-prefix: table    # (default is "Table")
   ref-hyperlink: false # (default is true)
-  fig-title: Fig.
 
 format:
   ieee-pdf:
@@ -348,7 +348,7 @@ aircraft (point) object over the area, $a$, is expressed as:
 
 $$
 p_k = \varepsilon_k \int_a \rho(\vec{x}) \sigma_k(\vec{x}) da
-$$
+$$ {#eq-impact-probability-general}
 
 where 
 
@@ -367,7 +367,7 @@ Using H3 to discretise the area of interest $a$ gives
 
 $$
 p_k = \varepsilon_k \sum_h \rho(h) \sigma_k(h).
-$$
+$$ {#eq-impact-probability-h3}
 
 The impact probability $p_{k}(h)$ for each cell $h$ is determined by the following expression
 
@@ -383,6 +383,7 @@ This assumption holds for practically all commercial aircraft within the scope o
 Accordingly, we can also simplify the geometry of the aircraft and model it as a rectangular solid with dimensions of wingspan ($W$), length ($L$) and height ($H$). 
 
 Regarding the aircraft-debris encounter geometry, this yields to two conceptual considerations:
+
 1. if the aircraft were stationary, the area exposed to the debris impact would be the top face of the rectangular solid, and
 2. if the debris were stationary, it would be the front face.
 
@@ -506,7 +507,7 @@ $$
 P &= \Delta A \times \sigma(\varphi, i) = 1000 \times \sigma\Bigl(\frac{\pi}{6}, \frac{\pi}{4}\Bigl) \\
   &= 1000 \times \num{2.490756e-15} = \num{2.490756e-12}
 \end{aligned}
-$$
+$$ {#eq-impact-probability-example}
 
 where we used the equatorial value of $\qty{6378}{km}$, for the Earth's radius,
 $R$, as the distance of the building from the centre of the planet.
@@ -531,7 +532,9 @@ Considering historical uncontrolled debris re-entry data, we can numerically
 derive the debris impact probability as a weighting function by summing up and
 averaging all single densities:
 
-$$ \sigma(\varphi) = \frac{1}{N} \sum_{k = 1}^N \sigma(\varphi, i_k)$$
+$$
+\sigma(\varphi) = \frac{1}{N} \sum_{k = 1}^N \sigma(\varphi, i_k)
+$$ {#eq-debris-impact-probability-historical}
 
 
 
@@ -587,7 +590,7 @@ hourly impact probability for each hexagonal cell as:
 
 $$
  E_{h, H} =  \sum_t W_H(h) \cdot \rho_{t,H}(h) \cdot \varepsilon_t
-$$
+$$ {#eq-impact-probability-hourly}
 
 where $E_{h,H}$ is the collision expectation in the hexagon $h$ at hour $H$.
 
