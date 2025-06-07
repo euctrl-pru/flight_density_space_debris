@@ -32,32 +32,32 @@ format:
       file: media/siunitx.html
 author:
   - id: es
-    name: Author 1
-    affiliations:
-      - ref: fake
-    # name: Enrico Spinielli
+    # name: Author 1
     # affiliations:
-    #   - ref: aiu
-    # orcid: 0000-0001-8584-9131
-    # email: enrico.spinielli@eurocontrol.int
-    # attributes:
-    #   corresponding: true
-  - name: Author 2
+    #   - ref: fake
+    name: Enrico Spinielli
     affiliations:
-      - ref: fake
-  # - name: Rainer Koelle
-  #   affiliations: 
-  #     - ref: aiu
-  #   orcid: 0000-0003-2810-1404
-  #   email: rainer.koelle@eurocontrol.int
-  - name: Author 3
+      - ref: aiu
+    orcid: 0000-0001-8584-9131
+    email: enrico.spinielli@eurocontrol.int
+    attributes:
+      corresponding: true
+  # - name: Author 2
+  #   affiliations:
+  #     - ref: fake
+  - name: Rainer Koelle
     affiliations:
-      - ref: fake
-  # - name: Quinten Goens
-  #   affiliations: 
-  #     - ref: aiu
-  #   orcid: 0000-0003-2187-1924
-  #   email: quinten.goens@eurocontrol.int
+      - ref: aiu
+    orcid: 0000-0003-2810-1404
+    email: rainer.koelle@eurocontrol.int
+  # - name: Author 3
+  #   affiliations:
+  #     - ref: fake
+  - name: Quinten Goens
+    affiliations:
+      - ref: aiu
+    orcid: 0000-0003-2187-1924
+    email: quinten.goens@eurocontrol.int
 affiliations:
   - id: aiu
     name: EUROCONTROL
