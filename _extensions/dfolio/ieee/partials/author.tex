@@ -1,1 +1,12 @@
-$it.name.literal$$if(it.orcid)$\orcidlink{$it.orcid$}$endif$$if(it.metadata.membership)$,~\IEEEmembership{$it.metadata.membership$}$endif$
+\IEEEauthorblockN{$it.name.literal$}
+$if(by-author.affiliations)$
+  $for(by-author.affiliations)$
+    \IEEEauthorblockA{%
+      $if(it.name)$\textit{$it.name$}$endif$
+      $if(it.department)$\\ \textit{$it.department$}$endif$
+      $if(it.city)$\\ $it.city$$endif$$if(it.country)$, $it.country$$endif$
+  $endfor$
+      $if(it.orcid)$\\ \orcidlinkc{$it.orcid$}$endif$%
+    }
+$endif$
+

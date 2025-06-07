@@ -10,8 +10,8 @@ $if(funding)$
 \thanks{$for(funding)$$for(funding.statement)$$funding.statement$$endfor$$endfor$}
 $endif$
 $if(author/allbutlast)$
-$for(by-author/allbutlast)$$author.tex()$$sep$,~$endfor$
-and~${ by-author/last:author.tex() }%
+$for(by-author/allbutlast)$$author.tex()$$sep$\and $endfor$
+\and ${ by-author/last:author.tex() }%
 $for(by-author)$
 $if(tex-author-no-affiliation)$
 $else$
