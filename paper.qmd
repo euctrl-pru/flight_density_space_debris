@@ -418,7 +418,11 @@ $$ {#eq-effective-exposed-area-simplified}
 These aircraft properties are well-known design parameters. 
 While there does not exist a single openly available date base for these aircraft parameters, we collected the information from a series of sources and integrated them into a lookup dataset.
 The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used $\varepsilon_t = \qty{500}{m^2}$
-and $pax = 7$ for missing entries which usually are due to smaller aircraft not listed in the above sources.
+(and $pax = 7$)[^pax] for missing entries which usually are due to smaller aircraft not listed in the above sources.
+
+
+[^pax]: `pax` values, i.e. number of passengers, will be used for future work on
+        casuality risk calculation.
 
 
 The impact probability for cell $h$ under consideration of a specific
