@@ -1,6 +1,11 @@
 ---
 title: "Preparing for Potential Closure of European Airspaces due to Re-entering Space Objects"
 
+keywords: 
+  - space debris
+  - airspace closure
+  - aviation safety
+
 filters:
   - acronyms
   - highlight-text
@@ -25,7 +30,8 @@ format:
     include-before-body:
       - text: |
           \let\qty\SI
-          % NOTE: make siunitx's \qty work without clashing with the one in physics
+          % NOTE: make siunitx's \qty work without clashing with 
+          %      the one in physics
   ieee-html: 
     html-math-method: mathjax
     include-in-header:
@@ -41,6 +47,7 @@ author:
       corresponding: true
     role: 
       - conceptualization
+      - writing
       - software
   - name: Rainer Koelle
     affiliations:
