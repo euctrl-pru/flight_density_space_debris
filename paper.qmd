@@ -420,6 +420,7 @@ While there does not exist a single openly available date base for these aircraf
 The values $W_t$, $H_t$, $L_t$ and $C_{t}$ have been retrieved from [@performance_database;@skybrary;@doc8643]; we used $\varepsilon_t = \qty{500}{m^2}$
 and $pax = 7$ for missing entries which usually are due to smaller aircraft not listed in the above sources.
 
+
 The impact probability for cell $h$ under consideration of a specific
 aircraft of type $t$ becomes:
 
@@ -728,6 +729,11 @@ As part of this research and to inform the decision-makers it is planned
 to explore the impact of megaconstellations and flight growth forecast and
 what would happen in the mid- to long-term in various scenarios of
 uncontrolled re-entries and the risk for European airspace.
+
+Of practical interest for the application of this work and future extension
+is the scenario of mission failure at launch can typically lead to vast airspace
+closure and traffic re-routing: The techniques developed would allow to
+quantify risk and impact of the planned measures.
 
 ::: {#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="h" height=80%}
 ```{r ellipse-parameters}
