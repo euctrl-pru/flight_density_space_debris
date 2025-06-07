@@ -21,9 +21,9 @@ www |>
   ggplot() +
   geom_line(aes(x = lat, y = val), linewidth = 1.3) +
   scale_x_continuous("latitude", breaks = c(-90, -60, -30, 0, 30, 60, 90)) +
+  labs(y = "density") +
   theme_minimal(base_size = 24) +
   theme(
-    axis.title.y = element_blank(),
     panel.grid.minor.x = element_blank(),
   )
 
