@@ -3,6 +3,8 @@ acronyms:
   keys:
     - shortname: ADS-B
       longname: Automatic Dependent Surveillance–Broadcast
+    - shortname: ATC
+      longname: Air Traffic Control
     - shortname: ATFCM
       longname: Air Traffic Flow and Capacity Management
     - shortname: EASA
@@ -17,6 +19,8 @@ acronyms:
       longname: European Union
     - shortname: FIR
       longname: Flight Information Region
+    - shortname: FP
+      longname: Flight Plan
     - shortname: IFR
       longname: Instrument Flight Rules
     - shortname: ITU

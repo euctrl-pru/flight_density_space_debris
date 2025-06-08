@@ -74,6 +74,8 @@ affiliations:
     department: Best Tricks
     city: Los Angeles
     country: USA
+  - id: empty
+
 bibliography: media/references.bib
 acronyms:
   insert_loa: false
@@ -293,11 +295,15 @@ This provides a more realistic figure of the number of affected air traffic.
 Thus, flight density is directly related to the number of flight operations per 
 volume of airspace.
 
-[^adsb]: Crowdsourced ADS-B/Mode S data suffer from lack of coverage away from landmasses and from the need to filter away position reports for stationary aircraft at airports which unnecessarily inflate the density of flying traffic.
+[^adsb]: Crowdsourced ADS-B/Mode S data suffer from lack of coverage away from landmasses and from the need to filter away position reports for stationary aircraft at airports which unnecessarily inflate the density at the location.
 
 This work focusses on the European region. The hourly flight density
-estimation is based on flown \acr{IFR} trajectories as recorded by
-EUROCONTROL's \acr{NM}[^1]. To decrease spatial complexity, the data is
+estimation is based on _flown_ \acr{IFR} trajectories as recorded
+by EUROCONTROL's \acr{NM}[^1]. These trajectories are reconstructed from
+the filed \acr{FP} and recalculated when big deviations are detected from
+position reports received from \acr{ATC}.
+
+To decrease spatial complexity, the data is
 binned using Uber's H3 geospatial indexing system [@uber-h3]. The
 reduction of the spatial complexity enables fast processing. For this
 work, we employ a H3-cell-resolution of 3. This corresponds to hexagons

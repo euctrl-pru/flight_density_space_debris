@@ -1,12 +1,12 @@
 \IEEEauthorblockN{$it.name.literal$}
 $if(by-author.affiliations)$
+  \IEEEauthorblockA{%
   $for(by-author.affiliations)$
-    \IEEEauthorblockA{%
-      $if(it.name)$\textit{$it.name$}$endif$
-      $if(it.department)$\\ \textit{$it.department$}$endif$
-      $if(it.city)$\\ $it.city$$endif$$if(it.country)$, $it.country$$endif$
+      $if(it.name)$\textit{$it.name$} \\$endif$%
+      $if(it.department)$\textit{$it.department$} \\$endif$%
+      $if(it.city)$$it.city$$endif$$if(it.country)$, $it.country$ \\$endif$%
   $endfor$
-      $if(it.orcid)$\\ \orcidlinkc{$it.orcid$}$endif$%
+    $if(it.orcid)$\orcidlinkc{$it.orcid$}$endif$%
     }
 $endif$
 
