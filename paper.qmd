@@ -109,7 +109,7 @@ as recorded by EUROCONTROL's Network Manager and binned with the Uber H3
 geospatial indexing system.
 Impact risk probabilities are then calculated based on previous theoretical
 work. 
-<!-- results / conclusions --> This work enhances the previou model by using
+<!-- results / conclusions --> This work enhances the previous model by using
 actual flown flight trajectories as a basis for time-varying flight densities
 rather than relying on proxies such as the population density or ADS-B/Mode S
 message counts. These densities combined with a buffered area along the eventual path of re-entry, can provide mid-air impact probabilities to authorities
@@ -286,11 +286,14 @@ polygon).
 We follow the same mathematical approach of [@patera2008;
 @wrightAirspaceClosuresDue2025]. However, this paper augments the
 approximation of risk exposure. Instead of approximating flight density
-with population density [@patera2008] or aircraft transponder data
+with population density [@patera2008] or aircraft transponder data[^adsb]
 [@wrightAirspaceClosuresDue2025], we use actual flown flight
-trajectories. This provides a more realistic figure of the number of affected air traffic.
-Thus, flight density is directly related to the number of flight operations per volume of airspace.
+trajectories.
+This provides a more realistic figure of the number of affected air traffic.
+Thus, flight density is directly related to the number of flight operations per 
+volume of airspace.
 
+[^adsb]: Crowdsourced ADS-B/Mode S data suffer from lack of coverage away from landmasses and from the need to filter away position reports for stationary aircraft at airports which unnecessarily inflate the density of flying traffic.
 
 This work focusses on the European region. The hourly flight density
 estimation is based on flown \acr{IFR} trajectories as recorded by
