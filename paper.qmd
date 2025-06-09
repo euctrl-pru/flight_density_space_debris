@@ -658,10 +658,13 @@ see @fig-weighting-inclination-i, we can derive the maximum
 collision expectation using data for the busiest day in the busiest 2024 week
 as a proxy for the traffic density on the day of re-entry.
 Using the approach in this study and the weightings for this specific debris,
-the cell with the highest impact risk is cell, `83194afffffffff` 
-(located South of London), with a value of $1.89 \cdot  10^{-10}$.
-
-The risk is very low.
+the cell with the highest impact risk is cell, `83195dfffffffff` 
+(located North-West of London and overlapping with the airport of London Heathrow), with a daily value of probability collision risk of $2.63 \cdot  10^{-10}$.
+This corresponds to an annual probability of a collision between this rocket
+body and an aircraft of $9.6 \cdot  10^{-8}$ (1 in 10420000).
+The risk is very low, for a comparison the odds of a person being struck by
+lightning in a given year are less than one in a million
+[@cdcLightningStrikeVictim2024].
 
 Radar systems over Germany saw the descent craft at approximately 04:30 UTC and
 06:04 UTC on May $10^{th}$. Given that the descent craft was not spotted at
