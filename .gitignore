@@ -5,7 +5,8 @@
 .Ruserdata
 data/
 data-raw/
-paper.*
+paper.tex
+paper.pdf
 paper_files/
 
 # from https://github.com/github/gitignore/blob/main/R.gitignore
