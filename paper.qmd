@@ -762,9 +762,10 @@ what would happen in the mid- to long-term in various scenarios of
 uncontrolled re-entries and the risk for European airspace.
 
 Of practical interest for the application of this work and future extension
-is the scenario of mission failure at launch can typically lead to vast airspace
-closure and traffic re-routing: The techniques developed would allow to
-quantify risk and impact of the planned measures.
+on casualty risk is the scenario of mission failure at launch
+which can typically lead to vast airspace closure and traffic re-routing:
+the techniques developed here  would help to quantify risk and impact of the
+planned measures.
 
 ::: {#fig-orbital-elements layout="[40,-4,56]" fig-env="figure*" fig-pos="h" height=80%}
 ```{r ellipse-parameters}
