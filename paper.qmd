@@ -401,7 +401,7 @@ Regarding the aircraft-debris encounter geometry, this yields to two conceptual 
 1. if the aircraft were stationary, the area exposed to the debris impact would be the top face of the rectangular solid, and
 2. if the debris were stationary, it would be the front face.
 
-Our focus is on commercial aircraft in flight, and - implicitly - operating at higher altitudes (i.e., flight levels).
+Our focus is on commercial aircraft in flight, and --- implicitly --- operating at higher altitudes (i.e., flight levels).
 The en-route portion of a flight is characterised by the aircraft in straight and level flight, moving (mainly) horizontally.
 At the same time, the trajectory of a falling re-entering debris object at regular en-route flight levels will be a vertical descent movement[^ballistic_descent].
 This encounter geometry allows to express the effective exposed area, $\varepsilon_k$, as
