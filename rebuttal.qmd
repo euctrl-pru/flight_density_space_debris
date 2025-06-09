@@ -1,0 +1,135 @@
+---
+title: "Rebuttal info"
+date: 2025-06-09
+
+format:
+  pdf: 
+    papersize: a4
+---
+
+# Introduction
+
+Thank you very much for your comments and observations for the revision of
+the paper 'Preparing for Potential Closure of European Airspaces due to
+Re-entering Space Objects'.
+
+In general we think to have addressed all comments from the two reviewers
+to the best of our understanding.
+
+We provide details below.
+
+
+# Feedback
+
+## Failed launches
+
+**Reviewer 4**: In the introduction you stated that the launches are usually well controlled. I would mention the two recent failed launches that led to enormous airspace closures in the Caribbean after launch failures. I think that's certainly a point to also consider (probably beyond the scope of this paper but at least discuss it as future work).
+
+**Authors**: In "Conclusions and Future Work" section we have included the
+following paragraph:
+
+> Of practical interest for the application of this work and future extension
+> on casualty risk is the scenario of mission failure at launch
+> which can typically lead to vast airspace closure and traffic re-routing:
+> the techniques developed here  would help to quantify risk and impact of the
+> planned measures.
+
+
+
+## On transponder data vs real trajectories
+
+**Reviewer 4**: I am not sure why you keep stating that you use real trajectories and don't rely on transponder data. I would assume that these number should match very closely?
+
+**Authors**: we added the following footnote linked to the use of transponder
+data of previous work:
+
+> Crowdsourced ADS-B/Mode S data suffer from lack of coverage away from
+> landmasses and from the need to filter away position reports for stationary 
+> aircraft at airports which unnecessarily inflate the density at the location.
+
+We also further detailed the nature of the trajectory used:
+
+> These trajectories are reconstructed from the filed Flight Plan (FP) and 
+> recalculated when big deviations are detected from position reports received
+> from Air Traffic Control (ATC).
+
+
+## Explain `pax`
+
+**Reviewer 4**: You never explain what pax=7 means
+
+**Authors**: we added a footnote to explain why we mentioned pax:
+
+> `pax` values, i.e. number of passengers, will be used for future work on 
+> casualty risk calculation.
+
+
+
+## Missing axis labels
+
+**Reviewer 4**: Fig 4/5 miss y axis label
+
+**Authors**: we added the axis labels
+
+::: {#fig-orbital-elements layout="[49,-2,49]" fig-env="figure*" fig-pos="h" height=100%}
+
+```{r weighting-inclination-i}
+#| out-width: "100%"
+#| echo: false
+#| fig-cap: Fig. 4
+knitr::include_graphics("media/figures/weighting_inclination_i.png")
+```
+
+```{r weighting}
+#| out-width: "100%"
+#| echo: false
+#| fig-cap: Fig. 5
+knitr::include_graphics("media/figures/weighting.png")
+```
+
+:::
+
+## Perspective about collision risk
+
+**Reviewer 4**: You could give a reader some indications what accepted safety levels are (e.g. similar to mid-air collision risk between two aircraft) to put your numbers a bit into perspective.
+
+**Authors**: we compared the collision risk for the use case with the odds of being struck by lightning in order to bring some more tangible example to the
+reader.
+
+
+## Use template
+
+**Reviewer 5**: Use of the template: keywords missing, incorrect formatting of figures and template headers
+
+**Authors**: we added keywords, formatted figures (and references) according to IEEE guidelines, i.e. Fig. N.  
+Regarding the headers we checked but they seems composed according to IEEE class (we use a LaTeX template). We need further details to understand what does
+not comply...
+
+
+## Links in PDF
+
+**Reviewer 5**: Why are there blue links in the PDF file?
+
+**Authors**: we removed the links in the PDF.
+
+
+
+## Formulas 
+
+**Reviewer 5**: Only a few formulas are numbered, why?
+
+**Authors**: we numbered all equations. We also followed IEEE guidelines and changed from "...see Equation 4..." to the proper style "...(4)..."
+
+
+
+## References' format
+
+**Reviewer 5**: The references are not in the correct format. 
+
+**Authors**: We checked the way references are laid out (this is done from bib file from LaTeX processing) and to us they look ok. We would need more details to understand what is not correct.
+
+## Figure 11 positioning
+
+**Reviewer 5**: Figure 11 should not be placed in between the list of references.
+
+**Authors**: Figure 11 is no more in the middle of the References.
