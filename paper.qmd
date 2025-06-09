@@ -782,7 +782,7 @@ knitr::include_graphics("media/figures/classical_orbital_elements_2.png")
 knitr::include_graphics("media/figures/classical_orbital_elements_4.png")
 ```
 
-Orbital elements, Figures 5-2 and 5-9 from [@sellers2003understanding].
+Orbital elements, Figures 4.1.4-2 and 4.1.4-9 from [@sellers2003understanding].
 :::
 
 
