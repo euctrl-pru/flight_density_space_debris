@@ -12,11 +12,13 @@ days <- c(
 )
 
 # cherry peek days
-# days <- c(
-#   "2023-07-07",
-#   "2023-09-01",
-#   "2024-07-05"
-# )
+days <- c(
+  # "2023-07-07",
+  # "2023-09-01",
+  "2024-07-05",
+  NULL
+) |>
+  as_date()
 
 # exporting data 3min ca per day
 
