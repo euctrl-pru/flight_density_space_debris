@@ -1,3 +1,4 @@
+
 # DASC 2025: Preparing for Potential Closure of European Airspaces due to Re-entering Space Objects 
 
 This repository contains the source materials and pointers to the supporting code for the paper:
@@ -18,7 +19,7 @@ We present a methodology that:
 - Computes mid-air impact probabilities for debris re-entry corridors
 - Aims to inform authorities and stakeholders of exposure and required mitigation actions
 
-![collision expectation on 2024-07-05](collision_expectation_2024-07-05_3.png)
+![collision expectation on 2024-07-05](https://github.com/euctrl-pru/flight_density_space_debris/blob/main/media/figures/collision_expectation_2024-07-05_3.png?raw=true)
 
 ---
 
