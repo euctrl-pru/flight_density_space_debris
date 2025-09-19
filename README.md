@@ -18,6 +18,8 @@ We present a methodology that:
 - Computes mid-air impact probabilities for debris re-entry corridors
 - Aims to inform authorities and stakeholders of exposure and required mitigation actions
 
+![collision expectation on 2024-07-05](collision_expectation_2024-07-05_3.png)
+
 ---
 
 ## 📄 Abstract
