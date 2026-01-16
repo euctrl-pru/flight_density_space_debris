@@ -826,8 +826,8 @@ $$
 \sin(\varphi) = \sin(\theta)\sin(i)
 $$ {#eq-spheric-coords}
 
-In the derivation of debris orbital positions, we use the value of the mass of Earth, $M_{\oplus} = \qty{5.9722e24}{kg}$ but we neglect that of the debris
-because many orders of magnitudes smaller (and not always known).
+In the derivation of the debris' orbital positions, we use the value of the Earth's mass, $M_{\oplus} = \qty{5.9722e24}{kg}$ but neglect that of the debris
+because it is many orders of magnitudes smaller (and not always known).
 
 Of all the orbital elements, for the needs of this paper to numerically compute
 the weighting function, , @fig-weighting-inclination-i, we only need
@@ -839,7 +839,7 @@ The latitudes are then binned on half degree intervals to compute
 $\sigma(\varphi, i)$, as per (@eq-impact-probability-density).
 
 
-[^ascending-node]: For an earth satellite, the ascending node is the point in its orbit where a satellite crosses the equatorial plane going from south to north.
+[^ascending-node]: For an earth satellite, the ascending node is the point in its orbit where the satellite crosses the equatorial plane going from south to north.
 
 
 
