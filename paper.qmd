@@ -199,45 +199,45 @@ library(tibble)
 library(gt)
 
 megas <- tibble::tribble(
-  ~constellation, ~state, ~launched, ~active, ~planned, ~first_launch,
-  "Starlink", "US", 4714, 3521, 4714, 2018,
-  "Starlink2A", "US", 3689, 3070, 6720, 2022,
-  "Starlink2", "US", 0, 0, 30456, NA,
-  "OneWeb", "UK", 660, 635, 716, 2019,
-  "OneWeb2", "UK", 0, 0, 2304, NA,
-  "Kuiper", "US", 29, 27, 3232, 2023,
-  "StarShield", "US", 193, 126, 32, 2022,
-  "Xingwang", "CN", 50, 10, 996, 2021,
-  "Qianfan", "CN", 90, 28, 32, 2024,
-  "Guangwang", "CN", 0, 0, 12992, NA,
-  "Yinhe", "CN", 8, 7, 1000, 2020,
-  "Hanwha", "KR", 0, 0, 2000, NA,
-  "Lynk", "US", 10, 6, 2000, 2020,
-  "Astra", "US", 0, 0, 13620, NA,
-  "Telesat", "CA", 0, 0, 300, NA,
-  "HVNET", "US", 0, 0, 1440, NA,
-  "SpinLaunch", "US", 0, 0, 1190, NA,
-  "Globalstar3", "DE", 0, 0, 3080, NA,
-  "Honghu-3", "CN", 0, 0, 10000, NA,
-  "Semaphore", "FR", 0, 0, 116640, NA,
-  "E-Space", "US", 4, 0, 337323, 2022
+  ~constellation , ~state , ~launched , ~active , ~planned , ~first_launch ,
+  "Starlink"     , "US"   ,      4714 ,    3521 ,     4714 ,          2018 ,
+  "Starlink2A"   , "US"   ,      3689 ,    3070 ,     6720 ,          2022 ,
+  "Starlink2"    , "US"   ,         0 ,       0 ,    30456 , NA            ,
+  "OneWeb"       , "UK"   ,       660 ,     635 ,      716 ,          2019 ,
+  "OneWeb2"      , "UK"   ,         0 ,       0 ,     2304 , NA            ,
+  "Kuiper"       , "US"   ,        29 ,      27 ,     3232 ,          2023 ,
+  "StarShield"   , "US"   ,       193 ,     126 ,       32 ,          2022 ,
+  "Xingwang"     , "CN"   ,        50 ,      10 ,      996 ,          2021 ,
+  "Qianfan"      , "CN"   ,        90 ,      28 ,       32 ,          2024 ,
+  "Guangwang"    , "CN"   ,         0 ,       0 ,    12992 , NA            ,
+  "Yinhe"        , "CN"   ,         8 ,       7 ,     1000 ,          2020 ,
+  "Hanwha"       , "KR"   ,         0 ,       0 ,     2000 , NA            ,
+  "Lynk"         , "US"   ,        10 ,       6 ,     2000 ,          2020 ,
+  "Astra"        , "US"   ,         0 ,       0 ,    13620 , NA            ,
+  "Telesat"      , "CA"   ,         0 ,       0 ,      300 , NA            ,
+  "HVNET"        , "US"   ,         0 ,       0 ,     1440 , NA            ,
+  "SpinLaunch"   , "US"   ,         0 ,       0 ,     1190 , NA            ,
+  "Globalstar3"  , "DE"   ,         0 ,       0 ,     3080 , NA            ,
+  "Honghu-3"     , "CN"   ,         0 ,       0 ,    10000 , NA            ,
+  "Semaphore"    , "FR"   ,         0 ,       0 ,   116640 , NA            ,
+  "E-Space"      , "US"   ,         4 ,       0 ,   337323 ,          2022
 )
 
 # ~constellation, ~state, ~launched, ~active, ~planned, ~first_launch,
-megas |> 
-  gt() |> 
-   cols_label(
+megas |>
+  gt() |>
+  cols_label(
     constellation ~ "Constellation",
     state ~ "Country",
     launched ~ "Launched",
     active ~ "Active",
     planned ~ "Planned",
     first_launch ~ "First launch"
-  ) |> 
-   sub_missing(
+  ) |>
+  sub_missing(
     columns = "first_launch",
     missing_text = "-"
-  ) |> 
+  ) |>
   opt_table_font(size = "10px")
 
 ```
@@ -629,7 +629,11 @@ density observe a higher collision expectation.
 ```{r collision}
 #| out-width: "100%"
 #| echo: false
-knitr::include_graphics(here::here("media", "figures", "collision_expectation_2024-07-05_3.png"))
+knitr::include_graphics(here::here(
+  "media",
+  "figures",
+  "collision_expectation_2024-07-05_3.png"
+))
 ```
 
 Averaged hourly collision expectation on 2024-07-05.
@@ -798,7 +802,7 @@ interest for the current work.
 
 
 
-The orbital elements describing the trajectory of orbiting object are
+The orbital elements describing the trajectory of an orbiting object are
 illustrated in association with an inertial reference frame
 $\hat{I}$-$\hat{J}$-$\hat{K}$. 
 The $I$-axis, $\hat{I}$, points toward the vernal equinox and 
@@ -807,7 +811,7 @@ in the sense of Earth's rotation, with the $K$-axis pointing up.
 The semi-major axis, $a$, the eccentricity, $e$, the inclination, $i$,
 the right ascension of the ascending node, $\Omega$, and the argument of perigee, $\omega$, constitute, together with the mean anomaly at the initial position,
 $M_0$, a set of six constants of motion that are preserved in the
-absence of perturbation. True anomaly, $\nu$, specifies the location of
+absence of perturbation. The true anomaly, $\nu$, specifies the location of
 an orbiting object within the orbit. It is the angle between perigee and
 the orbiting object's position vector measured in the direction of the
 orbiting object's motion.
@@ -845,7 +849,3 @@ $\sigma(\varphi, i)$, as per (@eq-impact-probability-density).
 
 ::: {#refs}
 :::
-
-
-
-
